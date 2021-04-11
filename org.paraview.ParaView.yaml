@@ -177,7 +177,7 @@ modules:
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
       #- -DPARAVIEW_USE_CUDA:BOOL=ON
       - -DPARAVIEW_USE_MPI:BOOL=ON
-      - -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=ON
+      #- -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.0.tar.gz
