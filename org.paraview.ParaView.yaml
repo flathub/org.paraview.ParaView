@@ -144,10 +144,10 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
-        sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
-      - type: patch
-        path: tbb_cmake.patch
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.2.0.tar.gz
+        sha256: cee20b0a71d977416f3e3b4ec643ee4f38cedeb2a9ff015303431dd9d8d79854
+      #- type: patch
+        #path: tbb_cmake.patch
 
     # Paraview need 32GB of memory to build
   - name: Paraview
