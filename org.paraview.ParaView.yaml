@@ -171,7 +171,7 @@ modules:
       - name: ISPC
         buildsystem: simple
         build-commands:
-          - cp ispc /app/bin/
+          - cp bin/ispc /app/bin/
         sources:
           - type: archive
             url: https://github.com/ispc/ispc/releases/download/v1.15.0/ispc-v1.15.0-linux.tar.gz
