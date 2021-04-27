@@ -207,8 +207,7 @@ modules:
         sources:
           - type: archive
             url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
-            sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
-       # openVKL need ISPC 1.14.1 which OSPRay 1.8.0 does not work with, wait for VTK to update OSPRay requirement.       
+            sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0  
       - name: openvkl
         buildsystem: cmake
         builddir: true
