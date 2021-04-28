@@ -19,7 +19,7 @@ cleanup:
   - "*.la"
   - "*.a"
 
-# Disable on aarch64 since GLES isn't supported for bundled vtk but is needed for paraview
+# Disable ARM support, ParaView does not support it anyway.
 modules:
   - shared-modules/glew/glew.json
   
@@ -218,6 +218,7 @@ modules:
           - type: archive
             url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
             sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
+        # OSPRay does not build with openvkl newer than 0.9.0
       - name: openvkl
         buildsystem: cmake
         builddir: true
@@ -226,9 +227,9 @@ modules:
           - -DBUILD_BENCHMARKS:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.12.1.tar.gz
-            sha256: 58ce13fe09699a9966b665c89fac0fca96a1155606889e11ec8f0fc34834e25a
-
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
+            sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
+            
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
