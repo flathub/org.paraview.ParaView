@@ -30,8 +30,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/d2/48/f445be426ccd9b2fb64155ac6730c7212358882e589cd3717477d739d9ff/numpy-1.20.1.zip
-        sha256: 3bc63486a870294683980d76ec1e3efc786295ae00128f9ea38e2c6e74d5a60a
+        url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
+        sha256: c049f410c78e76ffb0af830a8afbdf8baac09897b4152b97b1a3b8345ee338ff
    
   - name: certifi
     buildsystem: simple
@@ -209,6 +209,15 @@ modules:
           - type: archive
             url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
             sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
+      - name: rkcommon
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
+            sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
       - name: openvkl
         buildsystem: cmake
         builddir: true
