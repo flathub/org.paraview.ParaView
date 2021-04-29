@@ -118,25 +118,6 @@ modules:
       - type: archive
         url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.gz
         sha256: aeb26f80e80945e82ee93e5939baebdca47b9dee80a07d3144be1e1a6a66dd6a
-        
-  #- name: zlib
-    #sources:
-      #- type: archive
-        #url: https://zlib.net/zlib-1.2.11.tar.gz
-        #sha256: c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1   
-        
-  - name: hdf5
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING:BOOL=OFF
-      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
-      - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
-    sources:
-      - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
-        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
 
   - name: netcdf
     sources: 
@@ -377,7 +358,6 @@ modules:
       - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_USE_MPI:BOOL=ON
       #- -DPARAVIEW_USE_CUDA:BOOL=ON
-      #- -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=ON
       - -DHDF5_ENABLE_HDF5:BOOL=ON
       - -DHDF5_ENABLE_OPTIMIZATION:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF2:BOOL=ON
