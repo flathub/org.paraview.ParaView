@@ -113,19 +113,30 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
         url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.gz
         sha256: aeb26f80e80945e82ee93e5939baebdca47b9dee80a07d3144be1e1a6a66dd6a
         
+  #- name: zlib
+    #sources:
+      #- type: archive
+        #url: https://zlib.net/zlib-1.2.11.tar.gz
+        #sha256: c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1   
+        
   - name: hdf5
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+      - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
-        sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
-    cleanup:
-      - "/share/hdf5_examples"
+        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
+        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
 
   - name: netcdf
     sources: 
@@ -230,6 +241,113 @@ modules:
             url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
             sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
             
+  - name: GDAL
+    sources:
+      - type: archive
+        url: https://download.osgeo.org/gdal/3.2.2/gdal-3.2.2.tar.gz
+        sha256: 3313e1b0e75de58da4e15a68a9b55e7c04509d3e0e274311dfffe996f6da1a2a
+    modules:
+      - name: PROJ
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/OSGeo/PROJ/releases/download/8.0.0/proj-8.0.0.tar.gz
+            sha256: aa5d4b934450149a350aed7e5fbac880e2f7d3fa2f251c26cb64228f96a2109e
+            
+  - name: GeoTIFF
+    builddir: true
+    buildsystem: simple
+    build-commands:
+      - ./configure --prefix=/app
+      - make install -j
+    sources:
+      - type: archive
+        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.6.0.tar.gz
+        sha256: 9311017e5284cffb86f2c7b7a9df1fb5ebcdc61c30468fb2e6bca36e4272ebca
+            
+  - name: PDAL
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DWITH_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/PDAL/PDAL/releases/download/2.2.0/PDAL-2.2.0-src.tar.gz
+        sha256: 421e94beafbfda6db642e61199bc4605eade5cab5d2e54585e08f4b27438e568
+        
+    ##https://github.com/boostorg/endian/issues/45    
+  #- name: libLAS
+    #buildsystem: cmake-ninja
+    #config-opts:
+      #- -DWITH_TESTS=OFF
+    #sources:
+      #- type: archive
+        #url: http://download.osgeo.org/liblas/libLAS-1.8.1.tar.bz2
+        #sha256: 9adb4a98c63b461ed2bc82e214ae522cbd809cff578f28511122efe6c7ea4e76
+        
+  - name: ADIOS2
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DWITH_TESTS:BOOL=OFF
+      - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+    sources:
+      - type: archive
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.7.1.tar.gz
+        sha256: c8e237fd51f49d8a62a0660db12b72ea5067512aa7970f3fcf80b70e3f87ca3e
+        
+  - name: lapack
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=ON
+      - -DBUILD_TESTING=OFF
+      - -DLAPACKE=ON
+      - -DCBLAS=ON
+    sources:
+      - type: archive
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.9.1.tar.gz
+        sha256: d0085d2caf997ff39299c05d4bacb6f3d27001d25a4cc613d48c1f352b73e7e0
+
+  - name: Eigen3
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
+        sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
+    cleanup: 
+      - "*"
+      
+  #- name: SWIG
+    #sources:
+      #- type: archive
+        #url: https://sourceforge.net/projects/swig/files/swig/swig-4.0.2/swig-4.0.2.tar.gz
+        #sha256: d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc
+        
+  - name: OpenTURNS
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.16.tar.gz
+        sha256: 9ab4c0d8f68d54a87df1cc19975f78cf0a16d6401afa83459eed9613695995dc
+     
+    # Provide libnuma for MEMKIND 
+  - name: numactl
+    sources:
+      - type: archive
+        url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
+        sha256: 826bd148c1b6231e1284e42a4db510207747484b112aee25ed6b1078756bcff6   
+        
+  - name: MEMKIND
+    sources:
+      - type: archive
+        url: https://github.com/memkind/memkind/archive/refs/tags/v1.11.0.tar.gz
+        sha256: 22c9d0a59ac57278d4fd0e9699c2934c0bd3babd46f13482b3c7ec7d123312ec
+            
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
@@ -256,9 +374,28 @@ modules:
       - -DPARAVIEW_BUILD_WITH_EXTERNAL:BOOL=OFF
       - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
-      #- -DPARAVIEW_USE_CUDA:BOOL=ON
+      - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_USE_MPI:BOOL=ON
+      #- -DPARAVIEW_USE_CUDA:BOOL=ON
       #- -DVTK_BUILD_COMPILE_TOOLS_ONLY:BOOL=ON
+      - -DHDF5_ENABLE_HDF5:BOOL=ON
+      - -DHDF5_ENABLE_OPTIMIZATION:BOOL=ON
+      - -DPARAVIEW_ENABLE_XDMF2:BOOL=ON
+      - -DPARAVIEW_ENABLE_XDMF3:BOOL=ON
+      - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
+      - -DPARAVIEW_ENABLE_FIDES:BOOL=ON
+      - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
+      - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
+      #- -DPARAVIEW_ENABLE_LAS:BOOL=ON
+      - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
+      - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
+      - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
+      #- -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON net
+      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON net
+      - -DPARAVIEW_USE_MEMKIND:BOOL=ON
+      - -DVTKm_ENABLE_MPI:BOOL=ON
+      - -DVTKm_ENABLE_OPENMP:BOOL=ON
+      - -DVTKm_ENABLE_TBB:BOOL=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.0.tar.gz
