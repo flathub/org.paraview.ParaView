@@ -19,7 +19,7 @@ cleanup:
   - "*.la"
   - "*.a"
 
-# Disable on aarch64 since GLES isn't supported for bundled vtk but is needed for paraview
+# Disable ARM support, ParaView does not support it anyway.
 modules:
   - shared-modules/glew/glew.json
   
@@ -27,16 +27,16 @@ modules:
     buildsystem: simple
     build-commands:
       - rm pyproject.toml
-      - pip3 install --prefix=/app .
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/d2/48/f445be426ccd9b2fb64155ac6730c7212358882e589cd3717477d739d9ff/numpy-1.20.1.zip
-        sha256: 3bc63486a870294683980d76ec1e3efc786295ae00128f9ea38e2c6e74d5a60a
+        url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
+        sha256: c049f410c78e76ffb0af830a8afbdf8baac09897b4152b97b1a3b8345ee338ff
    
   - name: certifi
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz
@@ -45,7 +45,7 @@ modules:
   - name: matplotlib
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         dest: build/freetype-2.6.1
@@ -58,7 +58,7 @@ modules:
   - name: pyparsing
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
@@ -67,7 +67,7 @@ modules:
   - name: cycler
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/c2/4b/137dea450d6e1e3d474e1d873cd1d4f7d3beed7e0dc973b06e8e10d32488/cycler-0.10.0.tar.gz
@@ -76,7 +76,7 @@ modules:
   - name: cppy
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/36/64/be592e84c443a70ea5dcfb1c30bfe6f10ba7d8eb05c2264c7ceca8498548/cppy-1.1.0.tar.gz
@@ -85,7 +85,7 @@ modules:
   - name: kiwisolver
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/62/b8/db619d97819afb52a3ff5ff6ad3f7de408cc83a8ec2dfb31a1731c0a97c2/kiwisolver-1.2.0.tar.gz
@@ -94,7 +94,7 @@ modules:
   - name: setuptools_scm
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/cd/66/fa77e809b7cb1c2e14b48c7fc8a8cd657a27f4f9abb848df0c967b6e4e11/setuptools_scm-4.1.2.tar.gz
@@ -103,7 +103,7 @@ modules:
   - name: python-dateutil
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/be/ed/5bbc91f03fa4c839c4c7360375da77f9659af5f7086b7a7bdda65771c8e0/python-dateutil-2.8.1.tar.gz
@@ -113,25 +113,30 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
         url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.gz
         sha256: aeb26f80e80945e82ee93e5939baebdca47b9dee80a07d3144be1e1a6a66dd6a
         
-  - name: hdf5
-    sources:
-      - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
-        sha256: a62dcb276658cb78e6795dd29bf926ed7a9bc4edf6e77025cd2c689a8f97c17a
-    cleanup:
-      - "/share/hdf5_examples"
+  #- name: hdf5
+    #buildsystem: cmake-ninja
+    #builddir: true
+    #config-opts:
+      #- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      #- -DBUILD_TESTING:BOOL=OFF
+      #- -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+      #- -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+    #sources:
+      #- type: archive
+        #url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
+        #sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
 
-  - name: netcdf
-    sources: 
-      - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
-        sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
+  #- name: netcdf
+    #sources: 
+      #- type: archive
+        #url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
+        #sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
         
   - name: openmpi
     sources:
@@ -139,6 +144,7 @@ modules:
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.0.tar.bz2
         sha256: 73866fb77090819b6a8c85cb8539638d37d6877455825b74e289d647a39fd5b5
         
+    # ParaView does not support newer TBB yet.    
   - name: TBB
     buildsystem: cmake
     builddir: true
@@ -148,7 +154,194 @@ modules:
         sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
       - type: patch
         path: tbb_cmake.patch
+        
+  - name: Embree
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DEMBREE_TUTORIALS:BOOL=OFF
+      - -DEMBREE_ISPC_SUPPORT:BOOL=ON
+    sources:
+      - type: archive
+        url: https://github.com/embree/embree/archive/refs/tags/v3.12.2.tar.gz
+        sha256: 22a527622497e07970e733f753cc9c10b2bd82c3b17964e4f71a5fd2cdfca210      
+    modules:
+      - name: extra-cmake-modules
+        buildsystem: cmake-ninja
+        sources:
+          - type: git
+            url: https://invent.kde.org/frameworks/extra-cmake-modules.git
+            tag: v5.78.0
+        # Attempt to build from source, but ISPC need glic-32bit which make things complicated.
+        # OSPRay need ISPC 1.9.2.
+      - name: ISPC
+        buildsystem: simple
+        build-commands:
+          - cp bin/ispc /app/bin/
+        sources:
+          - type: archive
+            url: https://github.com/ispc/ispc/releases/download/v1.15.0/ispc-v1.15.0-linux.tar.gz
+            sha256: b67f50ab16b38d29e28b0a2dbb9733fd6fc1276cb5a5be0cac78e356941f881f
+      - name: glfw
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DGLFW_USE_WAYLAND:BOOL=ON
+          - -DBUILD_SHARED_LIBS:BOOL=ON
+          - -DGLFW_BUILD_EXAMPLES:BOOL=OFF
+          - -DGLFW_BUILD_TESTS:BOOL=OFF
+          - -DGLFW_BUILD_DOCS:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip
+            sha256: bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd
+            
+    # For ray tracing
+    # VTK need OSPRay 2.1.0
+  - name: OSPRay
+    buildsystem: cmake
+    builddir: true
+    sources:
+      - type: archive
+        url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
+        sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
+    modules:
+        # Deprecated for rkcommon, but OSPRay 2.1.0 need this
+      - name: ospcommon
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
+            sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
+      - name: rkcommon
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
+            sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
+        # OSPRay does not build with openvkl newer than 0.9.0
+      - name: openvkl
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_EXAMPLES:BOOL=OFF
+          - -DBUILD_BENCHMARKS:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
+            sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
+            
+  - name: GDAL
+    sources:
+      - type: archive
+        url: https://download.osgeo.org/gdal/3.2.2/gdal-3.2.2.tar.gz
+        sha256: 3313e1b0e75de58da4e15a68a9b55e7c04509d3e0e274311dfffe996f6da1a2a
+    modules:
+      - name: PROJ
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/OSGeo/PROJ/releases/download/8.0.0/proj-8.0.0.tar.gz
+            sha256: aa5d4b934450149a350aed7e5fbac880e2f7d3fa2f251c26cb64228f96a2109e
+            
+  - name: GeoTIFF
+    builddir: true
+    buildsystem: simple
+    build-commands:
+      - ./configure --prefix=/app
+      - make install -j
+    sources:
+      - type: archive
+        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.6.0.tar.gz
+        sha256: 9311017e5284cffb86f2c7b7a9df1fb5ebcdc61c30468fb2e6bca36e4272ebca
+            
+  - name: PDAL
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DWITH_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/PDAL/PDAL/releases/download/2.2.0/PDAL-2.2.0-src.tar.gz
+        sha256: 421e94beafbfda6db642e61199bc4605eade5cab5d2e54585e08f4b27438e568
+        
+    ##https://github.com/boostorg/endian/issues/45    
+  #- name: libLAS
+    #buildsystem: cmake-ninja
+    #config-opts:
+      #- -DWITH_TESTS=OFF
+    #sources:
+      #- type: archive
+        #url: http://download.osgeo.org/liblas/libLAS-1.8.1.tar.bz2
+        #sha256: 9adb4a98c63b461ed2bc82e214ae522cbd809cff578f28511122efe6c7ea4e76
+        
+  - name: ADIOS2
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DWITH_TESTS:BOOL=OFF
+      - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+    sources:
+      - type: archive
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.7.1.tar.gz
+        sha256: c8e237fd51f49d8a62a0660db12b72ea5067512aa7970f3fcf80b70e3f87ca3e
+        
+  - name: lapack
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=ON
+      - -DBUILD_TESTING=OFF
+      - -DLAPACKE=ON
+      - -DCBLAS=ON
+    sources:
+      - type: archive
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.9.1.tar.gz
+        sha256: d0085d2caf997ff39299c05d4bacb6f3d27001d25a4cc613d48c1f352b73e7e0
 
+  - name: Eigen3
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
+        sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
+    cleanup: 
+      - "*"
+      
+  #- name: SWIG
+    #sources:
+      #- type: archive
+        #url: https://sourceforge.net/projects/swig/files/swig/swig-4.0.2/swig-4.0.2.tar.gz
+        #sha256: d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc
+        
+  - name: OpenTURNS
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.16.tar.gz
+        sha256: 9ab4c0d8f68d54a87df1cc19975f78cf0a16d6401afa83459eed9613695995dc
+     
+    # Provide libnuma for MEMKIND 
+  - name: numactl
+    sources:
+      - type: archive
+        url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
+        sha256: 826bd148c1b6231e1284e42a4db510207747484b112aee25ed6b1078756bcff6   
+        
+  - name: MEMKIND
+    sources:
+      - type: archive
+        url: https://github.com/memkind/memkind/archive/refs/tags/v1.11.0.tar.gz
+        sha256: 22c9d0a59ac57278d4fd0e9699c2934c0bd3babd46f13482b3c7ec7d123312ec
+            
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
@@ -175,8 +368,27 @@ modules:
       - -DPARAVIEW_BUILD_WITH_EXTERNAL:BOOL=OFF
       - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
-      #- -DPARAVIEW_USE_CUDA:BOOL=ON Not sure how to do this
+      - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_USE_MPI:BOOL=ON
+      #- -DPARAVIEW_USE_CUDA:BOOL=ON
+      - -DHDF5_ENABLE_HDF5:BOOL=ON
+      - -DHDF5_ENABLE_OPTIMIZATION:BOOL=ON
+      - -DPARAVIEW_ENABLE_XDMF2:BOOL=ON
+      - -DPARAVIEW_ENABLE_XDMF3:BOOL=ON
+      - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
+      - -DPARAVIEW_ENABLE_FIDES:BOOL=ON
+      - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
+      - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
+      #- -DPARAVIEW_ENABLE_LAS:BOOL=ON
+      - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
+      - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
+      - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
+      #- -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON net
+      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON net
+      - -DPARAVIEW_USE_MEMKIND:BOOL=ON
+      - -DVTKm_ENABLE_MPI:BOOL=ON
+      - -DVTKm_ENABLE_OPENMP:BOOL=ON
+      - -DVTKm_ENABLE_TBB:BOOL=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.0.tar.gz
