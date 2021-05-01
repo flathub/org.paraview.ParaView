@@ -2,6 +2,8 @@ app-id: org.paraview.ParaView
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
+base: io.qt.qtwebengine.BaseApp
+base-version: "5.15"
 command: paraview
 finish-args:
   - --share=ipc
