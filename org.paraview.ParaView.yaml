@@ -2,6 +2,9 @@ app-id: org.paraview.ParaView
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
+base: io.qt.qtwebengine.BaseApp
+base-version: "5.15"
+rename-icon: paraview
 command: paraview
 finish-args:
   - --share=ipc
@@ -341,7 +344,7 @@ modules:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.11.0.tar.gz
         sha256: 22c9d0a59ac57278d4fd0e9699c2934c0bd3babd46f13482b3c7ec7d123312ec
-            
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
@@ -350,12 +353,13 @@ modules:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
       - -DPARAVIEW_USE_QT:BOOL=ON
+      - -DPARAVIEW_USE_QTHELP:BOOL=ON
+      - -DPARAVIEW_USE_QTWEBENGINE:BOOL=ON
       - -DPARAVIEW_USE_PYTHON:BOOL=ON
       - -DPARAVIEW_ENABLE_WEB:BOOL=ON
       - -DPARAVIEW_ENABLE_EMBEDDED_DOCUMENTATION:BOOL=ON
       - -DVTK_PYTHON_OPTIONAL_LINK:BOOL=OFF
       - -DVTK_OPENGL_HAS_OSMESA:BOOL=OFF
-      - -DPARAVIEW_USE_QTHELP:BOOL=OFF
       - -DBUILD_EXAMPLES:BOOL=ON
       - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
       - -DVTK_SMP_IMPLEMENTATION_TYPE:STRING=TBB
@@ -386,9 +390,9 @@ modules:
       #- -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON net
       #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON net
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
-      - -DVTKm_ENABLE_MPI:BOOL=ON
-      - -DVTKm_ENABLE_OPENMP:BOOL=ON
-      - -DVTKm_ENABLE_TBB:BOOL=ON
+      - -DPARAVIEW_USE_VTKM:BOOL=ON
+    post-install:
+      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.0.tar.gz
@@ -401,3 +405,7 @@ modules:
       - type: file
         path: pvIcon-128x128.png
         dest: Clients/ParaView/
+      #- type: git
+        #url: https://gitlab.kitware.com/vtk/MomentInvariants.git
+        #commit: 9c29db13c8f05c0b185638d6c958800ec13db581
+        #dest: VTK/Remote/MomentInvariants
