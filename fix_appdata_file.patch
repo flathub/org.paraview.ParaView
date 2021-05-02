@@ -16,6 +16,7 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
 + <releases>
 +     <release version="5.9.0" date="2021-01-28"/>
 + </releases>
++ <developer_name>Kitware</developer_name>
   <description>
    <p>
     ParaView is an open-source, multi-platform data analysis and visualization
