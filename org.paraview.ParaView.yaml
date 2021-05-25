@@ -119,8 +119,8 @@ modules:
       - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.gz
-        sha256: aeb26f80e80945e82ee93e5939baebdca47b9dee80a07d3144be1e1a6a66dd6a
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
+        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
         
   #- name: hdf5
     #buildsystem: cmake-ninja
@@ -393,18 +393,13 @@ modules:
       - -DPARAVIEW_USE_VTKM:BOOL=ON
     post-install:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.9/ParaView-v5.9.0.tar.gz
-        sha256: f96c9c996903b295dcfb7db689411d1d0e6a3ccaeb6935c70deb8cc9e5e657c6
+        url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
+        sha256: efbcba00ba38c23d0ada1bde7144a8745caa308d9e1f94a4a71d8af63732266f
       - type: patch
         path: fix_appdata_file.patch
-        # ParaView is missing 128x128 icon.
-      - type: patch
-        path: add_icon_128x128.patch
-      - type: file
-        path: pvIcon-128x128.png
-        dest: Clients/ParaView/
       #- type: git
         #url: https://gitlab.kitware.com/vtk/MomentInvariants.git
         #commit: 9c29db13c8f05c0b185638d6c958800ec13db581
