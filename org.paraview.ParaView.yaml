@@ -147,14 +147,16 @@ modules:
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
         sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
         
-    # ParaView does not support newer TBB yet.    
+    # OSPRay 2.1.0 does not support newer TBB yet.
   - name: TBB
     buildsystem: cmake
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.2.0.tar.gz
-        sha256: cee20b0a71d977416f3e3b4ec643ee4f38cedeb2a9ff015303431dd9d8d79854
+        url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
+        sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
+      - type: patch
+        path: tbb_cmake.patch
         
   - name: Embree
     buildsystem: cmake-ninja
@@ -197,6 +199,7 @@ modules:
             
     # For ray tracing
     # VTK need OSPRay 2.1.0
+    # https://gitlab.kitware.com/vtk/vtk/-/blob/1e32bd23a169cfb2fcdf46796729db1530b1d899/Rendering/RayTracing/CMakeLists.txt#L59
   - name: OSPRay
     buildsystem: cmake
     builddir: true
