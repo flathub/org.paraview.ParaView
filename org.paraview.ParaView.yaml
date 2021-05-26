@@ -401,6 +401,8 @@ modules:
         sha256: efbcba00ba38c23d0ada1bde7144a8745caa308d9e1f94a4a71d8af63732266f
       - type: patch
         path: fix_appdata_file.patch
+      - type: file
+        path: pvIcon.svg
       #- type: git
         #url: https://gitlab.kitware.com/vtk/MomentInvariants.git
         #commit: 9c29db13c8f05c0b185638d6c958800ec13db581
