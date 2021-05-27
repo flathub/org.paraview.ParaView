@@ -26,7 +26,7 @@ cleanup:
 modules:
   - shared-modules/glew/glew.json
   
-  - name: python3-numpy
+  - name: python-numpy
     buildsystem: simple
     build-commands:
       - rm pyproject.toml
@@ -36,7 +36,7 @@ modules:
         url: https://github.com/numpy/numpy/releases/download/v1.20.2/numpy-1.20.2.tar.gz
         sha256: c049f410c78e76ffb0af830a8afbdf8baac09897b4152b97b1a3b8345ee338ff
    
-  - name: certifi
+  - name: python-certifi
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -45,7 +45,7 @@ modules:
         url: https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz
         sha256: 1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c
         
-  - name: matplotlib
+  - name: python-matplotlib
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -58,7 +58,7 @@ modules:
         url: https://files.pythonhosted.org/packages/22/d4/e7ca532e68a9357742604e1e4ae35d9c09a4a810de39a9d80402bd12f50f/matplotlib-3.3.4.tar.gz
         sha256: 3e477db76c22929e4c6876c44f88d790aacdf3c3f8f3a90cb1975c0bf37825b0
         
-  - name: pyparsing
+  - name: python-pyparsing
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -67,7 +67,7 @@ modules:
         url: https://files.pythonhosted.org/packages/c1/47/dfc9c342c9842bbe0036c7f763d2d6686bcf5eb1808ba3e170afdb282210/pyparsing-2.4.7.tar.gz
         sha256: c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1
         
-  - name: cycler
+  - name: python-cycler
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -76,7 +76,7 @@ modules:
         url: https://files.pythonhosted.org/packages/c2/4b/137dea450d6e1e3d474e1d873cd1d4f7d3beed7e0dc973b06e8e10d32488/cycler-0.10.0.tar.gz
         sha256: cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8
         
-  - name: cppy
+  - name: python-cppy
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -85,7 +85,7 @@ modules:
         url: https://files.pythonhosted.org/packages/36/64/be592e84c443a70ea5dcfb1c30bfe6f10ba7d8eb05c2264c7ceca8498548/cppy-1.1.0.tar.gz
         sha256: 4eda6f1952054a270f32dc11df7c5e24b259a09fddf7bfaa5f33df9fb4a29642
         
-  - name: kiwisolver
+  - name: python-kiwisolver
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -94,7 +94,7 @@ modules:
         url: https://files.pythonhosted.org/packages/62/b8/db619d97819afb52a3ff5ff6ad3f7de408cc83a8ec2dfb31a1731c0a97c2/kiwisolver-1.2.0.tar.gz
         sha256: 247800260cd38160c362d211dcaf4ed0f7816afb5efe56544748b21d6ad6d17f
  
-  - name: setuptools_scm
+  - name: python-setuptools_scm
     buildsystem: simple
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
@@ -119,8 +119,8 @@ modules:
       - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.gz
-        sha256: aeb26f80e80945e82ee93e5939baebdca47b9dee80a07d3144be1e1a6a66dd6a
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
+        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
         
   #- name: hdf5
     #buildsystem: cmake-ninja
@@ -144,10 +144,10 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.0.tar.bz2
-        sha256: 73866fb77090819b6a8c85cb8539638d37d6877455825b74e289d647a39fd5b5
+        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
+        sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
         
-    # ParaView does not support newer TBB yet.    
+    # OSPRay 2.1.0 does not support newer TBB yet.
   - name: TBB
     buildsystem: cmake
     builddir: true
@@ -199,6 +199,7 @@ modules:
             
     # For ray tracing
     # VTK need OSPRay 2.1.0
+    # https://gitlab.kitware.com/vtk/vtk/-/blob/1e32bd23a169cfb2fcdf46796729db1530b1d899/Rendering/RayTracing/CMakeLists.txt#L59
   - name: OSPRay
     buildsystem: cmake
     builddir: true
@@ -388,24 +389,26 @@ modules:
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       #- -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON net
-      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON net
+      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
-    post-install:
-      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.9/ParaView-v5.9.0.tar.gz
-        sha256: f96c9c996903b295dcfb7db689411d1d0e6a3ccaeb6935c70deb8cc9e5e657c6
+        url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
+        sha256: efbcba00ba38c23d0ada1bde7144a8745caa308d9e1f94a4a71d8af63732266f
       - type: patch
         path: fix_appdata_file.patch
-        # ParaView is missing 128x128 icon.
-      - type: patch
-        path: add_icon_128x128.patch
-      - type: file
-        path: pvIcon-128x128.png
-        dest: Clients/ParaView/
       #- type: git
         #url: https://gitlab.kitware.com/vtk/MomentInvariants.git
         #commit: 9c29db13c8f05c0b185638d6c958800ec13db581
         #dest: VTK/Remote/MomentInvariants
+
+    # Don't know why using post-install on ParaView fail.
+  - name: install-icon
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+    sources:
+      - type: file
+        path: pvIcon.svg
