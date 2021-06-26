@@ -44,19 +44,27 @@ modules:
       - type: archive
         url: https://files.pythonhosted.org/packages/6d/78/f8db8d57f520a54f0b8a438319c342c61c22759d8f9a1cd2e2180b5e5ea9/certifi-2021.5.30.tar.gz
         sha256: 2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee
+
+  - name: qhull
+    buildsystem: cmake-ninja
+    sources:
+      - type: archive
+        url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
+        sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
         
   - name: python-matplotlib
     buildsystem: simple
+    build-options:
+      env:
+        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
+      - type: file
+        path: matplotlib-setup.cfg
       - type: archive
-        dest: build/freetype-2.6.1
-        url: https://sourceforge.net/projects/freetype/files/freetype2/2.10.4/freetype-2.10.4.tar.xz
-        sha256: 86a854d8905b19698bbc8f23b860bc104246ce4854dcea8e3b0fb21284f75784
-      - type: archive
-        url: https://files.pythonhosted.org/packages/60/d3/286925802edaeb0b8834425ad97c9564ff679eb4208a184533969aa5fc29/matplotlib-3.4.2.tar.gz
-        sha256: d8d994cefdff9aaba45166eb3de4f5211adb4accac85cbf97137e98f26ea0219
+        url: https://github.com/matplotlib/matplotlib/archive/refs/tags/v3.4.2.tar.gz
+        sha256: e5960bcb964ee77d37752f7a1db4568d85e99d8857fbf20289dda2edfa711675
         
   - name: python-pyparsing
     buildsystem: simple
