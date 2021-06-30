@@ -354,6 +354,26 @@ modules:
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.11.0.tar.gz
         sha256: 22c9d0a59ac57278d4fd0e9699c2934c0bd3babd46f13482b3c7ec7d123312ec
 
+    # Have permission to distribute this.
+    # https://discourse.paraview.org/t/holoplaycore-is-propreitary-software/7295
+  - name: HoloPlayCore
+    buildsystem: simple
+    build-commands:
+      -
+    sources:
+      - type: archive
+        url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
+        sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
+
+  #- name: LookingGlassVTKModule
+    #buildsystem: simple
+    #build-commands:
+      #-
+    #sources:
+      #- type: git
+        #url: https://github.com/Kitware/LookingGlassVTKModule
+        #commit: 0868d441e3c18ebc1e3d57d9efd91562826cb7fc
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
@@ -396,8 +416,10 @@ modules:
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
-      #- -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON net
-      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
+      - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
+      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
+      - -DHoloPlayCore_INCLUDE_DIR:PATH=/HoloPlayCore/include
+      - -DHoloPlayCore_LIBRARY:PATH=/HoloPlayCore/dylib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
     sources:
@@ -406,10 +428,18 @@ modules:
         sha256: efbcba00ba38c23d0ada1bde7144a8745caa308d9e1f94a4a71d8af63732266f
       - type: patch
         path: fix_appdata_file.patch
-      #- type: git
-        #url: https://gitlab.kitware.com/vtk/MomentInvariants.git
-        #commit: 9c29db13c8f05c0b185638d6c958800ec13db581
-        #dest: VTK/Remote/MomentInvariants
+      - type: git
+        url: https://github.com/Kitware/LookingGlassVTKModule
+        commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
+        dest: VTK/Remote/RenderingLookingGlass
+      - type: archive
+        url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
+        sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
+      - type: git
+        url: https://gitlab.kitware.com/vtk/MomentInvariants.git
+        # See commit at VTK/Remote
+        commit: 9f103291cd96c2757dbefa6a7a0bea1bb8cd9abf
+        dest: VTK/Remote/MomentInvariants
 
     # Don't know why using post-install on ParaView fail.
   - name: install-icon
