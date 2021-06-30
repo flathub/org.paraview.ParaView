@@ -365,14 +365,14 @@ modules:
         url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
 
-  #- name: LookingGlassVTKModule
-    #buildsystem: simple
-    #build-commands:
-      #-
-    #sources:
-      #- type: git
-        #url: https://github.com/Kitware/LookingGlassVTKModule
-        #commit: 0868d441e3c18ebc1e3d57d9efd91562826cb7fc
+  - name: LookingGlassVTKModule
+    buildsystem: simple
+    build-commands:
+      -
+    sources:
+      - type: git
+        url: https://github.com/Kitware/LookingGlassVTKModule
+        commit: 0868d441e3c18ebc1e3d57d9efd91562826cb7fc
 
     # Paraview need 32GB of memory to build
   - name: Paraview
