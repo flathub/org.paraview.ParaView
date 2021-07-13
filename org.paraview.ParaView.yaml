@@ -427,6 +427,10 @@ modules:
   - name: Paraview
     buildsystem: cmake
     builddir: true
+    build-options:
+      env:
+        LIBRARY_PATH: "/app/lib:/usr/lib"
+        LD_LIBRARY_PATH: "/app/lib:/usr/lib"
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
