@@ -3,7 +3,7 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
 base: io.qt.qtwebengine.BaseApp
-base-version: '5.15'
+base-version: "5.15"
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -19,8 +19,8 @@ cleanup:
   - /share/doc
   - /share/man
   - /etc
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 
 # Disable ARM support, ParaView does not support it anyway.
 modules:
@@ -69,8 +69,11 @@ modules:
       - type: file
         path: matplotlib-setup.cfg
       - type: archive
-        url: https://github.com/matplotlib/matplotlib/archive/refs/tags/v3.4.2.tar.gz
-        sha256: e5960bcb964ee77d37752f7a1db4568d85e99d8857fbf20289dda2edfa711675
+        url: https://files.pythonhosted.org/packages/60/d3/286925802edaeb0b8834425ad97c9564ff679eb4208a184533969aa5fc29/matplotlib-3.4.2.tar.gz
+        sha256: d8d994cefdff9aaba45166eb3de4f5211adb4accac85cbf97137e98f26ea0219
+        x-checker-data:
+          type: pypi
+          name: matplotlib
 
   - name: python-pyparsing
     buildsystem: simple
@@ -138,18 +141,17 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/60/88/fb5df361095be3f851dc9f4b6964c4e540f8b64e49b547b453f1661d3bf7/datautil-0.4.tar.gz
-        sha256: 89842cfac9bee276117b447ad1874bb0ac2a5cbf9ed8cf4b50732cadc4d418ae
+        url: https://files.pythonhosted.org/packages/be/ed/5bbc91f03fa4c839c4c7360375da77f9659af5f7086b7a7bdda65771c8e0/python-dateutil-2.8.1.tar.gz
+        sha256: 73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c
         x-checker-data:
           type: pypi
-          name: datautil
+          name: python-dateutil
 
   - name: Boost
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared
-        cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
         url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
@@ -186,11 +188,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/60/88/fb5df361095be3f851dc9f4b6964c4e540f8b64e49b547b453f1661d3bf7/datautil-0.4.tar.gz
-        sha256: 89842cfac9bee276117b447ad1874bb0ac2a5cbf9ed8cf4b50732cadc4d418ae
-        x-checker-data:
-          type: pypi
-          name: datautil
+        url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
+        sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
       - type: patch
         path: tbb_cmake.patch
 
@@ -329,8 +328,13 @@ modules:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.7.1.tar.gz
-        sha256: c8e237fd51f49d8a62a0660db12b72ea5067512aa7970f3fcf80b70e3f87ca3e
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.7.1.436.tar.gz
+        sha256: c8c0c3383b5f1e0afa77bfc67970050c0ef95132a94aa9b17419f60032fb7a31
+        x-checker-data:
+          type: anitya
+          project-id: 220828
+          stable-only: true
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v$version.tar.gz
 
   - name: lapack
     buildsystem: cmake-ninja
@@ -343,8 +347,13 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.9.1.tar.gz
-        sha256: d0085d2caf997ff39299c05d4bacb6f3d27001d25a4cc613d48c1f352b73e7e0
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.0.tar.gz
+        sha256: 328c1bea493a32cac5257d84157dc686cc3ab0b004e2bea22044e0a59f6f8a19
+        x-checker-data:
+          type: anitya
+          project-id: 1534
+          stable-only: true
+          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -353,8 +362,13 @@ modules:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
         sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
+        x-checker-data:
+          type: anitya
+          project-id: 13751
+          stable-only: true
+          url-template: https://gitlab.com/libeigen/eigen/-/archive/$version/eigen-$version.tar.bz2
     cleanup:
-      - '*'
+      - "*"
 
   #- name: SWIG
     #sources:
@@ -368,6 +382,11 @@ modules:
       - type: archive
         url: https://github.com/openturns/openturns/archive/refs/tags/v1.17.tar.gz
         sha256: 42f65701f7cbd0081362be56c8232ddadfc21f2a32f636fd460919cd8f10c84d
+        x-checker-data:
+          type: anitya
+          project-id: 220847
+          stable-only: true
+          url-template: https://github.com/openturns/openturns/archive/refs/tags/v$version.tar.gz
 
     # Provide libnuma for MEMKIND
   - name: numactl
@@ -375,32 +394,34 @@ modules:
       - type: archive
         url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
         sha256: 826bd148c1b6231e1284e42a4db510207747484b112aee25ed6b1078756bcff6
+        x-checker-data:
+          type: anitya
+          project-id: 2507
+          stable-only: true
+          url-template: https://github.com/numactl/numactl/releases/download/v$version/numactl-$version.tar.gz
 
   - name: MEMKIND
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.11.0.tar.gz
         sha256: 22c9d0a59ac57278d4fd0e9699c2934c0bd3babd46f13482b3c7ec7d123312ec
+        x-checker-data:
+          type: anitya
+          project-id: 220852
+          stable-only: true
+          url-template: https://github.com/memkind/memkind/archive/refs/tags/v$version.tar.gz
 
     # Have permission to distribute this.
     # https://discourse.paraview.org/t/holoplaycore-is-propreitary-software/7295
   - name: HoloPlayCore
     buildsystem: simple
     build-commands:
-      - 
+      - cp -r HoloPlayCore/include/* /app/include
+      - cp -r HoloPlayCore/dylib/linux/* /app/lib
     sources:
       - type: archive
         url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
-
-  - name: LookingGlassVTKModule
-    buildsystem: simple
-    build-commands:
-      - 
-    sources:
-      - type: git
-        url: https://github.com/Kitware/LookingGlassVTKModule
-        commit: 0868d441e3c18ebc1e3d57d9efd91562826cb7fc
 
     # Paraview need 32GB of memory to build
   - name: Paraview
@@ -443,10 +464,10 @@ modules:
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
-      #- -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
-      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
-      #- -DHoloPlayCore_INCLUDE_DIR:PATH=/HoloPlayCore/include
-      #- -DHoloPlayCore_LIBRARY:PATH=/HoloPlayCore/dylib
+      - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
+      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
+      - -DHoloPlayCore_INCLUDE_DIR:PATH=/app/include
+      - -DHoloPlayCore_LIBRARY:PATH=/app/lib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
     sources:
