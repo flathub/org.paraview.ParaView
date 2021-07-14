@@ -3,7 +3,7 @@ runtime: org.kde.Platform
 sdk: org.kde.Sdk
 runtime-version: '5.15'
 base: io.qt.qtwebengine.BaseApp
-base-version: "5.15"
+base-version: '5.15'
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -19,8 +19,8 @@ cleanup:
   - /share/doc
   - /share/man
   - /etc
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 # Disable ARM support, ParaView does not support it anyway.
 modules:
@@ -141,8 +141,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/be/ed/5bbc91f03fa4c839c4c7360375da77f9659af5f7086b7a7bdda65771c8e0/python-dateutil-2.8.1.tar.gz
-        sha256: 73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c
+        url: https://files.pythonhosted.org/packages/4c/c4/13b4776ea2d76c115c1d1b84579f3764ee6d57204f6be27119f13a61d0a9/python-dateutil-2.8.2.tar.gz
+        sha256: 0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86
         x-checker-data:
           type: pypi
           name: python-dateutil
@@ -151,7 +151,8 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install --build-type=complete link=shared --layout=versioned runtime-link=shared
+        cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
         url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
@@ -368,7 +369,7 @@ modules:
           stable-only: true
           url-template: https://gitlab.com/libeigen/eigen/-/archive/$version/eigen-$version.tar.bz2
     cleanup:
-      - "*"
+      - '*'
 
   #- name: SWIG
     #sources:
@@ -429,8 +430,8 @@ modules:
     builddir: true
     build-options:
       env:
-        LIBRARY_PATH: "/app/lib:/usr/lib"
-        LD_LIBRARY_PATH: "/app/lib:/usr/lib"
+        LIBRARY_PATH: /app/lib:/usr/lib
+        LD_LIBRARY_PATH: /app/lib:/usr/lib
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
