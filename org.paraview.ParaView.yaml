@@ -311,16 +311,6 @@ modules:
         url: https://github.com/PDAL/PDAL/releases/download/2.3.0/PDAL-2.3.0-src.tar.bz2
         sha256: 63d8d4fee491675f0fa3dca58c26d57fb2afcaa37c24b10f595b3fbff174996e
 
-    ##https://github.com/boostorg/endian/issues/45
-  #- name: libLAS
-    #buildsystem: cmake-ninja
-    #config-opts:
-      #- -DWITH_TESTS=OFF
-    #sources:
-      #- type: archive
-        #url: http://download.osgeo.org/liblas/libLAS-1.8.1.tar.bz2
-        #sha256: 9adb4a98c63b461ed2bc82e214ae522cbd809cff578f28511122efe6c7ea4e76
-
   - name: ADIOS2
     buildsystem: cmake-ninja
     builddir: true
@@ -424,6 +414,16 @@ modules:
         url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
 
+    # liblas require many patch, so just use master until new version come out.
+  - name: libLAS
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DWITH_TESTS=OFF
+    sources:
+      - type: git
+        url: git://github.com/libLAS/libLAS.git
+        commit: e6a1aaed412d638687b8aec44f7b12df7ca2bbbb
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
@@ -465,12 +465,12 @@ modules:
       - -DPARAVIEW_ENABLE_FIDES:BOOL=ON
       - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
       - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
-      #- -DPARAVIEW_ENABLE_LAS:BOOL=ON
+      - -DPARAVIEW_ENABLE_LAS:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
-      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=OFF
+      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
       - -DHoloPlayCore_INCLUDE_DIR:PATH=/app/include
       - -DHoloPlayCore_LIBRARY:PATH=/app/lib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
