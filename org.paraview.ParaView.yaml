@@ -33,8 +33,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/0b/a7/e724c8df240687b5fd62d8c71f1a6709d455c4c09432c7412e3e64f4cbe5/numpy-1.21.1.zip
-        sha256: dff4af63638afcc57a3dfb9e4b26d434a7a602d225b42d746ea7fe2edf1342fd
+        url: https://files.pythonhosted.org/packages/3a/be/650f9c091ef71cb01d735775d554e068752d3ff63d7943b26316dc401749/numpy-1.21.2.zip
+        sha256: 423216d8afc5923b15df86037c6053bf030d15cc9e3224206ef868c2d63dd6dc
         x-checker-data:
           type: pypi
           name: numpy
@@ -74,6 +74,34 @@ modules:
         x-checker-data:
           type: pypi
           name: matplotlib
+
+  - name: python3-toml
+    buildsystem: simple
+    ensure-writable:
+      - /lib/python3.8/site-packages/easy-install.pth
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
+        sha256: b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
+        x-checker-data:
+          type: pypi
+          name: toml
+
+  - name: python-flit-core
+    buildsystem: simple
+    build-commands:
+      - pip3 install . --prefix=/app --no-index --find-links .
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/6f/cd/3653de7b1d61f0ef95f2459ac752f23a91dbc84f991787201aa52d0cf1cc/flit_core-3.3.0.tar.gz
+        sha256: b1404accffd6504b5f24eeca9ec5d3c877f828d16825348ba81515fa084bd5f0
+        x-checker-data:
+          type: pypi
+          name: flit-core
+
+  - python3-tomli.json
 
   - name: python-pyparsing
     buildsystem: simple
@@ -117,8 +145,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/90/55/399ab9f2e171047d28933ae4b686d9382d17e6c09a01bead4a6f6b5038f4/kiwisolver-1.3.1.tar.gz
-        sha256: 950a199911a8d94683a6b10321f9345d5a3a8433ec58b217ace979e18f16e248
+        url: https://files.pythonhosted.org/packages/8e/87/259fde8cf07d06677f0a749cb157d079ebd00d40fe52faaab1a882a66159/kiwisolver-1.3.2.tar.gz
+        sha256: fc4453705b81d03568d5b808ad8f09c77c47534f6ac2e72e733f9ca4714aa75c
         x-checker-data:
           type: pypi
           name: kiwisolver
@@ -129,11 +157,23 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/57/38/930b1241372a9f266a7df2b184fb9d4f497c2cef2e016b014f82f541fe7c/setuptools_scm-6.0.1.tar.gz
-        sha256: d1925a69cb07e9b29416a275b9fadb009a23c148ace905b2fb220649a6c18e92
+        url: https://files.pythonhosted.org/packages/4b/0d/ecb9595fae02467edba5023eb8a23c688d2b438a6a8d1a9e2b8649faf23d/setuptools_scm-6.3.2.tar.gz
+        sha256: a49aa8081eeb3514eb9728fa5040f2eaa962d6c6f4ec9c32f6c1fba88f88a0f2
         x-checker-data:
           type: pypi
           name: setuptools_scm
+
+  - name: python3-packaging
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/df/86/aef78bab3afd461faecf9955a6501c4999933a48394e90f03cd512aad844/packaging-21.0.tar.gz
+        sha256: 7dc96269f53a4ccec5c0670940a4281106dd0bb343f47b7471f779df49c2fbe7
+        x-checker-data:
+          type: pypi
+          name: packaging
 
   - name: python-dateutil
     buildsystem: simple
@@ -311,16 +351,6 @@ modules:
         url: https://github.com/PDAL/PDAL/releases/download/2.3.0/PDAL-2.3.0-src.tar.bz2
         sha256: 63d8d4fee491675f0fa3dca58c26d57fb2afcaa37c24b10f595b3fbff174996e
 
-    ##https://github.com/boostorg/endian/issues/45
-  #- name: libLAS
-    #buildsystem: cmake-ninja
-    #config-opts:
-      #- -DWITH_TESTS=OFF
-    #sources:
-      #- type: archive
-        #url: http://download.osgeo.org/liblas/libLAS-1.8.1.tar.bz2
-        #sha256: 9adb4a98c63b461ed2bc82e214ae522cbd809cff578f28511122efe6c7ea4e76
-
   - name: ADIOS2
     buildsystem: cmake-ninja
     builddir: true
@@ -361,8 +391,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.bz2
-        sha256: 0fa5cafe78f66d2b501b43016858070d52ba47bd9b1016b0165a7b8e04675677
+        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
+        sha256: b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
         x-checker-data:
           type: anitya
           project-id: 13751
@@ -404,8 +434,8 @@ modules:
   - name: MEMKIND
     sources:
       - type: archive
-        url: https://github.com/memkind/memkind/archive/refs/tags/v1.11.0.tar.gz
-        sha256: 22c9d0a59ac57278d4fd0e9699c2934c0bd3babd46f13482b3c7ec7d123312ec
+        url: https://github.com/memkind/memkind/archive/refs/tags/v1.12.0.tar.gz
+        sha256: b0781d493dec0da0089884fd54bcfdde03311019c56f90505ed0b884100bfbad
         x-checker-data:
           type: anitya
           project-id: 220852
@@ -424,14 +454,24 @@ modules:
         url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
 
+    # liblas require many patch, so just use master until new version come out.
+  #- name: libLAS
+    #buildsystem: cmake-ninja
+    #config-opts:
+      #- -DWITH_TESTS=OFF
+    #sources:
+      #- type: git
+        #url: git://github.com/libLAS/libLAS.git
+        #commit: e6a1aaed412d638687b8aec44f7b12df7ca2bbbb
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
     builddir: true
-    build-options:
-      env:
-        LIBRARY_PATH: /app/lib:/usr/lib
-        LD_LIBRARY_PATH: /app/lib:/usr/lib
+    #build-options:
+      #env:
+        #LIBRARY_PATH: /app/lib:/usr/lib
+        #LD_LIBRARY_PATH: /app/lib:/usr/lib
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
@@ -470,7 +510,7 @@ modules:
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
-      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=OFF
+      #- -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
       - -DHoloPlayCore_INCLUDE_DIR:PATH=/app/include
       - -DHoloPlayCore_LIBRARY:PATH=/app/lib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
