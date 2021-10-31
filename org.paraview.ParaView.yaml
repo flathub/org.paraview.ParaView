@@ -184,6 +184,7 @@ modules:
         x-checker-data:
           type: pypi
           name: packaging
+        # Relax dep
       - type: shell
         commands:
           - sed -i -e 's/pyparsing>=2.0.2,<3/pyparsing>=3.0.0/g' setup.py
