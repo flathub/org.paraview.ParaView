@@ -58,6 +58,18 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
 
+  - name: python-setuptools-scm-git-archive
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/7e/2c/0c15b29a1b5940250bfdc4a4f53272e35cd7cf8a34159291b6b4ec9eb291/setuptools_scm_git_archive-1.1.tar.gz
+        sha256: 6026f61089b73fa1b5ee737e95314f41cb512609b393530385ed281d0b46c062
+        x-checker-data:
+          type: pypi
+          name: setuptools-scm-git-archive
+
   - name: python-matplotlib
     buildsystem: simple
     build-options:
@@ -176,6 +188,7 @@ modules:
   - name: python3-packaging
     buildsystem: simple
     build-commands:
+      - cat setup.py
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
@@ -184,10 +197,8 @@ modules:
         x-checker-data:
           type: pypi
           name: packaging
-        # Relax dep
-      - type: shell
-        commands:
-          - sed -i -e 's/pyparsing<3,>=2.0.2/pyparsing>=3.0.0/g' setup.py
+      - type: patch
+        path: relax-dependencies.patch
 
   - name: python-dateutil
     buildsystem: simple
