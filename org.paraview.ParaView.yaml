@@ -58,8 +58,6 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
 
-  - python3-tomli.json
-
   - name: python-setuptools-scm
     buildsystem: simple
     build-commands:
@@ -83,23 +81,6 @@ modules:
         x-checker-data:
           type: pypi
           name: setuptools-scm-git-archive
-
-  - name: python-matplotlib
-    buildsystem: simple
-    build-options:
-      env:
-        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: file
-        path: matplotlib-setup.cfg
-      - type: archive
-        url: https://files.pythonhosted.org/packages/78/cf/96af81ef2c15682a020a992cb0f1291bb8ee0b3c296f5cd7978348a72993/matplotlib-3.5.0.tar.gz
-        sha256: 38892a254420d95594285077276162a5e9e9c30b6da08bdc2a4d53331ad9a6fa
-        x-checker-data:
-          type: pypi
-          name: matplotlib
 
   - name: python3-toml
     buildsystem: simple
@@ -136,6 +117,25 @@ modules:
         x-checker-data:
           type: pypi
           name: flit-core
+
+  - python3-tomli.json
+
+  - name: python-matplotlib
+    buildsystem: simple
+    build-options:
+      env:
+        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: file
+        path: matplotlib-setup.cfg
+      - type: archive
+        url: https://files.pythonhosted.org/packages/78/cf/96af81ef2c15682a020a992cb0f1291bb8ee0b3c296f5cd7978348a72993/matplotlib-3.5.0.tar.gz
+        sha256: 38892a254420d95594285077276162a5e9e9c30b6da08bdc2a4d53331ad9a6fa
+        x-checker-data:
+          type: pypi
+          name: matplotlib
 
   - name: python-pyparsing
     buildsystem: simple
