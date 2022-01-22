@@ -26,6 +26,32 @@ cleanup:
 modules:
   - shared-modules/glew/glew.json
 
+  - name: python3-packaging
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
+        sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
+        x-checker-data:
+          type: pypi
+          name: packaging
+      #- type: patch
+        #path: relax-dependencies.patch
+
+  - name: python-pyparsing
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/ab/61/1a1613e3dcca483a7aa9d446cb4614e6425eb853b90db131c305bd9674cb/pyparsing-3.0.6.tar.gz
+        sha256: d9bdec0013ef1eb5a84ab39a3b3868911598afa494f5faa038647101504e2b81
+        x-checker-data:
+          type: pypi
+          name: pyparsing
+
   - name: python-numpy
     buildsystem: simple
     build-commands:
@@ -33,8 +59,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/5f/d6/ad58ded26556eaeaa8c971e08b6466f17c4ac4d786cd3d800e26ce59cc01/numpy-1.21.3.zip
-        sha256: 63571bb7897a584ca3249c86dd01c10bcb5fe4296e3568b2e9c1a55356b6410e
+        url: https://files.pythonhosted.org/packages/0a/c8/a62767a6b374a0dfb02d2a0456e5f56a372cdd1689dbc6ffb6bf1ddedbc0/numpy-1.22.1.zip
+        sha256: e348ccf5bc5235fc405ab19d53bec215bb373300e5523c7b476cc0da8a5e9973
         x-checker-data:
           type: pypi
           name: numpy
@@ -58,22 +84,44 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
 
-  - name: python-matplotlib
+  - name: python-setuptools-scm
     buildsystem: simple
-    build-options:
-      env:
-        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
-      - type: file
-        path: matplotlib-setup.cfg
       - type: archive
-        url: https://files.pythonhosted.org/packages/21/37/197e68df384ff694f78d687a49ad39f96c67b8d75718bc61503e1676b617/matplotlib-3.4.3.tar.gz
-        sha256: fc4f526dfdb31c9bd6b8ca06bf9fab663ca12f3ec9cdf4496fb44bc680140318
+        url: https://files.pythonhosted.org/packages/4b/0d/ecb9595fae02467edba5023eb8a23c688d2b438a6a8d1a9e2b8649faf23d/setuptools_scm-6.3.2.tar.gz
+        sha256: a49aa8081eeb3514eb9728fa5040f2eaa962d6c6f4ec9c32f6c1fba88f88a0f2
         x-checker-data:
           type: pypi
-          name: matplotlib
+          name: setuptools-scm
+
+    #flit-core 3.4.0 have dep cycle
+  - name: python-flit-core
+    buildsystem: simple
+    build-commands:
+      - pip3 install . --prefix=/app --no-index --find-links .
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/08/e9/0653f7783ba2ec2f954f19442878427f1d5bfccb01842d354453c2809b22/flit_core-3.6.0.tar.gz
+        sha256: 5892962ab8b8ea945835b3a288fe9dd69316f1903d5288c3f5cafdcdd04756ad
+        x-checker-data:
+          type: pypi
+          name: flit_core
+
+  - python3-tomli.json
+
+  - name: python-setuptools-scm-git-archive
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+    sources:
+      - type: archive
+        url: https://files.pythonhosted.org/packages/7e/2c/0c15b29a1b5940250bfdc4a4f53272e35cd7cf8a34159291b6b4ec9eb291/setuptools_scm_git_archive-1.1.tar.gz
+        sha256: 6026f61089b73fa1b5ee737e95314f41cb512609b393530385ed281d0b46c062
+        x-checker-data:
+          type: pypi
+          name: setuptools-scm-git-archive
 
   - name: python3-toml
     buildsystem: simple
@@ -89,31 +137,40 @@ modules:
           type: pypi
           name: toml
 
-  - name: python-flit-core
+
+
+  - name: python-flit-core-new
     buildsystem: simple
     build-commands:
       - pip3 install . --prefix=/app --no-index --find-links .
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/6f/cd/3653de7b1d61f0ef95f2459ac752f23a91dbc84f991787201aa52d0cf1cc/flit_core-3.3.0.tar.gz
-        sha256: b1404accffd6504b5f24eeca9ec5d3c877f828d16825348ba81515fa084bd5f0
-        #x-checker-data:
-          #type: pypi
-          #name: flit-core
+        url: https://files.pythonhosted.org/packages/08/e9/0653f7783ba2ec2f954f19442878427f1d5bfccb01842d354453c2809b22/flit_core-3.6.0.tar.gz
+        sha256: 5892962ab8b8ea945835b3a288fe9dd69316f1903d5288c3f5cafdcdd04756ad
+        x-checker-data:
+          type: pypi
+          name: flit-core
 
-  - python3-tomli.json
 
-  - name: python-pyparsing
+
+  - name: python-matplotlib
     buildsystem: simple
+    build-options:
+      env:
+        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
     build-commands:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
+      - type: file
+        path: matplotlib-setup.cfg
       - type: archive
-        url: https://files.pythonhosted.org/packages/a0/e4/2bae99e2bbdeb17c7cb9c2f7ef6022383ffcab8461d2ec339ff19ce4a969/pyparsing-3.0.3.tar.gz
-        sha256: 9e3511118010f112a4b4b435ae50e1eaa610cda191acb9e421d60cf5fde83455
+        url: https://files.pythonhosted.org/packages/8a/46/425a44ab9a71afd2f2c8a78b039c1af8ec21e370047f0ad6e43ca819788e/matplotlib-3.5.1.tar.gz
+        sha256: b2e9810e09c3a47b73ce9cab5a72243a1258f61e7900969097a817232246ce1c
         x-checker-data:
           type: pypi
-          name: pyparsing
+          name: matplotlib
+
+
 
   - name: python-cycler
     buildsystem: simple
@@ -121,8 +178,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/c2/4b/137dea450d6e1e3d474e1d873cd1d4f7d3beed7e0dc973b06e8e10d32488/cycler-0.10.0.tar.gz
-        sha256: cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8
+        url: https://files.pythonhosted.org/packages/34/45/a7caaacbfc2fa60bee42effc4bcc7d7c6dbe9c349500e04f65a861c15eb9/cycler-0.11.0.tar.gz
+        sha256: 9c87405839a19696e837b3b818fed3f5f69f16f1eec1a1ad77e043dcea9c772f
         x-checker-data:
           type: pypi
           name: cycler
@@ -163,17 +220,7 @@ modules:
           type: pypi
           name: setuptools_scm
 
-  - name: python3-packaging
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/df/86/aef78bab3afd461faecf9955a6501c4999933a48394e90f03cd512aad844/packaging-21.0.tar.gz
-        sha256: 7dc96269f53a4ccec5c0670940a4281106dd0bb343f47b7471f779df49c2fbe7
-        x-checker-data:
-          type: pypi
-          name: packaging
+
 
   - name: python-dateutil
     buildsystem: simple
@@ -411,8 +458,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.17.tar.gz
-        sha256: 42f65701f7cbd0081362be56c8232ddadfc21f2a32f636fd460919cd8f10c84d
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.18.tar.gz
+        sha256: 1840d3fd8b38fd5967b1fa04e49d8f760c2c497400430e97623595ca48754ae0
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -434,8 +481,8 @@ modules:
   - name: MEMKIND
     sources:
       - type: archive
-        url: https://github.com/memkind/memkind/archive/refs/tags/v1.12.0.tar.gz
-        sha256: b0781d493dec0da0089884fd54bcfdde03311019c56f90505ed0b884100bfbad
+        url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
+        sha256: 3f0d919b61fdd4d2ebce14e0b7dbb856e2144138778940107c13549523f3bdc0
         x-checker-data:
           type: anitya
           project-id: 220852
