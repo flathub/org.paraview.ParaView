@@ -171,8 +171,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/e0/94/3cca7fccecf9b63219f3bf8f08af719f6d3ab06c4acdcc9372a15a12b593/cppy-1.2.0.tar.gz
-        sha256: 95e8862e4f826c3f2a6b7b658333b162f80cbe9f943aa0d0a7a6b2ef850aeffc
+        url: https://files.pythonhosted.org/packages/c5/7e/6cc5acd93752ee52d2f0423046072a2ce3ae16dfcd44373b9fe2a0222204/cppy-1.2.1.tar.gz
+        sha256: 83b43bf17b1085ac15c5debdb42154f138b928234b21447358981f69d0d6fe1b
         x-checker-data:
           type: pypi
           name: cppy
@@ -183,8 +183,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/c7/c0/5eef3c2fb687b71433f61638e317d468c3276d210bd462cfa0c3039ddf26/kiwisolver-1.4.1.tar.gz
-        sha256: 91bfcd2a14bea6f93c86876c4abccb53dc3f0bcad55e3a0af0b3e57ced6eef11
+        url: https://files.pythonhosted.org/packages/2b/65/9eb6841880f6214f70e891a97ac945137bb6b2dd65ac35da219a752255fe/kiwisolver-1.4.2.tar.gz
+        sha256: 7f606d91b8a8816be476513a77fd30abe66227039bd6f8b406c348cb0247dcc9
         x-checker-data:
           type: pypi
           name: kiwisolver
