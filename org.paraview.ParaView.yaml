@@ -532,7 +532,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/libLAS/libLAS.git
-        commit: e6a1aaed412d638687b8aec44f7b12df7ca2bbbb
+        commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
 
     # Paraview need 32GB of memory to build
   - name: Paraview
