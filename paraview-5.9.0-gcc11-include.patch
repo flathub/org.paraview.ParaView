@@ -1,0 +1,11 @@
+diff -ruN a/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h b/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h
+--- a/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h	2021-05-13 18:50:06.000000000 +0200
++++ b/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h	2022-03-31 22:08:37.329291475 +0200
+@@ -25,6 +25,7 @@
+ #include "vtkIdList.h"
+ #include <algorithm>
+ #include <cmath>
++#include <limits>
+ #include <unordered_map>
+ #include <vector>
+ 

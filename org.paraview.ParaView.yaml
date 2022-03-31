@@ -249,7 +249,7 @@ modules:
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
         sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
 
-    # OSPRay 2.1.0 does not support newer TBB yet.
+    # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
   - name: TBB
     buildsystem: cmake
     builddir: true
@@ -267,8 +267,8 @@ modules:
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/embree/embree/archive/refs/tags/v3.13.0.tar.gz
-        sha256: 4d86a69508a7e2eb8710d571096ad024b5174834b84454a8020d3a910af46f4f
+        url: https://github.com/embree/embree/archive/refs/tags/v3.13.1.tar.gz
+        sha256: 00dbd852f19ae2b95f5106dd055ca4b304486436ced0ccf842aec4e38a4df425
     modules:
       - name: extra-cmake-modules
         buildsystem: cmake-ninja
@@ -284,8 +284,8 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
-            url: https://github.com/ispc/ispc/releases/download/v1.15.0/ispc-v1.15.0-linux.tar.gz
-            sha256: b67f50ab16b38d29e28b0a2dbb9733fd6fc1276cb5a5be0cac78e356941f881f
+            url: https://github.com/ispc/ispc/releases/download/v1.16.0/ispc-v1.16.0-linux.tar.gz
+            sha256: 71a20e75ee1b952d8096a842368244111a0a727454d4a42043de10eadf02e740
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
@@ -302,24 +302,68 @@ modules:
     # For ray tracing
     # VTK need OSPRay 2.1.0
     # https://gitlab.kitware.com/vtk/vtk/-/blob/1e32bd23a169cfb2fcdf46796729db1530b1d899/Rendering/RayTracing/CMakeLists.txt#L59
+  #- name: OSPRay
+    #buildsystem: cmake
+    #builddir: true
+    #sources:
+      #- type: archive
+        #url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
+        #sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
+    #modules:
+        ## Deprecated for rkcommon, but OSPRay 2.1.0 need this
+      #- name: ospcommon
+        #buildsystem: cmake
+        #builddir: true
+        #config-opts:
+          #- -DBUILD_TESTING:BOOL=OFF
+        #sources:
+          #- type: archive
+            #url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
+            #sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
+      #- name: rkcommon
+        #buildsystem: cmake
+        #builddir: true
+        #config-opts:
+          #- -DBUILD_TESTING:BOOL=OFF
+        #sources:
+          #- type: archive
+            #url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
+            #sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
+        ## OSPRay does not build with openvkl newer than 0.9.0
+      #- name: openvkl
+        #buildsystem: cmake
+        #builddir: true
+        #config-opts:
+          #- -DBUILD_EXAMPLES:BOOL=OFF
+          #- -DBUILD_BENCHMARKS:BOOL=OFF
+        #sources:
+          #- type: archive
+            #url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
+            #sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
+
   - name: OSPRay
     buildsystem: cmake
     builddir: true
+    config-opts:
+      - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
+      - -DOSPRAY_ENABLE_APPS_EXAMPLES:BOOL=OFF
+      - -DOSPRAY_ENABLE_APPS_TUTORIALS:BOOL=OFF
+      - -DOSPRAY_ENABLE_APPS_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
-        sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
+        url: https://github.com/ospray/ospray/archive/refs/tags/v2.9.0.tar.gz
+        sha256: 0145e09c3618fb8152a32d5f5cff819eb065d90975ee4e35400d2db9eb9f6398
     modules:
         # Deprecated for rkcommon, but OSPRay 2.1.0 need this
-      - name: ospcommon
-        buildsystem: cmake
-        builddir: true
-        config-opts:
-          - -DBUILD_TESTING:BOOL=OFF
-        sources:
-          - type: archive
-            url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
-            sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
+      #- name: ospcommon
+        #buildsystem: cmake
+        #builddir: true
+        #config-opts:
+          #- -DBUILD_TESTING:BOOL=OFF
+        #sources:
+          #- type: archive
+            #url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
+            #sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
       - name: rkcommon
         buildsystem: cmake
         builddir: true
@@ -327,8 +371,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
-            sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.9.0.tar.gz
+            sha256: b68aa02ef44c9e35c168f826a14802bb5cc6a9d769ba4b64b2c54f347a14aa53
         # OSPRay does not build with openvkl newer than 0.9.0
       - name: openvkl
         buildsystem: cmake
@@ -336,10 +380,11 @@ modules:
         config-opts:
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
+          - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
-            sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v1.2.0.tar.gz
+            sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
 
   - name: GDAL
     sources:
@@ -381,7 +426,6 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DWITH_TESTS:BOOL=OFF
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
       - type: archive
@@ -481,23 +525,19 @@ modules:
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
 
     # liblas require many patch, so just use master until new version come out.
-  #- name: libLAS
-    #buildsystem: cmake-ninja
-    #config-opts:
-      #- -DWITH_TESTS=OFF
-    #sources:
-      #- type: git
-        #url: git://github.com/libLAS/libLAS.git
-        #commit: e6a1aaed412d638687b8aec44f7b12df7ca2bbbb
+  - name: libLAS
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DWITH_TESTS=OFF
+    sources:
+      - type: git
+        url: https://github.com/libLAS/libLAS.git
+        commit: e6a1aaed412d638687b8aec44f7b12df7ca2bbbb
 
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
     builddir: true
-    #build-options:
-      #env:
-        #LIBRARY_PATH: /app/lib:/usr/lib
-        #LD_LIBRARY_PATH: /app/lib:/usr/lib
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
@@ -547,6 +587,8 @@ modules:
         sha256: efbcba00ba38c23d0ada1bde7144a8745caa308d9e1f94a4a71d8af63732266f
       - type: patch
         path: fix_appdata_file.patch
+      - type: patch
+        path: paraview-5.9.0-gcc11-include.patch #https://bugs.gentoo.org/788055
       - type: git
         url: https://github.com/Kitware/LookingGlassVTKModule
         commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
