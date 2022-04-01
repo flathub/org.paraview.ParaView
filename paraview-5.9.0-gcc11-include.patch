@@ -9,3 +9,14 @@ diff -ruN a/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h b/VTK/Common/Core/
  #include <unordered_map>
  #include <vector>
  
+diff -ruN a/VTK/Common/DataModel/vtkPiecewiseFunction.cxx b/VTK/Common/DataModel/vtkPiecewiseFunction.cxx
+--- a/VTK/Common/DataModel/vtkPiecewiseFunction.cxx	2021-05-13 18:50:06.000000000 +0200
++++ b/VTK/Common/DataModel/vtkPiecewiseFunction.cxx	2022-04-01 14:49:50.098963818 +0200
+@@ -24,6 +24,7 @@
+ #include <iterator>
+ #include <set>
+ #include <vector>
++#include <limits>
+ 
+ vtkStandardNewMacro(vtkPiecewiseFunction);
+ 
