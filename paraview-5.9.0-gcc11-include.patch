@@ -20,3 +20,14 @@ diff -ruN a/VTK/Common/DataModel/vtkPiecewiseFunction.cxx b/VTK/Common/DataModel
  
  vtkStandardNewMacro(vtkPiecewiseFunction);
  
+diff -ruN a/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx b/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx
+--- a/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx	2021-05-13 18:50:06.000000000 +0200
++++ b/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx	2022-04-02 00:36:10.303197266 +0200
+@@ -27,6 +27,7 @@
+ #include "vtkHyperTreeGridNonOrientedCursor.h"
+ 
+ #include <cmath>
++#include <limits>
+ 
+ vtkStandardNewMacro(vtkHyperTreeGridThreshold);
+ 
