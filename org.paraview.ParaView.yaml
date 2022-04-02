@@ -82,6 +82,9 @@ modules:
 
   - name: qhull
     buildsystem: cmake
+    build-options:
+      cflags: -ffat-lto-objects
+      cxxflags: -ffat-lto-objects
     sources:
       - type: archive
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
