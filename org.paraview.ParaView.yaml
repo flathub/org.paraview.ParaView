@@ -78,11 +78,13 @@ modules:
           name: certifi
 
   - name: qhull
-    buildsystem: cmake-ninja
+    buildsystem: cmake
     sources:
       - type: archive
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
+      #- type: patch
+        #path: 0001-Link-executables-against-shared-libs.patch
 
   - name: python-setuptools-scm
     buildsystem: simple
@@ -223,31 +225,60 @@ modules:
       - type: archive
         url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
         sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
+        x-checker-data:
+          type: anitya
+          project-id: 6845
+          stable-only: true
+          url-template: https://boostorg.jfrog.io/artifactory/main/release/${version}/source/boost_${major}_${minor}_${patch}.tar.bz2
 
-  #- name: hdf5
-    #buildsystem: cmake-ninja
-    #builddir: true
-    #config-opts:
-      #- -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      #- -DBUILD_TESTING:BOOL=OFF
-      #- -DHDF5_BUILD_EXAMPLES:BOOL=OFF
-      #- -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
-    #sources:
-      #- type: archive
-        #url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
-        #sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
+  - name: hdf5
+    buildsystem: cmake-ninja
+    builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+      - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+    sources:
+      - type: archive
+        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
+        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
+        x-checker-data:
+          type: anitya
+          project-id: 1303
+          stable-only: true
+          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
 
-  #- name: netcdf
-    #sources:
-      #- type: archive
-        #url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
-        #sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
+  - name: netcdf
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+    sources:
+      - type: archive
+        url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
+        sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
+        x-checker-data:
+          type: anitya
+          project-id: 10354
+          stable-only: true
+          url-template: https://github.com/Unidata/netcdf-c/archive/v${version}.tar.gz
 
   - name: openmpi
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
         sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
+        x-checker-data:
+          type: anitya
+          project-id: 2554
+          stable-only: true
+          url-template: https://download.open-mpi.org/release/open-mpi/v${major}.${minor}/openmpi-${version}.tar.bz2
 
     # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
   - name: TBB
@@ -262,6 +293,9 @@ modules:
 
   - name: Embree
     buildsystem: cmake-ninja
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
@@ -343,6 +377,9 @@ modules:
 
   - name: OSPRay
     buildsystem: cmake
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     builddir: true
     config-opts:
       - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
@@ -435,7 +472,7 @@ modules:
           type: anitya
           project-id: 220828
           stable-only: true
-          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v$version.tar.gz
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
   - name: lapack
     buildsystem: cmake-ninja
@@ -454,7 +491,7 @@ modules:
           type: anitya
           project-id: 1534
           stable-only: true
-          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
+          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${version}.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -467,7 +504,7 @@ modules:
           type: anitya
           project-id: 13751
           stable-only: true
-          url-template: https://gitlab.com/libeigen/eigen/-/archive/$version/eigen-$version.tar.bz2
+          url-template: https://gitlab.com/libeigen/eigen/-/archive/${version}/eigen-${version}.tar.bz2
     cleanup:
       - '*'
 
@@ -487,7 +524,9 @@ modules:
           type: anitya
           project-id: 220847
           stable-only: true
-          url-template: https://github.com/openturns/openturns/archive/refs/tags/v$version.tar.gz
+          url-template: https://github.com/openturns/openturns/archive/refs/tags/v${version}.tar.gz
+    cleanup:
+      - /share
 
     # Provide libnuma for MEMKIND
   - name: numactl
@@ -499,7 +538,7 @@ modules:
           type: anitya
           project-id: 2507
           stable-only: true
-          url-template: https://github.com/numactl/numactl/releases/download/v$version/numactl-$version.tar.gz
+          url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
     sources:
@@ -510,7 +549,7 @@ modules:
           type: anitya
           project-id: 220852
           stable-only: true
-          url-template: https://github.com/memkind/memkind/archive/refs/tags/v$version.tar.gz
+          url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
 
     # Have permission to distribute this.
     # https://discourse.paraview.org/t/holoplaycore-is-propreitary-software/7295
@@ -538,6 +577,9 @@ modules:
   - name: Paraview
     buildsystem: cmake
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
@@ -581,6 +623,8 @@ modules:
       - -DHoloPlayCore_LIBRARY:PATH=/app/lib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
+      - -DCMAKE_INTERPROCEDURAL_OPTIMIZATION:BOOL=ON
+      - -DPROFILE_GUIDED_OPTIMIZATION:BOOL=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
