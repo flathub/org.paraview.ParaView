@@ -31,3 +31,14 @@ diff -ruN a/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx b/VTK/Filters/Hy
  
  vtkStandardNewMacro(vtkHyperTreeGridThreshold);
  
+diff -ruN a/VTK/Rendering/Core/vtkColorTransferFunction.cxx b/VTK/Rendering/Core/vtkColorTransferFunction.cxx
+--- a/VTK/Rendering/Core/vtkColorTransferFunction.cxx	2021-05-13 18:50:06.000000000 +0200
++++ b/VTK/Rendering/Core/vtkColorTransferFunction.cxx	2022-04-02 09:38:58.605439497 +0200
+@@ -23,6 +23,7 @@
+ #include <iterator>
+ #include <set>
+ #include <vector>
++#include <limits>
+ 
+ vtkStandardNewMacro(vtkColorTransferFunction);
+ 
