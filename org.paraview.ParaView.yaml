@@ -6,6 +6,9 @@ base: io.qt.qtwebengine.BaseApp
 base-version: 5.15-21.08
 rename-icon: paraview
 command: paraview
+build-options:
+  cflags: -O2 -g -flto
+  cxxflags: -O2 -g -flto
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -235,8 +238,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
@@ -254,8 +257,8 @@ modules:
 
   - name: netcdf
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
@@ -268,8 +271,8 @@ modules:
 
   - name: openmpi
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
@@ -294,8 +297,8 @@ modules:
   - name: Embree
     buildsystem: cmake-ninja
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
@@ -378,8 +381,8 @@ modules:
   - name: OSPRay
     buildsystem: cmake
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     builddir: true
     config-opts:
       - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
@@ -453,8 +456,8 @@ modules:
     buildsystem: cmake
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -466,8 +469,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
@@ -484,8 +487,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_SHARED_LIBS=ON
@@ -506,8 +509,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -529,8 +532,8 @@ modules:
   - name: OpenTURNS
     buildsystem: cmake-ninja
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/openturns/openturns/archive/refs/tags/v1.18.tar.gz
@@ -546,8 +549,8 @@ modules:
     # Provide libnuma for MEMKIND
   - name: numactl
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
@@ -560,8 +563,8 @@ modules:
 
   - name: MEMKIND
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
@@ -599,8 +602,8 @@ modules:
     buildsystem: cmake
     builddir: true
     build-options:
-      cflags: -O2 -g -flto -fno-fat-lto-objects
-      cxxflags: -O2 -g -flto -fno-fat-lto-objects
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
