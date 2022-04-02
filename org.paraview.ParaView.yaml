@@ -452,6 +452,9 @@ modules:
   - name: PDAL
     buildsystem: cmake
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -462,6 +465,9 @@ modules:
   - name: ADIOS2
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
@@ -477,6 +483,9 @@ modules:
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_SHARED_LIBS=ON
@@ -496,6 +505,9 @@ modules:
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -516,6 +528,9 @@ modules:
 
   - name: OpenTURNS
     buildsystem: cmake-ninja
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/openturns/openturns/archive/refs/tags/v1.18.tar.gz
@@ -530,6 +545,9 @@ modules:
 
     # Provide libnuma for MEMKIND
   - name: numactl
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
@@ -541,6 +559,9 @@ modules:
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
+    build-options:
+      cflags: -O2 -g -flto -fno-fat-lto-objects
+      cxxflags: -O2 -g -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
