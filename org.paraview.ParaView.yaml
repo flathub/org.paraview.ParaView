@@ -238,8 +238,8 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -fno-fat-lto-objects
-      cxxflags: -fno-fat-lto-objects
+      cflags: -ffat-lto-objects
+      cxxflags: -ffat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
@@ -287,6 +287,9 @@ modules:
   - name: TBB
     buildsystem: cmake
     builddir: true
+    build-options:
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
@@ -407,6 +410,9 @@ modules:
       - name: rkcommon
         buildsystem: cmake
         builddir: true
+        build-options:
+          cflags: -fno-fat-lto-objects
+          cxxflags: -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
@@ -417,6 +423,9 @@ modules:
       - name: openvkl
         buildsystem: cmake
         builddir: true
+        build-options:
+          cflags: -fno-fat-lto-objects
+          cxxflags: -fno-fat-lto-objects
         config-opts:
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
@@ -427,6 +436,9 @@ modules:
             sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
 
   - name: GDAL
+    build-options:
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.osgeo.org/gdal/3.3.0/gdal-3.3.0.tar.gz
@@ -434,6 +446,9 @@ modules:
     modules:
       - name: PROJ
         buildsystem: cmake-ninja
+        build-options:
+          cflags: -fno-fat-lto-objects
+          cxxflags: -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
@@ -590,6 +605,9 @@ modules:
     # liblas require many patch, so just use master until new version come out.
   - name: libLAS
     buildsystem: cmake-ninja
+    build-options:
+      cflags: -fno-fat-lto-objects
+      cxxflags: -fno-fat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
