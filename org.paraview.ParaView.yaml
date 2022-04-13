@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: 5.15-21.08
+runtime-version: '5.15-21.08'
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-21.08
+base-version: '5.15-21.08'
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -78,13 +78,11 @@ modules:
           name: certifi
 
   - name: qhull
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     sources:
       - type: archive
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
-      #- type: patch
-        #path: 0001-Link-executables-against-shared-libs.patch
 
   - name: python-setuptools-scm
     buildsystem: simple
@@ -225,68 +223,36 @@ modules:
       - type: archive
         url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
         sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
-        x-checker-data:
-          type: anitya
-          project-id: 6845
-          stable-only: true
-          url-template: https://boostorg.jfrog.io/artifactory/main/release/${version}/source/boost_${major}_${minor}_${patch}.tar.bz2
 
-  - name: hdf5
-    buildsystem: cmake-ninja
-    builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING:BOOL=OFF
-      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
-      - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
-    sources:
-      - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
-        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
-        x-checker-data:
-          type: anitya
-          project-id: 1303
-          stable-only: true
-          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
+  #- name: hdf5
+    #buildsystem: cmake-ninja
+    #builddir: true
+    #config-opts:
+      #- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      #- -DBUILD_TESTING:BOOL=OFF
+      #- -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+      #- -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+    #sources:
+      #- type: archive
+        #url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
+        #sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
 
-  - name: netcdf
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-    sources:
-      - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
-        sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
-        x-checker-data:
-          type: anitya
-          project-id: 10354
-          stable-only: true
-          url-template: https://github.com/Unidata/netcdf-c/archive/v${version}.tar.gz
+  #- name: netcdf
+    #sources:
+      #- type: archive
+        #url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
+        #sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
 
   - name: openmpi
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
         sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
-        x-checker-data:
-          type: anitya
-          project-id: 2554
-          stable-only: true
-          url-template: https://download.open-mpi.org/release/open-mpi/v${major}.${minor}/openmpi-${version}.tar.bz2
 
-    # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
+    # OSPRay 2.1.0 does not support newer TBB yet.
   - name: TBB
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
@@ -296,16 +262,13 @@ modules:
 
   - name: Embree
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/embree/embree/archive/refs/tags/v3.13.1.tar.gz
-        sha256: 00dbd852f19ae2b95f5106dd055ca4b304486436ced0ccf842aec4e38a4df425
+        url: https://github.com/embree/embree/archive/refs/tags/v3.13.0.tar.gz
+        sha256: 4d86a69508a7e2eb8710d571096ad024b5174834b84454a8020d3a910af46f4f
     modules:
       - name: extra-cmake-modules
         buildsystem: cmake-ninja
@@ -321,8 +284,8 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
-            url: https://github.com/ispc/ispc/releases/download/v1.16.0/ispc-v1.16.0-linux.tar.gz
-            sha256: 71a20e75ee1b952d8096a842368244111a0a727454d4a42043de10eadf02e740
+            url: https://github.com/ispc/ispc/releases/download/v1.15.0/ispc-v1.15.0-linux.tar.gz
+            sha256: b67f50ab16b38d29e28b0a2dbb9733fd6fc1276cb5a5be0cac78e356941f881f
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
@@ -339,103 +302,46 @@ modules:
     # For ray tracing
     # VTK need OSPRay 2.1.0
     # https://gitlab.kitware.com/vtk/vtk/-/blob/1e32bd23a169cfb2fcdf46796729db1530b1d899/Rendering/RayTracing/CMakeLists.txt#L59
-  #- name: OSPRay
-    #buildsystem: cmake
-    #builddir: true
-    #sources:
-      #- type: archive
-        #url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
-        #sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
-    #modules:
-        ## Deprecated for rkcommon, but OSPRay 2.1.0 need this
-      #- name: ospcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
-            #sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
-      #- name: rkcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
-            #sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
-        ## OSPRay does not build with openvkl newer than 0.9.0
-      #- name: openvkl
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_EXAMPLES:BOOL=OFF
-          #- -DBUILD_BENCHMARKS:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
-            #sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
-
   - name: OSPRay
     buildsystem: cmake
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     builddir: true
-    config-opts:
-      - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
-      - -DOSPRAY_ENABLE_APPS_EXAMPLES:BOOL=OFF
-      - -DOSPRAY_ENABLE_APPS_TUTORIALS:BOOL=OFF
-      - -DOSPRAY_ENABLE_APPS_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ospray/ospray/archive/refs/tags/v2.9.0.tar.gz
-        sha256: 0145e09c3618fb8152a32d5f5cff819eb065d90975ee4e35400d2db9eb9f6398
+        url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
+        sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
     modules:
         # Deprecated for rkcommon, but OSPRay 2.1.0 need this
-      #- name: ospcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
-            #sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
-      - name: rkcommon
+      - name: ospcommon
         buildsystem: cmake
         builddir: true
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.9.0.tar.gz
-            sha256: b68aa02ef44c9e35c168f826a14802bb5cc6a9d769ba4b64b2c54f347a14aa53
+            url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
+            sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
+      - name: rkcommon
+        buildsystem: cmake
+        builddir: true
+        config-opts:
+          - -DBUILD_TESTING:BOOL=OFF
+        sources:
+          - type: archive
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
+            sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
         # OSPRay does not build with openvkl newer than 0.9.0
       - name: openvkl
         buildsystem: cmake
         builddir: true
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
-          - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/openvkl/openvkl/archive/refs/tags/v1.2.0.tar.gz
-            sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
+            sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
 
   - name: GDAL
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.osgeo.org/gdal/3.3.0/gdal-3.3.0.tar.gz
@@ -443,9 +349,6 @@ modules:
     modules:
       - name: PROJ
         buildsystem: cmake-ninja
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
@@ -467,9 +370,6 @@ modules:
   - name: PDAL
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -480,10 +380,8 @@ modules:
   - name: ADIOS2
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
+      - -DWITH_TESTS:BOOL=OFF
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
       - type: archive
@@ -493,14 +391,11 @@ modules:
           type: anitya
           project-id: 220828
           stable-only: true
-          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v$version.tar.gz
 
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_SHARED_LIBS=ON
@@ -515,14 +410,11 @@ modules:
           type: anitya
           project-id: 1534
           stable-only: true
-          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${version}.tar.gz
+          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -531,7 +423,7 @@ modules:
           type: anitya
           project-id: 13751
           stable-only: true
-          url-template: https://gitlab.com/libeigen/eigen/-/archive/${version}/eigen-${version}.tar.bz2
+          url-template: https://gitlab.com/libeigen/eigen/-/archive/$version/eigen-$version.tar.bz2
     cleanup:
       - '*'
 
@@ -543,9 +435,6 @@ modules:
 
   - name: OpenTURNS
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/openturns/openturns/archive/refs/tags/v1.18.tar.gz
@@ -554,15 +443,10 @@ modules:
           type: anitya
           project-id: 220847
           stable-only: true
-          url-template: https://github.com/openturns/openturns/archive/refs/tags/v${version}.tar.gz
-    cleanup:
-      - /share
+          url-template: https://github.com/openturns/openturns/archive/refs/tags/v$version.tar.gz
 
     # Provide libnuma for MEMKIND
   - name: numactl
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
@@ -571,12 +455,9 @@ modules:
           type: anitya
           project-id: 2507
           stable-only: true
-          url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
+          url-template: https://github.com/numactl/numactl/releases/download/v$version/numactl-$version.tar.gz
 
   - name: MEMKIND
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
@@ -585,7 +466,7 @@ modules:
           type: anitya
           project-id: 220852
           stable-only: true
-          url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
+          url-template: https://github.com/memkind/memkind/archive/refs/tags/v$version.tar.gz
 
     # Have permission to distribute this.
     # https://discourse.paraview.org/t/holoplaycore-is-propreitary-software/7295
@@ -600,25 +481,23 @@ modules:
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
 
     # liblas require many patch, so just use master until new version come out.
-  - name: libLAS
-    buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-    config-opts:
-      - -DWITH_TESTS=OFF
-    sources:
-      - type: git
-        url: https://github.com/libLAS/libLAS.git
-        commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
+  #- name: libLAS
+    #buildsystem: cmake-ninja
+    #config-opts:
+      #- -DWITH_TESTS=OFF
+    #sources:
+      #- type: git
+        #url: git://github.com/libLAS/libLAS.git
+        #commit: e6a1aaed412d638687b8aec44f7b12df7ca2bbbb
 
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+    #build-options:
+      #env:
+        #LIBRARY_PATH: /app/lib:/usr/lib
+        #LD_LIBRARY_PATH: /app/lib:/usr/lib
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
@@ -662,16 +541,12 @@ modules:
       - -DHoloPlayCore_LIBRARY:PATH=/app/lib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
-      - -DCMAKE_INTERPROCEDURAL_OPTIMIZATION:BOOL=ON
-      - -DPROFILE_GUIDED_OPTIMIZATION:BOOL=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
         sha256: efbcba00ba38c23d0ada1bde7144a8745caa308d9e1f94a4a71d8af63732266f
       - type: patch
         path: fix_appdata_file.patch
-      - type: patch
-        path: paraview-5.9.0-gcc11-include.patch #https://bugs.gentoo.org/788055
       - type: git
         url: https://github.com/Kitware/LookingGlassVTKModule
         commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
