@@ -333,53 +333,8 @@ modules:
             url: https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip
             sha256: bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd
 
-    # For ray tracing
-    # VTK need OSPRay 2.1.0
-    # https://gitlab.kitware.com/vtk/vtk/-/blob/1e32bd23a169cfb2fcdf46796729db1530b1d899/Rendering/RayTracing/CMakeLists.txt#L59
-  #- name: OSPRay
-    #buildsystem: cmake
-    #builddir: true
-    #sources:
-      #- type: archive
-        #url: https://github.com/ospray/ospray/archive/refs/tags/v2.1.0.tar.gz
-        #sha256: ab38106beac3868cb39ef35f5564d51277641ecd982afc45e463aada6a124502
-    #modules:
-        ## Deprecated for rkcommon, but OSPRay 2.1.0 need this
-      #- name: ospcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
-            #sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
-      #- name: rkcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.6.0.tar.gz
-            #sha256: 24d0c9c58a4d2f22075850df170ec5732cfaa0a16f22f90dbd6538232be009b0
-        ## OSPRay does not build with openvkl newer than 0.9.0
-      #- name: openvkl
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_EXAMPLES:BOOL=OFF
-          #- -DBUILD_BENCHMARKS:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/openvkl/openvkl/archive/refs/tags/v0.9.0.tar.gz
-            #sha256: 06aa82c8c3ff68ab93fb8240f4881a1bc238b3de681812e71145f8a1629d3fee
-
   - name: OSPRay
     buildsystem: cmake
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     builddir: true
     config-opts:
       - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
@@ -391,35 +346,18 @@ modules:
         url: https://github.com/ospray/ospray/archive/refs/tags/v2.9.0.tar.gz
         sha256: 0145e09c3618fb8152a32d5f5cff819eb065d90975ee4e35400d2db9eb9f6398
     modules:
-        # Deprecated for rkcommon, but OSPRay 2.1.0 need this
-      #- name: ospcommon
-        #buildsystem: cmake
-        #builddir: true
-        #config-opts:
-          #- -DBUILD_TESTING:BOOL=OFF
-        #sources:
-          #- type: archive
-            #url: https://github.com/ospray/ospcommon/archive/refs/tags/v1.3.1.tar.gz
-            #sha256: 1c043c4a09e68fb7319db61f28a5830fc09f1457b24155a42b5f7c6421bcca73
       - name: rkcommon
         buildsystem: cmake
         builddir: true
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
             url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.9.0.tar.gz
             sha256: b68aa02ef44c9e35c168f826a14802bb5cc6a9d769ba4b64b2c54f347a14aa53
-        # OSPRay does not build with openvkl newer than 0.9.0
       - name: openvkl
         buildsystem: cmake
         builddir: true
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
@@ -657,6 +595,7 @@ modules:
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
       - -DCMAKE_INTERPROCEDURAL_OPTIMIZATION:BOOL=ON
+
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
