@@ -390,10 +390,9 @@ modules:
 
   - name: GeoTIFF
     builddir: true
-    buildsystem: simple
-    build-commands:
-      - ./configure --prefix=/app
-      - make install -j
+    build-options:
+      cflags: -flto -ffat-lto-objects
+      cxxflags: -flto -ffat-lto-objects
     sources:
       - type: archive
         url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.6.0.tar.gz
@@ -509,6 +508,9 @@ modules:
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
+    build-options:
+      cflags: -flto -ffat-lto-objects
+      cxxflags: -flto -ffat-lto-objects
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
@@ -534,9 +536,6 @@ modules:
     # liblas require many patch, so just use master until new version come out.
   - name: libLAS
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -549,8 +548,8 @@ modules:
     buildsystem: cmake
     builddir: true
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -flto -ffat-lto-objects
+      cxxflags: -flto -ffat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
@@ -594,8 +593,7 @@ modules:
       - -DHoloPlayCore_LIBRARY:PATH=/app/lib
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
-      - -DCMAKE_INTERPROCEDURAL_OPTIMIZATION:BOOL=ON
-
+      - -DCMAKE_MAKEFILE_VERBOSE=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
