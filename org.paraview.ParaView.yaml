@@ -589,11 +589,10 @@ modules:
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
       - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=ON
-      - -DHoloPlayCore_INCLUDE_DIR:PATH=/app/include
-      - -DHoloPlayCore_LIBRARY:PATH=/app/lib
+      - -DHoloPlayCore_INCLUDE_DIR:PATH=/app/include/HoloPlayCore.h
+      - -DHoloPlayCore_LIBRARY=/app/lib/libHoloPlayCore.so
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
-      - -DCMAKE_MAKEFILE_VERBOSE=ON
     sources:
       - type: archive
         url: https://www.paraview.org/files/v5.9/ParaView-v5.9.1.tar.gz
