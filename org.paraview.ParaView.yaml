@@ -599,8 +599,8 @@ modules:
         sha256: 59ca46a929a52d8abec107b72e19447cba3d8e64871b6fbc8e99b0f3b167db46
       - type: patch
         path: fix_appdata_file.patch
-      - type: patch
-        path: paraview-5.9.0-gcc11-include.patch #https://bugs.gentoo.org/788055
+      #- type: patch
+        #path: paraview-5.9.0-gcc11-include.patch #https://bugs.gentoo.org/788055
       - type: git
         url: https://github.com/Kitware/LookingGlassVTKModule
         commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
