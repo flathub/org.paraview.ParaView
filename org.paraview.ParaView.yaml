@@ -611,7 +611,7 @@ modules:
       - type: git
         url: https://gitlab.kitware.com/vtk/MomentInvariants.git
         # See commit at VTK/Remote
-        commit: 9f103291cd96c2757dbefa6a7a0bea1bb8cd9abf
+        commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
         dest: VTK/Remote/MomentInvariants
 
     # Don't know why using post-install on ParaView fail.
