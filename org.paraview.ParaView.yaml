@@ -609,7 +609,7 @@ modules:
         url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
         sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
       - type: git
-        url: https://gitlab.kitware.com/vtk/MomentInvariants.git
+        url: https://gitlab.kitware.com/vtk/MomentInvariants
         # See commit at VTK/Remote
         commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
         dest: VTK/Remote/MomentInvariants
