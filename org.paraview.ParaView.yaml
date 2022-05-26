@@ -46,8 +46,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/d6/60/9bed18f43275b34198eb9720d4c1238c68b3755620d20df0afd89424d32b/pyparsing-3.0.7.tar.gz
-        sha256: 18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea
+        url: https://files.pythonhosted.org/packages/71/22/207523d16464c40a0310d2d4d8926daffa00ac1f5b1576170a32db749636/pyparsing-3.0.9.tar.gz
+        sha256: 2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb
         x-checker-data:
           type: pypi
           name: pyparsing
@@ -59,8 +59,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/64/4a/b008d1f8a7b9f5206ecf70a53f84e654707e7616a771d84c05151a4713e9/numpy-1.22.3.zip
-        sha256: dbc7601a3b7472d559dc7b933b18b4b66f9aa7452c120e87dfb33d02008c8a18
+        url: https://files.pythonhosted.org/packages/f6/d8/ab692a75f584d13c6542c3994f75def5bce52ded9399f52e230fe402819d/numpy-1.22.4.zip
+        sha256: 425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af
         x-checker-data:
           type: pypi
           name: numpy
@@ -71,8 +71,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/6c/ae/d26450834f0acc9e3d1f74508da6df1551ceab6c2ce0766a593362d6d57f/certifi-2021.10.8.tar.gz
-        sha256: 78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872
+        url: https://files.pythonhosted.org/packages/07/10/75277f313d13a2b74fc56e29239d5c840c2bf09f17bf25c02b35558812c6/certifi-2022.5.18.1.tar.gz
+        sha256: 9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7
         x-checker-data:
           type: pypi
           name: certifi
@@ -149,8 +149,8 @@ modules:
       - type: file
         path: matplotlib-setup.cfg
       - type: archive
-        url: https://files.pythonhosted.org/packages/8a/46/425a44ab9a71afd2f2c8a78b039c1af8ec21e370047f0ad6e43ca819788e/matplotlib-3.5.1.tar.gz
-        sha256: b2e9810e09c3a47b73ce9cab5a72243a1258f61e7900969097a817232246ce1c
+        url: https://files.pythonhosted.org/packages/2f/be/7d6e073a3eb740ebeba43a69f5de2b141fea50b801e24e0ae024ac94d4ac/matplotlib-3.5.2.tar.gz
+        sha256: 48cf850ce14fa18067f2d9e0d646763681948487a8080ec0af2686468b4607a2
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -173,8 +173,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/e0/94/3cca7fccecf9b63219f3bf8f08af719f6d3ab06c4acdcc9372a15a12b593/cppy-1.2.0.tar.gz
-        sha256: 95e8862e4f826c3f2a6b7b658333b162f80cbe9f943aa0d0a7a6b2ef850aeffc
+        url: https://files.pythonhosted.org/packages/c5/7e/6cc5acd93752ee52d2f0423046072a2ce3ae16dfcd44373b9fe2a0222204/cppy-1.2.1.tar.gz
+        sha256: 83b43bf17b1085ac15c5debdb42154f138b928234b21447358981f69d0d6fe1b
         x-checker-data:
           type: pypi
           name: cppy
@@ -185,8 +185,8 @@ modules:
       - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/c7/c0/5eef3c2fb687b71433f61638e317d468c3276d210bd462cfa0c3039ddf26/kiwisolver-1.4.1.tar.gz
-        sha256: 91bfcd2a14bea6f93c86876c4abccb53dc3f0bcad55e3a0af0b3e57ced6eef11
+        url: https://files.pythonhosted.org/packages/2b/65/9eb6841880f6214f70e891a97ac945137bb6b2dd65ac35da219a752255fe/kiwisolver-1.4.2.tar.gz
+        sha256: 7f606d91b8a8816be476513a77fd30abe66227039bd6f8b406c348cb0247dcc9
         x-checker-data:
           type: pypi
           name: kiwisolver
@@ -219,12 +219,11 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install
-        cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
-        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2
+        sha256: 475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -241,8 +240,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
-        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_1.tar.gz
+        sha256: 92552458f35c7e58128ce1bfc2831abf901cc142ea0fdd2b056311e4452db7bf
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -251,12 +250,14 @@ modules:
 
   - name: netcdf
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
-        sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
+        url: https://github.com/Unidata/netcdf-c/archive/v4.8.1.tar.gz
+        sha256: bc018cc30d5da402622bf76462480664c6668b55eb16ba205a0dfb8647161dd0
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -265,12 +266,14 @@ modules:
 
   - name: openmpi
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
-        sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
+        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.4.tar.bz2
+        sha256: 92912e175fd1234368c8730c03f4996fe5942e7479bb1d10059405e7f2b3930d
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -282,8 +285,10 @@ modules:
     buildsystem: cmake
     builddir: true
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
@@ -294,8 +299,10 @@ modules:
   - name: Embree
     buildsystem: cmake-ninja
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
@@ -369,8 +376,10 @@ modules:
 
   - name: GDAL
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.osgeo.org/gdal/3.3.0/gdal-3.3.0.tar.gz
@@ -379,8 +388,10 @@ modules:
       - name: PROJ
         buildsystem: cmake-ninja
         build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables
+            -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables
+            -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
@@ -402,8 +413,10 @@ modules:
     buildsystem: cmake
     builddir: true
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -ffat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -ffat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -415,14 +428,16 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.7.1.436.tar.gz
-        sha256: c8c0c3383b5f1e0afa77bfc67970050c0ef95132a94aa9b17419f60032fb7a31
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.0.tar.gz
+        sha256: 5af3d950e616989133955c2430bd09bcf6bad3a04cf62317b401eaf6e7c2d479
         x-checker-data:
           type: anitya
           project-id: 220828
@@ -443,8 +458,8 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.0.tar.gz
-        sha256: 328c1bea493a32cac5257d84157dc686cc3ab0b004e2bea22044e0a59f6f8a19
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.1.tar.gz
+        sha256: cd005cd021f144d7d5f7f33c943942db9f03a28d110d6a3b80d718a295f7f714
         x-checker-data:
           type: anitya
           project-id: 1534
@@ -455,8 +470,10 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -478,12 +495,14 @@ modules:
   - name: OpenTURNS
     buildsystem: cmake-ninja
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.18.tar.gz
-        sha256: 1840d3fd8b38fd5967b1fa04e49d8f760c2c497400430e97623595ca48754ae0
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.19.tar.gz
+        sha256: 1d61cb6ce8ec1121db9f1e9fb490aaa056d2ff250db26df05d2e3e30ceb32344
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -495,8 +514,10 @@ modules:
     # Provide libnuma for MEMKIND
   - name: numactl
     build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
+      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
