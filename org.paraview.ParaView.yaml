@@ -431,11 +431,6 @@ modules:
   - name: PDAL
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -ffat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -ffat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -446,11 +441,6 @@ modules:
   - name: ADIOS2
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
