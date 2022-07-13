@@ -399,11 +399,6 @@ modules:
             sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
 
   - name: GDAL
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects -fpermissive
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects -fpermissive
     sources:
       - type: archive
         url: https://download.osgeo.org/gdal/3.3.0/gdal-3.3.0.tar.gz
