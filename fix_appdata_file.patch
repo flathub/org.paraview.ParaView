@@ -14,6 +14,8 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
   <summary>Data analysis and visualization</summary>
 + <content_rating type="oars-1.1"/>
 + <releases>
++     <release version="5.10.1" date="2022-03-15"/>
++     <release version="5.10.0" date="2021-12-22"/>
 +     <release version="5.9.1" date="2021-05-18"/>
 + </releases>
   <description>
