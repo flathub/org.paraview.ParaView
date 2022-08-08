@@ -6,9 +6,6 @@ base: io.qt.qtwebengine.BaseApp
 base-version: 5.15-21.08
 rename-icon: paraview
 command: paraview
-build-options:
-  cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection
-  cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -29,47 +26,6 @@ cleanup:
 modules:
   - shared-modules/glew/glew.json
 
-  #- name: python3-packaging
-    #buildsystem: simple
-    #build-commands:
-      #- python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
-        #sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
-        #x-checker-data:
-          #type: pypi
-          #name: packaging
-      ##- type: patch
-        ##path: relax-dependencies.patch
-
-  #- name: python-flit-core
-    #buildsystem: simple
-    #build-commands:
-      #- pip3 install --verbose --ignore-installed --exists-action=i --no-index --find-links="file://${PWD}"
-        #--prefix=${FLATPAK_DEST} "flit-core" --no-build-isolation
-    #sources:
-      #- type: file
-        #url: https://files.pythonhosted.org/packages/15/d1/d8798b83e953fd6f86ca9b50f93eec464a9305b0661469c8234e61095481/flit_core-3.7.1.tar.gz
-        #sha256: 14955af340c43035dbfa96b5ee47407e377ee337f69e70f73064940d27d0a44f
-        #x-checker-data:
-          #type: pypi
-          #name: flit_core
-        #packagetype: bdist_wheel
-
-  #- name: python-pyparsing
-    #buildsystem: simple
-    #build-commands:
-      #- pip3 install --verbose --exists-action=i --no-index --find-links=file://${PWD}
-        #--prefix=${FLATPAK_DEST} . --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/71/22/207523d16464c40a0310d2d4d8926daffa00ac1f5b1576170a32db749636/pyparsing-3.0.9.tar.gz
-        #sha256: 2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb
-        #x-checker-data:
-          #type: pypi
-          #name: pyparsing
-
   - name: python-numpy
     buildsystem: simple
     build-commands:
@@ -82,80 +38,6 @@ modules:
         x-checker-data:
           type: pypi
           name: numpy
-
-  #- name: python-certifi
-    #buildsystem: simple
-    #build-commands:
-      #- python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/07/10/75277f313d13a2b74fc56e29239d5c840c2bf09f17bf25c02b35558812c6/certifi-2022.5.18.1.tar.gz
-        #sha256: 9c5705e395cd70084351dd8ad5c41e65655e08ce46f2ec9cf6c2c08390f71eb7
-        #x-checker-data:
-          #type: pypi
-          #name: certifi
-
-  #- name: qhull
-    #buildsystem: cmake
-    #sources:
-      #- type: archive
-        #url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
-        #sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
-      #- type: patch
-        #path: 0001-Link-executables-against-shared-libs.patch
-
-  #- name: python-setuptools-scm
-    #buildsystem: simple
-    #build-commands:
-      #- python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/4a/18/477d3d9eb2f88230ff2a41de9d8ffa3554b706352787d289f57f76bfba0b/setuptools_scm-6.4.2.tar.gz
-        #sha256: 6833ac65c6ed9711a4d5d2266f8024cfa07c533a0e55f4c12f6eff280a5a9e30
-        #x-checker-data:
-          #type: pypi
-          #name: setuptools-scm
-
-
-  #- name: python-flit-core
-    #buildsystem: simple
-    #build-commands:
-      #- pip3 install . --prefix=/app --no-index --find-links .
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/15/d1/d8798b83e953fd6f86ca9b50f93eec464a9305b0661469c8234e61095481/flit_core-3.7.1.tar.gz
-        #sha256: 14955af340c43035dbfa96b5ee47407e377ee337f69e70f73064940d27d0a44f
-        #x-checker-data:
-          #type: pypi
-          #name: flit_core
-
-  #- python3-tomli.json
-
-  #- name: python-setuptools-scm-git-archive
-    #buildsystem: simple
-    #build-commands:
-      #- python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/7e/2c/0c15b29a1b5940250bfdc4a4f53272e35cd7cf8a34159291b6b4ec9eb291/setuptools_scm_git_archive-1.1.tar.gz
-        #sha256: 6026f61089b73fa1b5ee737e95314f41cb512609b393530385ed281d0b46c062
-        #x-checker-data:
-          #type: pypi
-          #name: setuptools-scm-git-archive
-
-  #- name: python3-toml
-    #buildsystem: simple
-    #ensure-writable:
-      #- /lib/python3.8/site-packages/easy-install.pth
-    #build-commands:
-      #- python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
-        #sha256: b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
-        #x-checker-data:
-          #type: pypi
-          #name: toml
 
   - python-deps.json
 
@@ -289,11 +171,6 @@ modules:
           url-template: https://github.com/Unidata/netcdf-c/archive/v${version}.tar.gz
 
   - name: openmpi
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.4.tar.bz2
@@ -308,11 +185,6 @@ modules:
   - name: TBB
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
@@ -322,11 +194,6 @@ modules:
 
   - name: Embree
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
@@ -406,11 +273,6 @@ modules:
     modules:
       - name: PROJ
         buildsystem: cmake-ninja
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables
-            -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables
-            -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
@@ -420,9 +282,6 @@ modules:
 
   - name: GeoTIFF
     builddir: true
-    build-options:
-      cflags: -flto -ffat-lto-objects
-      cxxflags: -flto -ffat-lto-objects
     sources:
       - type: archive
         url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.6.0.tar.gz
@@ -456,9 +315,6 @@ modules:
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -flto -fno-fat-lto-objects
-      cxxflags: -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_SHARED_LIBS=ON
@@ -478,9 +334,6 @@ modules:
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -flto -fno-fat-lto-objects
-      cxxflags: -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -501,9 +354,6 @@ modules:
 
   - name: OpenTURNS
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -flto -fno-fat-lto-objects
-      cxxflags: -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/openturns/openturns/archive/refs/tags/v1.19.tar.gz
@@ -518,9 +368,6 @@ modules:
 
     # Provide libnuma for MEMKIND
   - name: numactl
-    build-options:
-      cflags: -flto -fno-fat-lto-objects
-      cxxflags: -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
@@ -532,9 +379,6 @@ modules:
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
-    build-options:
-      cflags: -flto -ffat-lto-objects
-      cxxflags: -flto -ffat-lto-objects
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
@@ -571,9 +415,6 @@ modules:
   - name: Paraview
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -flto -ffat-lto-objects
-      cxxflags: -flto -ffat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
