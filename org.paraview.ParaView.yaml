@@ -306,8 +306,8 @@ modules:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.1.tar.gz
-        sha256: 3f515b442bbd52e3189866b121613fe3b59edb8845692ea86fad83d1eba35d93
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
+        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
         x-checker-data:
           type: anitya
           project-id: 220828
