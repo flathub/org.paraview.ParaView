@@ -300,7 +300,7 @@ modules:
         sha256: 63d8d4fee491675f0fa3dca58c26d57fb2afcaa37c24b10f595b3fbff174996e
 
   - name: ADIOS2
-    buildsystem: cmake-ninja
+    buildsystem: cmake
     builddir: true
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
