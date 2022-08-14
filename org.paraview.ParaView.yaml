@@ -468,9 +468,9 @@ modules:
         path: fix_appdata_file.patch
       #- type: patch
         #path: paraview-5.9.0-gcc11-include.patch #https://bugs.gentoo.org/788055
-      - type: git
-        url: https://github.com/Kitware/LookingGlassVTKModule
-        commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
+      #- type: git
+        #url: https://github.com/Kitware/LookingGlassVTKModule
+        #commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
         dest: VTK/Remote/RenderingLookingGlass
       - type: archive
         url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
