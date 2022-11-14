@@ -329,7 +329,7 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.tar.gz
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.0.tar.gz
         sha256: 5a5b3bac27709d8c66286b7a0d1d7bf2d7170ec189a1a756fdf812c97aa7fd10
         x-checker-data:
           type: anitya
