@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: 5.15-21.08
+runtime-version: 5.15-22.08
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-21.08
+base-version: 5.15-22.08
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -29,12 +29,11 @@ modules:
   - name: python-numpy
     buildsystem: simple
     build-commands:
-      - rm pyproject.toml
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/f6/d8/ab692a75f584d13c6542c3994f75def5bce52ded9399f52e230fe402819d/numpy-1.22.4.zip
-        sha256: 425b390e4619f58d8526b3dcf656dde069133ae5c240229821f01b5f44ea07af
+        url: https://files.pythonhosted.org/packages/64/8e/9929b64e146d240507edaac2185cd5516f00b133be5b39250d253be25a64/numpy-1.23.4.tar.gz
+        sha256: ed2cc92af0efad20198638c69bb0fc2870a58dabfba6eb722c933b48556c686c
         x-checker-data:
           type: pypi
           name: numpy
@@ -44,7 +43,8 @@ modules:
   - name: python3-matplotlib
     buildsystem: simple
     build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
         dest: build/freetype-2.6.1
@@ -55,8 +55,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/8a/46/425a44ab9a71afd2f2c8a78b039c1af8ec21e370047f0ad6e43ca819788e/matplotlib-3.5.1.tar.gz
-        sha256: b2e9810e09c3a47b73ce9cab5a72243a1258f61e7900969097a817232246ce1c
+        url: https://files.pythonhosted.org/packages/91/1c/a48fd779287df3425c289cc2ff728980a5b355f15f4c3c40e1822770ba44/matplotlib-3.6.2.tar.gz
+        sha256: b03fd10a1709d0101c054883b550f7c4c5e974f751e2680318759af005964990
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -64,7 +64,8 @@ modules:
   - name: python-cycler
     buildsystem: simple
     build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/34/45/a7caaacbfc2fa60bee42effc4bcc7d7c6dbe9c349500e04f65a861c15eb9/cycler-0.11.0.tar.gz
@@ -76,7 +77,8 @@ modules:
   - name: python-cppy
     buildsystem: simple
     build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/c5/7e/6cc5acd93752ee52d2f0423046072a2ce3ae16dfcd44373b9fe2a0222204/cppy-1.2.1.tar.gz
@@ -88,11 +90,12 @@ modules:
   - name: python-kiwisolver
     buildsystem: simple
     build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/2b/65/9eb6841880f6214f70e891a97ac945137bb6b2dd65ac35da219a752255fe/kiwisolver-1.4.2.tar.gz
-        sha256: 7f606d91b8a8816be476513a77fd30abe66227039bd6f8b406c348cb0247dcc9
+        url: https://files.pythonhosted.org/packages/5f/5c/272a7dd49a1914f35cd8d6d9f386defa8b047f6fbd06badd6b77b3ba24e7/kiwisolver-1.4.4.tar.gz
+        sha256: d41997519fcba4a1e46eb4a2fe31bc12f0ff957b2b81bac28db24744f333e955
         x-checker-data:
           type: pypi
           name: kiwisolver
@@ -112,7 +115,8 @@ modules:
   - name: python-dateutil
     buildsystem: simple
     build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
         url: https://files.pythonhosted.org/packages/4c/c4/13b4776ea2d76c115c1d1b84579f3764ee6d57204f6be27119f13a61d0a9/python-dateutil-2.8.2.tar.gz
@@ -128,8 +132,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2
-        sha256: 475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -146,8 +150,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_1.tar.gz
-        sha256: 92552458f35c7e58128ce1bfc2831abf901cc142ea0fdd2b056311e4452db7bf
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_3.tar.gz
+        sha256: a59d046486c9e2076a33b5b389479a2476cfe496601dffd36bd354755630d22c
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -325,13 +329,13 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.1.tar.gz
-        sha256: cd005cd021f144d7d5f7f33c943942db9f03a28d110d6a3b80d718a295f7f714
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.tar.gz
+        sha256: 5a5b3bac27709d8c66286b7a0d1d7bf2d7170ec189a1a756fdf812c97aa7fd10
         x-checker-data:
           type: anitya
           project-id: 1534
           stable-only: true
-          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${version}.tar.gz
+          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
@@ -358,8 +362,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.19.tar.gz
-        sha256: 1d61cb6ce8ec1121db9f1e9fb490aaa056d2ff250db26df05d2e3e30ceb32344
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.tar.gz
+        sha256: 2be5247f0266d153619b35dfb1eeeb46736c502dad993b40aff8857d6314f293
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -372,8 +376,8 @@ modules:
   - name: numactl
     sources:
       - type: archive
-        url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
-        sha256: 826bd148c1b6231e1284e42a4db510207747484b112aee25ed6b1078756bcff6
+        url: https://github.com/numactl/numactl/releases/download/v2.0.16/numactl-2.0.16.tar.gz
+        sha256: 1b242f893af977a1d31af6ce9d6b8dafdd2d8ec3dc9207f7c2dc0d3446e7c7c8
         x-checker-data:
           type: anitya
           project-id: 2507
@@ -383,8 +387,8 @@ modules:
   - name: MEMKIND
     sources:
       - type: archive
-        url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
-        sha256: 3f0d919b61fdd4d2ebce14e0b7dbb856e2144138778940107c13549523f3bdc0
+        url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
+        sha256: ab366b20b5a87ea655483631fc762ba6eb59eb6c3a08652e643f1ee3f06a6a12
         x-checker-data:
           type: anitya
           project-id: 220852
