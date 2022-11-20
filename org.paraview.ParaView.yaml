@@ -40,27 +40,6 @@ modules:
 
   - python-deps.json
 
-  - name: python3-matplotlib
-    buildsystem: simple
-    build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
-        --no-build-isolation
-    sources:
-      - type: archive
-        dest: build/freetype-2.6.1
-        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
-        sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
-      - type: archive
-        dest: build/qhull-2020.2
-        url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
-        sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
-      - type: archive
-        url: https://files.pythonhosted.org/packages/91/1c/a48fd779287df3425c289cc2ff728980a5b355f15f4c3c40e1822770ba44/matplotlib-3.6.2.tar.gz
-        sha256: b03fd10a1709d0101c054883b550f7c4c5e974f751e2680318759af005964990
-        x-checker-data:
-          type: pypi
-          name: matplotlib
-  #
   # - name: python-cycler
   #   buildsystem: simple
   #   build-commands:
@@ -99,19 +78,21 @@ modules:
   #       x-checker-data:
   #         type: pypi
   #         name: kiwisolver
-
-  #- name: python-setuptools_scm
-    #buildsystem: simple
-    #build-commands:
-      #- python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
-    #sources:
-      #- type: archive
-        #url: https://files.pythonhosted.org/packages/4a/18/477d3d9eb2f88230ff2a41de9d8ffa3554b706352787d289f57f76bfba0b/setuptools_scm-6.4.2.tar.gz
-        #sha256: 6833ac65c6ed9711a4d5d2266f8024cfa07c533a0e55f4c12f6eff280a5a9e30
-        #x-checker-data:
-          #type: pypi
-          #name: setuptools_scm
-
+  #
+  # - python3-tomli.json
+  #
+  # - name: python-setuptools_scm
+  #   buildsystem: simple
+  #   build-commands:
+  #     - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+  #   sources:
+  #     - type: archive
+  #       url: https://files.pythonhosted.org/packages/4a/18/477d3d9eb2f88230ff2a41de9d8ffa3554b706352787d289f57f76bfba0b/setuptools_scm-6.4.2.tar.gz
+  #       sha256: 6833ac65c6ed9711a4d5d2266f8024cfa07c533a0e55f4c12f6eff280a5a9e30
+  #       x-checker-data:
+  #         type: pypi
+  #         name: setuptools_scm
+  #
   # - name: python-dateutil
   #   buildsystem: simple
   #   build-commands:
@@ -124,6 +105,27 @@ modules:
   #       x-checker-data:
   #         type: pypi
   #         name: python-dateutil
+
+  - name: python3-matplotlib
+    buildsystem: simple
+    build-commands:
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
+    sources:
+      - type: archive
+        dest: build/freetype-2.6.1
+        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
+        sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
+      - type: archive
+        dest: build/qhull-2020.2
+        url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
+        sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
+      - type: archive
+        url: https://files.pythonhosted.org/packages/91/1c/a48fd779287df3425c289cc2ff728980a5b355f15f4c3c40e1822770ba44/matplotlib-3.6.2.tar.gz
+        sha256: b03fd10a1709d0101c054883b550f7c4c5e974f751e2680318759af005964990
+        x-checker-data:
+          type: pypi
+          name: matplotlib
 
   - name: Boost
     buildsystem: simple
@@ -159,11 +161,11 @@ modules:
           url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
 
   - name: netcdf
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-        -fstack-clash-protection -flto -fno-fat-lto-objects
+    # build-options:
+    #   cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+    #     -fstack-clash-protection -flto -fno-fat-lto-objects
+    #   cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
+    #     -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/Unidata/netcdf-c/archive/v4.9.0.tar.gz
@@ -187,7 +189,7 @@ modules:
 
     # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
   - name: TBB
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     builddir: true
     sources:
       - type: archive
