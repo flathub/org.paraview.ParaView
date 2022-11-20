@@ -193,10 +193,15 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.7.0.tar.gz
         sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
-      - type: patch
-        path: tbb_cmake.patch
+        x-checker-data:
+          type: anitya
+          project-id: 8217
+          stable-only: true
+          url-template: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v$version.tar.gz
+      # - type: patch
+      #   path: tbb_cmake.patch
 
   - name: Embree
     buildsystem: cmake-ninja
@@ -316,21 +321,6 @@ modules:
         url: https://github.com/PDAL/PDAL/releases/download/2.3.0/PDAL-2.3.0-src.tar.bz2
         sha256: 63d8d4fee491675f0fa3dca58c26d57fb2afcaa37c24b10f595b3fbff174996e
 
-  #- name: ADIOS2
-    #buildsystem: cmake
-    #builddir: true
-    #config-opts:
-      #- -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
-    #sources:
-      #- type: archive
-        #url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
-        #sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
-        #x-checker-data:
-          #type: anitya
-          #project-id: 220828
-          #stable-only: true
-          #url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
-
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
@@ -430,6 +420,21 @@ modules:
       - type: git
         url: https://github.com/libLAS/libLAS.git
         commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
+
+  - name: ADIOS2
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+    sources:
+      - type: archive
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
+        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        x-checker-data:
+          type: anitya
+          project-id: 220828
+          stable-only: true
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
     # Paraview need 32GB of memory to build
   - name: Paraview
