@@ -272,12 +272,18 @@ modules:
             sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
 
   - name: GDAL
-    build-options:
-      cxxflags: -fpermissive
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://download.osgeo.org/gdal/3.5.0/gdal-3.5.0.tar.gz
-        sha256: 3affc513b8aa5a76b996eca55f45cb3e32acacf4a262ce4f686d4c8bba7ced40
+        url: https://download.osgeo.org/gdal/3.6.0/gdal-3.6.0.tar.gz
+        sha256: 0d6a79eec0c6afb97c7172e429ec05c9d15d3917987ad686a914b292c83531db
+        x-checker-data:
+          type: anitya
+          project-id: 881
+          stable-only: true
+          url-template: https://download.osgeo.org/gdal/$version/gdal-$version.tar.gz
     modules:
       - name: PROJ
         buildsystem: cmake-ninja
@@ -285,8 +291,13 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.0.1/proj-9.0.1.tar.gz
-            sha256: 737eaacbe7906d0d6ff43f0d9ebedc5c734cccc9e6b8d7beefdec3ab22d9a6a3
+            url: https://github.com/OSGeo/PROJ/releases/download/9.1.0/proj-9.1.0.tar.gz
+            sha256: 81b2239b94cad0886222cde4f53cb49d34905aad2a1317244a0c30a553db2315
+            x-checker-data:
+              type: anitya
+              project-id: 9463
+              stable-only: true
+              url-template: https://github.com/OSGeo/PROJ/releases/download/$version/proj-$version.tar.gz
 
   - name: GeoTIFF
     builddir: true
