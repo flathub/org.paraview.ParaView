@@ -1,61 +1,14 @@
 diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaView/org.paraview.ParaView.appdata.xml
---- a/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-08-10 12:32:15.699705345 +0200
-+++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-08-14 15:49:39.323754464 +0200
-@@ -1,11 +1,17 @@
- <?xml version="1.0" encoding="UTF-8"?>
- <!-- Copyright 2014-2018 Kitware, Inc. -->
- <component type="desktop-application">
-- <id>org.paraview.paraview</id>
-+ <id>org.paraview.Paraview</id>
-  <metadata_license>CC-BY-4.0</metadata_license>
-- <project_license>BSD</project_license>
-+ <project_license>BSD-3-Clause</project_license>
-  <name>ParaView</name>
-  <summary>Data analysis and visualization</summary>
-+ <content_rating type="oars-1.1"/>
+--- a/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-20 22:17:23.592444812 +0100
++++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-20 22:31:17.291934504 +0100
+@@ -51,4 +51,10 @@
+  <url type="faq">https://www.paraview.org/Wiki/ParaView:FAQ</url>
+  <url type="help">https://www.paraview.org/documentation/</url>
+  <update_contact>paraview+paraview-support@discourse.paraview.org</update_contact>
 + <releases>
++     <release version="5.11.0" date="2022-11-17"/>
 +     <release version="5.10.1" date="2022-03-15"/>
 +     <release version="5.10.0" date="2021-12-22"/>
 +     <release version="5.9.1" date="2021-05-18"/>
 + </releases>
-  <description>
-   <p>
-    ParaView is an open-source, multi-platform data analysis and visualization
-@@ -25,24 +31,20 @@
-  </categories>
-  <screenshots>
-   <screenshot type="default">
--   <caption>Using ParaView to compare simulated and analytical results (Image courtesy of Sandia National Labs)</caption>
--   <image width="902" height="677">http://www.paraview.org/wp-content/uploads/2014/04/full_AlegraVV.png</image>
-+   <image>http://www.paraview.org/wp-content/uploads/2014/04/full_AlegraVV.png</image>
-   </screenshot>
-   <screenshot>
--   <caption>Global Seismic Wave Propagation Simulation (Contributors from ICES, The University of Texas at Austin: Carsten Burstedde, Omar Ghattas, James R. Martin, Georg Stadler, Lucas C. Wilcox Visualization at the Texas Advanced Computing Center, the University of Texas at Austin by Greg Abram)</caption>
--   <image width="812" height="468">http://www.paraview.org/wp-content/uploads/2014/04/seismic.jpg</image>
-+   <image>http://www.paraview.org/wp-content/uploads/2014/04/seismic.jpg</image>
-   </screenshot>
-   <screenshot>
--   <caption>Polar Vortex Breakdown Simulation (Image courtesy of Sandia National Labs)</caption>
--   <image width="940" height="661">http://www.paraview.org/wp-content/uploads/2014/04/full_PolarVortexBreakdown.png</image>
-+   <image>http://www.paraview.org/wp-content/uploads/2014/04/full_PolarVortexBreakdown.png</image>
-   </screenshot>
-   <screenshot>
--   <caption>Hydrodynamic simulations of quark-gluon plasma (Russell Taylor's Comp 715: Visualization in the Sciences class at the University of North Carolina at Chapel Hill. Author: Joo Hwi Lee and Zhigang (Alfred) Zhong Copyright: Data courtesy of Steffen Bass and Hannah Peterson, Duke Physics)</caption>
--   <image width="875" height="700">http://www.paraview.org/wp-content/uploads/2014/04/full_hydrodynamic_simulation.png</image>
-+   <image>http://www.paraview.org/wp-content/uploads/2014/04/full_hydrodynamic_simulation.png</image>
-   </screenshot>
-   <screenshot>
-    <caption>Cross Wind Fire Simulation (Image courtesy of Sandia National Labs)</caption>
--   <image width="902" height="609">http://www.paraview.org/wp-content/uploads/2014/04/0_full_Fire.png</image>
-+   <image>http://www.paraview.org/wp-content/uploads/2014/04/0_full_Fire.png</image>
-   </screenshot>
-  </screenshots>
-  <launchable type="desktop-id">org.paraview.ParaView.desktop</launchable>
-@@ -50,5 +52,6 @@
-  <url type="bugtracker">https://gitlab.kitware.com/paraview/paraview/-/issues</url>
-  <url type="faq">https://www.paraview.org/Wiki/ParaView:FAQ</url>
-  <url type="help">https://www.paraview.org/documentation/</url>
-+ <developer_name>Kitware</developer_name>
-  <update_contact>paraview+paraview-support@discourse.paraview.org</update_contact>
  </component>
-Binary files a/Clients/ParaView/.org.paraview.ParaView.appdata.xml.kate-swp and b/Clients/ParaView/.org.paraview.ParaView.appdata.xml.kate-swp differ
