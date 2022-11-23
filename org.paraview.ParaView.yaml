@@ -146,26 +146,21 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      # - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
       - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_13_3.tar.gz
-        sha256: a59d046486c9e2076a33b5b389479a2476cfe496601dffd36bd354755630d22c
-        x-checker-data:
-          type: anitya
-          project-id: 1303
-          stable-only: true
-          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
+        sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 1303
+        #   stable-only: true
+        #   url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
 
   - name: netcdf
-    # build-options:
-    #   cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-    #     -fstack-clash-protection -flto -fno-fat-lto-objects
-    #   cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables
-    #     -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://github.com/Unidata/netcdf-c/archive/v4.9.0.tar.gz
@@ -190,6 +185,10 @@ modules:
     # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
   - name: TBB
     buildsystem: cmake-ninja
+    config-opts:
+      - -DTBB_TEST=OFF
+      - -DTBB_EXAMPLES=OFF
+      - -DTBB_STRICT=OFF
     builddir: true
     sources:
       - type: archive
@@ -218,7 +217,7 @@ modules:
         sources:
           - type: git
             url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-            tag: v5.9.0
+            tag: v5.100.0
         # Attempt to build from source, but ISPC need glic-32bit which make things complicated.
         # OSPRay need ISPC 1.9.2.
       - name: ISPC
@@ -426,6 +425,7 @@ modules:
     builddir: true
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+      - -DADIOS2_BUILD_EXAMPLES=OFF
     sources:
       - type: archive
         url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
@@ -438,7 +438,7 @@ modules:
 
     # Paraview need 32GB of memory to build
   - name: Paraview
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
