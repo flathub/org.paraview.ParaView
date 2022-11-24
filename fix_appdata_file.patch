@@ -1,6 +1,6 @@
 diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaView/org.paraview.ParaView.appdata.xml
 --- a/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-20 22:17:23.592444812 +0100
-+++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-24 16:57:32.282893851 +0100
++++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-24 23:04:52.225743756 +0100
 @@ -1,9 +1,9 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!-- Copyright 2014-2018 Kitware, Inc. -->
@@ -19,13 +19,13 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
    <screenshot type="default">
 -   <caption>Using ParaView to compare simulated and analytical results (Image courtesy of Sandia National Labs)</caption>
 -   <image width="902" height="677">http://www.paraview.org/wp-content/uploads/2014/04/full_AlegraVV.png</image>
-+   <caption>This visualization was a finalist in the SC21 Visualization Showcase. Credits: Francesca Samel et al</caption>
++   <caption>SC21 Visualization Showcase. Credits: Francesca Samel et al</caption>
 +   <image width="1117" height="826">https://www.paraview.org/wp-content/uploads/2022/10/energy-exascale-earth-system-model-global-climate-model-data.jpg</image>
    </screenshot>
    <screenshot>
 -   <caption>Global Seismic Wave Propagation Simulation (Contributors from ICES, The University of Texas at Austin: Carsten Burstedde, Omar Ghattas, James R. Martin, Georg Stadler, Lucas C. Wilcox Visualization at the Texas Advanced Computing Center, the University of Texas at Austin by Greg Abram)</caption>
 -   <image width="812" height="468">http://www.paraview.org/wp-content/uploads/2014/04/seismic.jpg</image>
-+   <caption>Emergence of skin micro-wrinkles as a result of in-plane compressive stress in a bi-layer skin model. Courtesy of Georges Limbert</caption>
++   <caption>Emergence of skin micro-wrinkles. Courtesy of Georges Limbert</caption>
 +   <image width="1920" height="1420">https://www.paraview.org/wp-content/uploads/2022/10/Soft-Matter-cover-ARTWORK.jpg</image>
    </screenshot>
    <screenshot>
@@ -63,3 +63,5 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
 +     <release version="5.9.1" date="2021-05-18"/>
 + </releases>
  </component>
+Binary files a/.git/modules/VTK/modules/VTK-m/lfs/tmp/2562320501 and b/.git/modules/VTK/modules/VTK-m/lfs/tmp/2562320501 differ
+Binary files a/.git/modules/VTK/modules/VTK-m/lfs/tmp/3337525874 and b/.git/modules/VTK/modules/VTK-m/lfs/tmp/3337525874 differ
