@@ -1,6 +1,6 @@
 diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaView/org.paraview.ParaView.appdata.xml
 --- a/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-20 22:17:23.592444812 +0100
-+++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-24 23:04:52.225743756 +0100
++++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-25 14:13:30.027948705 +0100
 @@ -1,9 +1,9 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!-- Copyright 2014-2018 Kitware, Inc. -->
@@ -31,7 +31,7 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
    <screenshot>
 -   <caption>Polar Vortex Breakdown Simulation (Image courtesy of Sandia National Labs)</caption>
 -   <image width="940" height="661">http://www.paraview.org/wp-content/uploads/2014/04/full_PolarVortexBreakdown.png</image>
-+   <caption>Visualization in the Sciences class at the University of North Carolina at Chapel Hill. Author: Jared Vicory and Zhigang (Alfred) Zhong</caption>
++   <caption>From University of North Carolina at Chapel Hill. Author: Jared Vicory and Zhigang (Alfred) Zhong</caption>
 +   <image width="1049" height="776">https://www.paraview.org/wp-content/uploads/2022/10/full_harmonic_tremor.jpg</image>
    </screenshot>
    <screenshot>
@@ -63,5 +63,3 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
 +     <release version="5.9.1" date="2021-05-18"/>
 + </releases>
  </component>
-Binary files a/.git/modules/VTK/modules/VTK-m/lfs/tmp/2562320501 and b/.git/modules/VTK/modules/VTK-m/lfs/tmp/2562320501 differ
-Binary files a/.git/modules/VTK/modules/VTK-m/lfs/tmp/3337525874 and b/.git/modules/VTK/modules/VTK-m/lfs/tmp/3337525874 differ
