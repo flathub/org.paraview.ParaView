@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Platform
 sdk: org.kde.Sdk
-runtime-version: 5.15-21.08
+runtime-version: 5.15-22.08
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-21.08
+base-version: 5.15-22.08
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -26,205 +26,50 @@ cleanup:
 modules:
   - shared-modules/glew/glew.json
 
-  - name: python3-packaging
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/df/9e/d1a7217f69310c1db8fdf8ab396229f55a699ce34a203691794c5d1cad0c/packaging-21.3.tar.gz
-        sha256: dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
-        x-checker-data:
-          type: pypi
-          name: packaging
-      #- type: patch
-        #path: relax-dependencies.patch
-
-  - name: python-pyparsing
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/d6/60/9bed18f43275b34198eb9720d4c1238c68b3755620d20df0afd89424d32b/pyparsing-3.0.7.tar.gz
-        sha256: 18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea
-        x-checker-data:
-          type: pypi
-          name: pyparsing
-
   - name: python-numpy
     buildsystem: simple
     build-commands:
-      - rm pyproject.toml
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+      - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/64/4a/b008d1f8a7b9f5206ecf70a53f84e654707e7616a771d84c05151a4713e9/numpy-1.22.3.zip
-        sha256: dbc7601a3b7472d559dc7b933b18b4b66f9aa7452c120e87dfb33d02008c8a18
+        url: https://files.pythonhosted.org/packages/42/38/775b43da55fa7473015eddc9a819571517d9a271a9f8134f68fb9be2f212/numpy-1.23.5.tar.gz
+        sha256: 1b1766d6f397c18153d40015ddfc79ddb715cabadc04d2d228d4e5a8bc4ded1a
         x-checker-data:
           type: pypi
           name: numpy
 
-  - name: python-certifi
+  - python-deps.json
+
+  - name: python3-matplotlib
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/6c/ae/d26450834f0acc9e3d1f74508da6df1551ceab6c2ce0766a593362d6d57f/certifi-2021.10.8.tar.gz
-        sha256: 78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872
-        x-checker-data:
-          type: pypi
-          name: certifi
-
-  - name: qhull
-    buildsystem: cmake
-    sources:
+        dest: build/freetype-2.6.1
+        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
+        sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
       - type: archive
+        dest: build/qhull-2020.2
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
-      #- type: patch
-        #path: 0001-Link-executables-against-shared-libs.patch
-
-  - name: python-setuptools-scm
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/4a/18/477d3d9eb2f88230ff2a41de9d8ffa3554b706352787d289f57f76bfba0b/setuptools_scm-6.4.2.tar.gz
-        sha256: 6833ac65c6ed9711a4d5d2266f8024cfa07c533a0e55f4c12f6eff280a5a9e30
-        x-checker-data:
-          type: pypi
-          name: setuptools-scm
-
-  - name: python-flit-core
-    buildsystem: simple
-    build-commands:
-      - pip3 install . --prefix=/app --no-index --find-links .
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/15/d1/d8798b83e953fd6f86ca9b50f93eec464a9305b0661469c8234e61095481/flit_core-3.7.1.tar.gz
-        sha256: 14955af340c43035dbfa96b5ee47407e377ee337f69e70f73064940d27d0a44f
-        x-checker-data:
-          type: pypi
-          name: flit_core
-
-  - python3-tomli.json
-
-  - name: python-setuptools-scm-git-archive
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/7e/2c/0c15b29a1b5940250bfdc4a4f53272e35cd7cf8a34159291b6b4ec9eb291/setuptools_scm_git_archive-1.1.tar.gz
-        sha256: 6026f61089b73fa1b5ee737e95314f41cb512609b393530385ed281d0b46c062
-        x-checker-data:
-          type: pypi
-          name: setuptools-scm-git-archive
-
-  - name: python3-toml
-    buildsystem: simple
-    ensure-writable:
-      - /lib/python3.8/site-packages/easy-install.pth
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz
-        sha256: b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
-        x-checker-data:
-          type: pypi
-          name: toml
-
-  - name: python-matplotlib
-    buildsystem: simple
-    build-options:
-      env:
-        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: file
-        path: matplotlib-setup.cfg
-      - type: archive
-        url: https://files.pythonhosted.org/packages/8a/46/425a44ab9a71afd2f2c8a78b039c1af8ec21e370047f0ad6e43ca819788e/matplotlib-3.5.1.tar.gz
-        sha256: b2e9810e09c3a47b73ce9cab5a72243a1258f61e7900969097a817232246ce1c
+        url: https://files.pythonhosted.org/packages/91/1c/a48fd779287df3425c289cc2ff728980a5b355f15f4c3c40e1822770ba44/matplotlib-3.6.2.tar.gz
+        sha256: b03fd10a1709d0101c054883b550f7c4c5e974f751e2680318759af005964990
         x-checker-data:
           type: pypi
           name: matplotlib
-
-  - name: python-cycler
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/34/45/a7caaacbfc2fa60bee42effc4bcc7d7c6dbe9c349500e04f65a861c15eb9/cycler-0.11.0.tar.gz
-        sha256: 9c87405839a19696e837b3b818fed3f5f69f16f1eec1a1ad77e043dcea9c772f
-        x-checker-data:
-          type: pypi
-          name: cycler
-
-  - name: python-cppy
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/e0/94/3cca7fccecf9b63219f3bf8f08af719f6d3ab06c4acdcc9372a15a12b593/cppy-1.2.0.tar.gz
-        sha256: 95e8862e4f826c3f2a6b7b658333b162f80cbe9f943aa0d0a7a6b2ef850aeffc
-        x-checker-data:
-          type: pypi
-          name: cppy
-
-  - name: python-kiwisolver
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/c7/c0/5eef3c2fb687b71433f61638e317d468c3276d210bd462cfa0c3039ddf26/kiwisolver-1.4.1.tar.gz
-        sha256: 91bfcd2a14bea6f93c86876c4abccb53dc3f0bcad55e3a0af0b3e57ced6eef11
-        x-checker-data:
-          type: pypi
-          name: kiwisolver
-
-  - name: python-setuptools_scm
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/4a/18/477d3d9eb2f88230ff2a41de9d8ffa3554b706352787d289f57f76bfba0b/setuptools_scm-6.4.2.tar.gz
-        sha256: 6833ac65c6ed9711a4d5d2266f8024cfa07c533a0e55f4c12f6eff280a5a9e30
-        x-checker-data:
-          type: pypi
-          name: setuptools_scm
-
-  - name: python-dateutil
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py install --prefix=${FLATPAK_DEST} --root=/ --optimize=1
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/4c/c4/13b4776ea2d76c115c1d1b84579f3764ee6d57204f6be27119f13a61d0a9/python-dateutil-2.8.2.tar.gz
-        sha256: 0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86
-        x-checker-data:
-          type: pypi
-          name: python-dateutil
 
   - name: Boost
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 install
-        cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
+      - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
-        sha256: f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
+        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -235,28 +80,25 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      # - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DBUILD_TESTING:BOOL=OFF
       - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/src/hdf5-1.10.5.tar.bz2
-        sha256: 68d6ea8843d2a106ec6a7828564c1689c7a85714a35d8efafa2fee20ca366f44
-        x-checker-data:
-          type: anitya
-          project-id: 1303
-          stable-only: true
-          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
+        sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 1303
+        #   stable-only: true
+        #   url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
 
   - name: netcdf
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.7.4.tar.gz
-        sha256: 99930ad7b3c4c1a8e8831fb061cb02b2170fc8e5ccaeda733bd99c3b9d31666b
+        url: https://github.com/Unidata/netcdf-c/archive/v4.9.0.tar.gz
+        sha256: 9f4cb864f3ab54adb75409984c6202323d2fc66c003e5308f3cdf224ed41c0a6
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -264,13 +106,10 @@ modules:
           url-template: https://github.com/Unidata/netcdf-c/archive/v${version}.tar.gz
 
   - name: openmpi
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2
-        sha256: e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda
+        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.4.tar.bz2
+        sha256: 92912e175fd1234368c8730c03f4996fe5942e7479bb1d10059405e7f2b3930d
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -279,23 +118,26 @@ modules:
 
     # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
   - name: TBB
-    buildsystem: cmake
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DTBB_TEST=OFF
+      - -DTBB_EXAMPLES=OFF
+      - -DTBB_STRICT=OFF
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/2019_U8.tar.gz
-        sha256: 6b540118cbc79f9cbc06a35033c18156c21b84ab7b6cf56d773b168ad2b68566
-      - type: patch
-        path: tbb_cmake.patch
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.7.0.tar.gz
+        sha256: 2cae2a80cda7d45dc7c072e4295c675fff5ad8316691f26f40539f7e7e54c0cc
+        x-checker-data:
+          type: anitya
+          project-id: 8217
+          stable-only: true
+          url-template: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v$version.tar.gz
+      # - type: patch
+      #   path: tbb_cmake.patch
 
   - name: Embree
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
@@ -309,7 +151,7 @@ modules:
         sources:
           - type: git
             url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-            tag: v5.9.0
+            tag: v5.100.0
         # Attempt to build from source, but ISPC need glic-32bit which make things complicated.
         # OSPRay need ISPC 1.9.2.
       - name: ISPC
@@ -368,31 +210,35 @@ modules:
             sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
 
   - name: GDAL
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://download.osgeo.org/gdal/3.3.0/gdal-3.3.0.tar.gz
-        sha256: 39fce17f8f421f4f81e3358b9cac21921355a344e20917ac6bd27d483f27e5c9
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.0.1.tar.gz
+        sha256: 612dabeb2abf21c93d2f42b133794340bc6f6b3b972e88754211b9b48f4724f3
+        x-checker-data:
+          type: anitya
+          project-id: 881
+          stable-only: true
+          url-template: https://github.com/OSGeo/gdal/archive/refs/tags/v$version.tar.gz
     modules:
       - name: PROJ
         buildsystem: cmake-ninja
-        build-options:
-          cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-          cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
         config-opts:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/8.0.1/proj-8.0.1.tar.gz
-            sha256: e0463a8068898785ca75dd49a261d3d28b07d0a88f3b657e8e0089e16a0375fa
+            url: https://github.com/OSGeo/PROJ/releases/download/9.1.0/proj-9.1.0.tar.gz
+            sha256: 81b2239b94cad0886222cde4f53cb49d34905aad2a1317244a0c30a553db2315
+            x-checker-data:
+              type: anitya
+              project-id: 9463
+              stable-only: true
+              url-template: https://github.com/OSGeo/PROJ/releases/download/$version/proj-$version.tar.gz
 
   - name: GeoTIFF
     builddir: true
-    build-options:
-      cflags: -flto -ffat-lto-objects
-      cxxflags: -flto -ffat-lto-objects
     sources:
       - type: archive
         url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.6.0.tar.gz
@@ -401,9 +247,6 @@ modules:
   - name: PDAL
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -ffat-lto-objects
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
@@ -411,30 +254,9 @@ modules:
         url: https://github.com/PDAL/PDAL/releases/download/2.3.0/PDAL-2.3.0-src.tar.bz2
         sha256: 63d8d4fee491675f0fa3dca58c26d57fb2afcaa37c24b10f595b3fbff174996e
 
-  - name: ADIOS2
-    buildsystem: cmake-ninja
-    builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection
-    config-opts:
-      - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
-    sources:
-      - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.7.1.436.tar.gz
-        sha256: c8c0c3383b5f1e0afa77bfc67970050c0ef95132a94aa9b17419f60032fb7a31
-        x-checker-data:
-          type: anitya
-          project-id: 220828
-          stable-only: true
-          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
-
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
-    #build-options:
-      #cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      #cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_SHARED_LIBS=ON
@@ -443,20 +265,18 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.0.tar.gz
-        sha256: 328c1bea493a32cac5257d84157dc686cc3ab0b004e2bea22044e0a59f6f8a19
-        x-checker-data:
-          type: anitya
-          project-id: 1534
-          stable-only: true
-          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v${version}.tar.gz
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.tar.gz
+        sha256: 5a5b3bac27709d8c66286b7a0d1d7bf2d7170ec189a1a756fdf812c97aa7fd10
+        # Wrong version number, enable in next release
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 1534
+        #   stable-only: true
+        #   url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
@@ -477,13 +297,10 @@ modules:
 
   - name: OpenTURNS
     buildsystem: cmake-ninja
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.18.tar.gz
-        sha256: 1840d3fd8b38fd5967b1fa04e49d8f760c2c497400430e97623595ca48754ae0
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.tar.gz
+        sha256: 2be5247f0266d153619b35dfb1eeeb46736c502dad993b40aff8857d6314f293
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -494,13 +311,10 @@ modules:
 
     # Provide libnuma for MEMKIND
   - name: numactl
-    build-options:
-      cflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
-      cxxflags: -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong -funwind-tables -fasynchronous-unwind-tables -fstack-clash-protection -flto -fno-fat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/numactl/numactl/releases/download/v2.0.14/numactl-2.0.14.tar.gz
-        sha256: 826bd148c1b6231e1284e42a4db510207747484b112aee25ed6b1078756bcff6
+        url: https://github.com/numactl/numactl/releases/download/v2.0.16/numactl-2.0.16.tar.gz
+        sha256: 1b242f893af977a1d31af6ce9d6b8dafdd2d8ec3dc9207f7c2dc0d3446e7c7c8
         x-checker-data:
           type: anitya
           project-id: 2507
@@ -508,13 +322,10 @@ modules:
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
-    build-options:
-      cflags: -flto -ffat-lto-objects
-      cxxflags: -flto -ffat-lto-objects
     sources:
       - type: archive
-        url: https://github.com/memkind/memkind/archive/refs/tags/v1.13.0.tar.gz
-        sha256: 3f0d919b61fdd4d2ebce14e0b7dbb856e2144138778940107c13549523f3bdc0
+        url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
+        sha256: ab366b20b5a87ea655483631fc762ba6eb59eb6c3a08652e643f1ee3f06a6a12
         x-checker-data:
           type: anitya
           project-id: 220852
@@ -543,13 +354,26 @@ modules:
         url: https://github.com/libLAS/libLAS.git
         commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
 
-    # Paraview need 32GB of memory to build
-  - name: Paraview
+  - name: ADIOS2
     buildsystem: cmake
     builddir: true
-    build-options:
-      cflags: -flto -ffat-lto-objects
-      cxxflags: -flto -ffat-lto-objects
+    config-opts:
+      - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+      - -DADIOS2_BUILD_EXAMPLES=OFF
+    sources:
+      - type: archive
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
+        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        x-checker-data:
+          type: anitya
+          project-id: 220828
+          stable-only: true
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+
+    # Paraview need 32GB of memory to build
+  - name: Paraview
+    buildsystem: cmake-ninja
+    builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DBUILD_TESTING:BOOL=OFF
@@ -579,7 +403,7 @@ modules:
       - -DHDF5_ENABLE_OPTIMIZATION:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF2:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF3:BOOL=ON
-      - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
+      - -DPARAVIEW_ENABLE_ADIOS2:BOOL=OFF
       - -DPARAVIEW_ENABLE_FIDES:BOOL=ON
       - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
       - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
@@ -595,19 +419,24 @@ modules:
       - -DPARAVIEW_USE_VTKM:BOOL=ON
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.10/ParaView-v5.10.1.tar.gz
-        sha256: 59ca46a929a52d8abec107b72e19447cba3d8e64871b6fbc8e99b0f3b167db46
+        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.0.tar.gz
+        sha256: 68b1c6d15dd67ec442f964460c56212417e8af2a96763001f8548eb3cbc5ce87
+        x-checker-data:
+          type: anitya
+          project-id: 9602
+          stable-only: true
+          url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
       #- type: patch
         #path: paraview-5.9.0-gcc11-include.patch #https://bugs.gentoo.org/788055
-      - type: git
-        url: https://github.com/Kitware/LookingGlassVTKModule
-        commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
-        dest: VTK/Remote/RenderingLookingGlass
-      - type: archive
-        url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
-        sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
+      #- type: git
+        #url: https://github.com/Kitware/LookingGlassVTKModule
+        #commit: c1e0df4842f22929a50daa0fe580a6a3dd3f015a
+        # dest: VTK/Remote/RenderingLookingGlass
+      # - type: archive
+      #   url: https://www.paraview.org/files/dependencies/HoloPlayCore-0.1.1-Open-20200923.tar.gz
+      #   sha256: 8626082ddc89dbbd018e6113e069eb64c9f8e540db06c4c7e85162dc38b5ddad
         # Something wrong, flathub cannot fetch  the git repo.
       #- type: git
         #url: https://gitlab.kitware.com/vtk/MomentInvariants
