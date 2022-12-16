@@ -68,8 +68,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
-        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+        sha256: 71feeed900fbccca04a3b4f2f84a7c217186f28a940ed8b7ed4725986baf99fa
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -215,8 +215,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.0.1.tar.gz
-        sha256: 612dabeb2abf21c93d2f42b133794340bc6f6b3b972e88754211b9b48f4724f3
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.1.tar.gz
+        sha256: 4c1d1df5a66a6497c6d4d0a2291cdd70d2b5fa14b1c8f12e77cb511ef0c5cf85
         x-checker-data:
           type: anitya
           project-id: 881
