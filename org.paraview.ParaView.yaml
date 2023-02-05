@@ -32,8 +32,8 @@ modules:
       - python3 setup.py install --prefix=/app --root=/
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/42/38/775b43da55fa7473015eddc9a819571517d9a271a9f8134f68fb9be2f212/numpy-1.23.5.tar.gz
-        sha256: 1b1766d6f397c18153d40015ddfc79ddb715cabadc04d2d228d4e5a8bc4ded1a
+        url: https://files.pythonhosted.org/packages/e4/a9/6704bb5e1d1d778d3a6ee1278a8d8134f0db160e09d52863a24edb58eab5/numpy-1.24.2.tar.gz
+        sha256: 003a9f530e880cb2cd177cba1af7220b9aa42def9c4afc2a2fc3ee6be7eb2b22
         x-checker-data:
           type: pypi
           name: numpy
@@ -55,8 +55,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/91/1c/a48fd779287df3425c289cc2ff728980a5b355f15f4c3c40e1822770ba44/matplotlib-3.6.2.tar.gz
-        sha256: b03fd10a1709d0101c054883b550f7c4c5e974f751e2680318759af005964990
+        url: https://files.pythonhosted.org/packages/23/6d/2917ed23b17a8c4d1d59974a574cae0a365c392ba8820c8824b03a02f376/matplotlib-3.6.3.tar.gz
+        sha256: 1f4d69707b1677560cd952544ee4962f68ff07952fb9069ff8c12b56353cb8c9
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -68,8 +68,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
-        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+        sha256: 71feeed900fbccca04a3b4f2f84a7c217186f28a940ed8b7ed4725986baf99fa
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -97,8 +97,8 @@ modules:
   - name: netcdf
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.9.0.tar.gz
-        sha256: 9f4cb864f3ab54adb75409984c6202323d2fc66c003e5308f3cdf224ed41c0a6
+        url: https://github.com/Unidata/netcdf-c/archive/v4.9.1.tar.gz
+        sha256: 4ee8d5f6b50a1eb4ad4c10f24531e36261fd1882410fb08435eb2ddfd49a0908
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -215,8 +215,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.0.1.tar.gz
-        sha256: 612dabeb2abf21c93d2f42b133794340bc6f6b3b972e88754211b9b48f4724f3
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.2.tar.gz
+        sha256: 5cbc9df4a39c7ff69748defe38cbaf1c46267e124ee4d9b3975354c57dc2d618
         x-checker-data:
           type: anitya
           project-id: 881
@@ -299,8 +299,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.tar.gz
-        sha256: 2be5247f0266d153619b35dfb1eeeb46736c502dad993b40aff8857d6314f293
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.1.tar.gz
+        sha256: 88478ef8af222955b5ec18ecb3b187e8fa2982571845568010976f70895180c3
         x-checker-data:
           type: anitya
           project-id: 220847
