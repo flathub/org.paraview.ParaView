@@ -55,8 +55,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/65/c2/34158ff731a12802228434e8d17d2ebb5097394ab9d065205cc262cf2a6f/matplotlib-3.7.0.tar.gz
-        sha256: 8f6efd313430d7ef70a38a3276281cb2e8646b3a22b3b21eb227da20e15e6813
+        url: https://files.pythonhosted.org/packages/b7/65/d6e00376dbdb6c227d79a2d6ec32f66cfb163f0cd924090e3133a4f85a11/matplotlib-3.7.1.tar.gz
+        sha256: 7b73305f25eab4541bd7ee0b96d87e53ae9c9f1823be5659b806cd85786fe882
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -97,8 +97,8 @@ modules:
   - name: netcdf
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.9.1.tar.gz
-        sha256: 4ee8d5f6b50a1eb4ad4c10f24531e36261fd1882410fb08435eb2ddfd49a0908
+        url: https://github.com/Unidata/netcdf-c/archive/v4.9.2.tar.gz
+        sha256: bc104d101278c68b303359b3dc4192f81592ae8640f1aee486921138f7f88cb7
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -215,8 +215,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.2.tar.gz
-        sha256: 5cbc9df4a39c7ff69748defe38cbaf1c46267e124ee4d9b3975354c57dc2d618
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.3.tar.gz
+        sha256: 038e2c16919f6ac0d6fbfb07293e06a7e6051b6dc962ba6c184d06aa3b208fe8
         x-checker-data:
           type: anitya
           project-id: 881
