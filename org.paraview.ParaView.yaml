@@ -77,18 +77,18 @@ modules:
           stable-only: true
           url-template: https://boostorg.jfrog.io/artifactory/main/release/${version}/source/boost_${major}_${minor}_${patch}.tar.bz2
 
-  - name: hdf5
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      # - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DBUILD_TESTING:BOOL=OFF
-      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
-      - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
-    sources:
-      - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
-        sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
+  # - name: hdf5
+  #   buildsystem: cmake-ninja
+  #   builddir: true
+  #   config-opts:
+  #     # - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+  #     - -DBUILD_TESTING:BOOL=OFF
+  #     - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+  #     - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
+  #       sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
         # x-checker-data:
         #   type: anitya
         #   project-id: 1303
