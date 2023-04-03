@@ -39,6 +39,7 @@ modules:
           type: pypi
           name: numpy
 
+    # python3 flatpak-pip-generator setuptools_scm_git_archive setuptools_scm certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig h5py -o python-deps.json
   - python-deps.json
 
   - name: python3-matplotlib
@@ -77,23 +78,23 @@ modules:
           stable-only: true
           url-template: https://boostorg.jfrog.io/artifactory/main/release/${version}/source/boost_${major}_${minor}_${patch}.tar.bz2
 
-  # - name: hdf5
-  #   buildsystem: cmake-ninja
-  #   builddir: true
-  #   config-opts:
-  #     # - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-  #     - -DBUILD_TESTING:BOOL=OFF
-  #     - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
-  #     - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
-  #       sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 1303
-        #   stable-only: true
-        #   url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
+  - name: hdf5
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      # - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
+      - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+    sources:
+      - type: archive
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
+        sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
+        x-checker-data:
+          type: anitya
+          project-id: 1303
+          stable-only: true
+          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
 
   - name: netcdf
     sources:
@@ -371,22 +372,22 @@ modules:
           stable-only: true
           url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
-  - name: python-h5py
-    buildsystem: simple
-    ensure-writable:
-      - /lib/python3.8/site-packages/easy-install.pth
-    build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
-        --no-build-isolation
-    sources:
-      - type: archive
-        url: https://github.com/h5py/h5py/releases/download/3.8.0/h5py-3.8.0.tar.gz
-        sha256: 6fead82f0c4000cf38d53f9c030780d81bfa0220218aee13b90b7701c937d95f
-        x-checker-data:
-          type: anitya
-          project-id: 6409
-          stable-only: true
-          url-template: https://github.com/h5py/h5py/releases/download/${version}/h5py-${version}.tar.gz
+  # - name: python-h5py
+  #   buildsystem: simple
+  #   ensure-writable:
+  #     - /lib/python3.8/site-packages/easy-install.pth
+  #   build-commands:
+  #     - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+  #       --no-build-isolation
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/h5py/h5py/releases/download/3.8.0/h5py-3.8.0.tar.gz
+  #       sha256: 6fead82f0c4000cf38d53f9c030780d81bfa0220218aee13b90b7701c937d95f
+  #       x-checker-data:
+  #         type: anitya
+  #         project-id: 6409
+  #         stable-only: true
+  #         url-template: https://github.com/h5py/h5py/releases/download/${version}/h5py-${version}.tar.gz
 
     # Paraview need 32GB of memory to build
   - name: Paraview
