@@ -33,8 +33,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/e4/a9/6704bb5e1d1d778d3a6ee1278a8d8134f0db160e09d52863a24edb58eab5/numpy-1.24.2.tar.gz
-        sha256: 003a9f530e880cb2cd177cba1af7220b9aa42def9c4afc2a2fc3ee6be7eb2b22
+        url: https://files.pythonhosted.org/packages/2c/d4/590ae7df5044465cc9fa2db152ae12468694d62d952b1528ecff328ef7fc/numpy-1.24.3.tar.gz
+        sha256: ab344f1bf21f140adab8e47fdbc7c35a477dc01408791f8ba00d018dd0bc5155
         x-checker-data:
           type: pypi
           name: numpy
@@ -70,8 +70,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
-        sha256: 71feeed900fbccca04a3b4f2f84a7c217186f28a940ed8b7ed4725986baf99fa
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -88,8 +88,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
-        sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_0.tar.gz
+        sha256: 0f2ec13c1bf6e9f506fd03681c83a476d722e7479cad9ce6f8585a26c317d0ad
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -145,8 +145,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.8.0.tar.gz
-        sha256: eee380323bb7ce864355ed9431f85c43955faaae9e9bce35c62b372d7ffd9f8b
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.tar.gz
+        sha256: 1ce48f34dada7837f510735ff1172f6e2c261b09460e3bf773b49791d247d24e
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -234,8 +234,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.3.tar.gz
-        sha256: 038e2c16919f6ac0d6fbfb07293e06a7e6051b6dc962ba6c184d06aa3b208fe8
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.4.tar.gz
+        sha256: 1206ffd07e6f6aaa145da1840c42db91c9e0a24b519eace1373b8b1232de36fc
         x-checker-data:
           type: anitya
           project-id: 881
@@ -318,8 +318,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.1.tar.gz
-        sha256: 88478ef8af222955b5ec18ecb3b187e8fa2982571845568010976f70895180c3
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.2.tar.gz
+        sha256: 39bac145f07fdd86a79fc114deb35f99d6e90e503f12084c661fb138caf775f6
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -383,11 +383,11 @@ modules:
       - type: archive
         url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
         sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
-        x-checker-data:
-          type: anitya
-          project-id: 220828
-          stable-only: true
-          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 220828
+        #   stable-only: true
+        #   url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
   - name: python-h5py
     buildsystem: simple
@@ -455,8 +455,8 @@ modules:
       - -DPARAVIEW_USE_VTKM:BOOL=ON
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.0.tar.gz
-        sha256: 68b1c6d15dd67ec442f964460c56212417e8af2a96763001f8548eb3cbc5ce87
+        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.1.tar.gz
+        sha256: de32f3e576b5f639ffc6903aa9e4cd46ac30c753185edc4366a7f305a6951b16
         x-checker-data:
           type: anitya
           project-id: 9602
