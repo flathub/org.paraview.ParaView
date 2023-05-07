@@ -379,6 +379,8 @@ modules:
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
       - -DADIOS2_BUILD_EXAMPLES=OFF
+      - -DBUILD_SHARED_LIBS=ON
+      - -DHDF5=OFF
     sources:
       - type: archive
         url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
