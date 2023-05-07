@@ -373,23 +373,25 @@ modules:
         url: https://github.com/libLAS/libLAS.git
         commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
 
-  # - name: ADIOS2
-  #   buildsystem: cmake
-  #   builddir: true
-  #   config-opts:
-  #     - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
-  #     - -DADIOS2_BUILD_EXAMPLES=OFF
-  #     - -DBUILD_SHARED_LIBS=ON
-  #     - -DHDF5=OFF
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
-  #       sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 220828
-        #   stable-only: true
-        #   url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+  - name: ADIOS2
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+      - -DADIOS2_BUILD_EXAMPLES=OFF
+      - -DBUILD_SHARED_LIBS=ON
+      - -DADIOS2_USE_HDF5:STRING=OFF
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DINSTALL_GTEST:BOOL=OFF
+    sources:
+      - type: archive
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
+        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        x-checker-data:
+          type: anitya
+          project-id: 220828
+          stable-only: true
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
   - name: python-h5py
     buildsystem: simple
