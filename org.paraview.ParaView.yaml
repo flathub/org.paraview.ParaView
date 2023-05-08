@@ -1,5 +1,5 @@
 app-id: org.paraview.ParaView
-runtime: org.kde.Platform
+runtime: org.kde.Sdk
 sdk: org.kde.Sdk
 runtime-version: 5.15-22.08
 base: io.qt.qtwebengine.BaseApp
@@ -29,15 +29,17 @@ modules:
   - name: python-numpy
     buildsystem: simple
     build-commands:
-      - python3 setup.py install --prefix=/app --root=/
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/e4/a9/6704bb5e1d1d778d3a6ee1278a8d8134f0db160e09d52863a24edb58eab5/numpy-1.24.2.tar.gz
-        sha256: 003a9f530e880cb2cd177cba1af7220b9aa42def9c4afc2a2fc3ee6be7eb2b22
+        url: https://files.pythonhosted.org/packages/2c/d4/590ae7df5044465cc9fa2db152ae12468694d62d952b1528ecff328ef7fc/numpy-1.24.3.tar.gz
+        sha256: ab344f1bf21f140adab8e47fdbc7c35a477dc01408791f8ba00d018dd0bc5155
         x-checker-data:
           type: pypi
           name: numpy
 
+    # python3 flatpak-pip-generator setuptools_scm_git_archive setuptools_scm certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig -o python-deps.json
   - python-deps.json
 
   - name: python3-matplotlib
@@ -55,8 +57,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/65/c2/34158ff731a12802228434e8d17d2ebb5097394ab9d065205cc262cf2a6f/matplotlib-3.7.0.tar.gz
-        sha256: 8f6efd313430d7ef70a38a3276281cb2e8646b3a22b3b21eb227da20e15e6813
+        url: https://files.pythonhosted.org/packages/b7/65/d6e00376dbdb6c227d79a2d6ec32f66cfb163f0cd924090e3133a4f85a11/matplotlib-3.7.1.tar.gz
+        sha256: 7b73305f25eab4541bd7ee0b96d87e53ae9c9f1823be5659b806cd85786fe882
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -68,8 +70,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
-        sha256: 71feeed900fbccca04a3b4f2f84a7c217186f28a940ed8b7ed4725986baf99fa
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -86,19 +88,36 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_12_2.tar.gz
-        sha256: 1ca14cadff7bc4b61826eee591da1a330f44c107db66c9510ee95df3b2bc5f78
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 1303
-        #   stable-only: true
-        #   url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_0.tar.gz
+        sha256: 0f2ec13c1bf6e9f506fd03681c83a476d722e7479cad9ce6f8585a26c317d0ad
+        x-checker-data:
+          type: anitya
+          project-id: 1303
+          stable-only: true
+          url-template: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-${version}.tar.gz
+
+  - name: python-h5py
+    buildsystem: simple
+    # ensure-writable:
+    #   - /lib/python3.8/site-packages/easy-install.pth
+    build-commands:
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
+    sources:
+      - type: archive
+        url: https://github.com/h5py/h5py/releases/download/3.8.0/h5py-3.8.0.tar.gz
+        sha256: 6fead82f0c4000cf38d53f9c030780d81bfa0220218aee13b90b7701c937d95f
+        x-checker-data:
+          type: anitya
+          project-id: 6409
+          stable-only: true
+          url-template: https://github.com/h5py/h5py/releases/download/${version}/h5py-${version}.tar.gz
 
   - name: netcdf
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.9.1.tar.gz
-        sha256: 4ee8d5f6b50a1eb4ad4c10f24531e36261fd1882410fb08435eb2ddfd49a0908
+        url: https://github.com/Unidata/netcdf-c/archive/v4.9.2.tar.gz
+        sha256: bc104d101278c68b303359b3dc4192f81592ae8640f1aee486921138f7f88cb7
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -126,8 +145,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.8.0.tar.gz
-        sha256: eee380323bb7ce864355ed9431f85c43955faaae9e9bce35c62b372d7ffd9f8b
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.tar.gz
+        sha256: 1ce48f34dada7837f510735ff1172f6e2c261b09460e3bf773b49791d247d24e
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -215,8 +234,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.2.tar.gz
-        sha256: 5cbc9df4a39c7ff69748defe38cbaf1c46267e124ee4d9b3975354c57dc2d618
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.4.tar.gz
+        sha256: 1206ffd07e6f6aaa145da1840c42db91c9e0a24b519eace1373b8b1232de36fc
         x-checker-data:
           type: anitya
           project-id: 881
@@ -229,8 +248,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.1.1/proj-9.1.1.tar.gz
-            sha256: 003cd4010e52bb5eb8f7de1c143753aa830c8902b6ed01209f294846e40e6d39
+            url: https://github.com/OSGeo/PROJ/releases/download/9.2.0/proj-9.2.0.tar.gz
+            sha256: dea816f5aa732ae6b2ee3977b9bdb28b1d848cf56a1aad8faf6708b89f0ed50e
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -299,8 +318,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.1.tar.gz
-        sha256: 88478ef8af222955b5ec18ecb3b187e8fa2982571845568010976f70895180c3
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.2.tar.gz
+        sha256: 39bac145f07fdd86a79fc114deb35f99d6e90e503f12084c661fb138caf775f6
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -360,6 +379,10 @@ modules:
     config-opts:
       - -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
       - -DADIOS2_BUILD_EXAMPLES=OFF
+      - -DBUILD_SHARED_LIBS=ON
+      - -DADIOS2_USE_HDF5:STRING=OFF
+      - -DBUILD_TESTING:BOOL=OFF
+      - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
         url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
@@ -369,6 +392,23 @@ modules:
           project-id: 220828
           stable-only: true
           url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+
+  - name: python-h5py
+    buildsystem: simple
+    # ensure-writable:
+    #   - /lib/python3.8/site-packages/easy-install.pth
+    build-commands:
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
+    sources:
+      - type: archive
+        url: https://github.com/h5py/h5py/releases/download/3.8.0/h5py-3.8.0.tar.gz
+        sha256: 6fead82f0c4000cf38d53f9c030780d81bfa0220218aee13b90b7701c937d95f
+        x-checker-data:
+          type: anitya
+          project-id: 6409
+          stable-only: true
+          url-template: https://github.com/h5py/h5py/releases/download/${version}/h5py-${version}.tar.gz
 
     # Paraview need 32GB of memory to build
   - name: Paraview
@@ -403,7 +443,7 @@ modules:
       - -DHDF5_ENABLE_OPTIMIZATION:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF2:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF3:BOOL=ON
-      - -DPARAVIEW_ENABLE_ADIOS2:BOOL=OFF
+      - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
       - -DPARAVIEW_ENABLE_FIDES:BOOL=ON
       - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
       - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
@@ -419,8 +459,8 @@ modules:
       - -DPARAVIEW_USE_VTKM:BOOL=ON
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.0.tar.gz
-        sha256: 68b1c6d15dd67ec442f964460c56212417e8af2a96763001f8548eb3cbc5ce87
+        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.1.tar.gz
+        sha256: de32f3e576b5f639ffc6903aa9e4cd46ac30c753185edc4366a7f305a6951b16
         x-checker-data:
           type: anitya
           project-id: 9602
