@@ -88,8 +88,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_0.tar.gz
-        sha256: 0f2ec13c1bf6e9f506fd03681c83a476d722e7479cad9ce6f8585a26c317d0ad
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_1.tar.gz
+        sha256: 1f710f3846d9c3ef9a4c57ef252ee0570f0af4e028fd6ccc360a48b7b16c347d
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -385,8 +385,8 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
-        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.9.0.tar.gz
+        sha256: 69f98ef58c818bb5410133e1891ac192653b0ec96eb9468590140f2552b6e5d1
         x-checker-data:
           type: anitya
           project-id: 220828
