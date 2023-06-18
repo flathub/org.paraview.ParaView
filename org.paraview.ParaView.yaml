@@ -33,8 +33,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://files.pythonhosted.org/packages/2c/d4/590ae7df5044465cc9fa2db152ae12468694d62d952b1528ecff328ef7fc/numpy-1.24.3.tar.gz
-        sha256: ab344f1bf21f140adab8e47fdbc7c35a477dc01408791f8ba00d018dd0bc5155
+        url: https://files.pythonhosted.org/packages/d0/b2/fe774844d1857804cc884bba67bec38f649c99d0dc1ee7cbbf1da601357c/numpy-1.25.0.tar.gz
+        sha256: f1accae9a28dc3cda46a91de86acf69de0d1b5f4edd44a9b0c3ceb8036dfff19
         x-checker-data:
           type: pypi
           name: numpy
@@ -88,8 +88,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_0.tar.gz
-        sha256: 0f2ec13c1bf6e9f506fd03681c83a476d722e7479cad9ce6f8585a26c317d0ad
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_1-2.tar.gz
+        sha256: c05846ca3f5ab1b2673f4ac1c0ff7b2f5285ab8ab99d25368dce1fdf25ad0a4a
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -234,8 +234,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.4.tar.gz
-        sha256: 1206ffd07e6f6aaa145da1840c42db91c9e0a24b519eace1373b8b1232de36fc
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.7.0.tar.gz
+        sha256: e2a7c9f5e7d29ec64de861baba0568104dc5fcee856d4ec39cb86abf0a611b49
         x-checker-data:
           type: anitya
           project-id: 881
@@ -248,8 +248,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.2.0/proj-9.2.0.tar.gz
-            sha256: dea816f5aa732ae6b2ee3977b9bdb28b1d848cf56a1aad8faf6708b89f0ed50e
+            url: https://github.com/OSGeo/PROJ/releases/download/9.2.1/proj-9.2.1.tar.gz
+            sha256: 15ebf4afa8744b9e6fccb5d571fc9f338dc3adcf99907d9e62d1af815d4971a1
             x-checker-data:
               type: anitya
               project-id: 9463
