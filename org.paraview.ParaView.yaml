@@ -57,8 +57,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/b7/65/d6e00376dbdb6c227d79a2d6ec32f66cfb163f0cd924090e3133a4f85a11/matplotlib-3.7.1.tar.gz
-        sha256: 7b73305f25eab4541bd7ee0b96d87e53ae9c9f1823be5659b806cd85786fe882
+        url: https://files.pythonhosted.org/packages/e5/59/b859fa2539b4121b016ea85758188203522fc12b0711de8b247cfec3cdac/matplotlib-3.7.2.tar.gz
+        sha256: a8cdb91dddb04436bd2f098b8fdf4b81352e68cf4d2c6756fcc414791076569b
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -88,8 +88,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_0.tar.gz
-        sha256: 0f2ec13c1bf6e9f506fd03681c83a476d722e7479cad9ce6f8585a26c317d0ad
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_1-2.tar.gz
+        sha256: c05846ca3f5ab1b2673f4ac1c0ff7b2f5285ab8ab99d25368dce1fdf25ad0a4a
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -234,8 +234,8 @@ modules:
       - -DACCEPT_MISSING_SQLITE3_RTREE:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.6.4.tar.gz
-        sha256: 1206ffd07e6f6aaa145da1840c42db91c9e0a24b519eace1373b8b1232de36fc
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.7.0.tar.gz
+        sha256: e2a7c9f5e7d29ec64de861baba0568104dc5fcee856d4ec39cb86abf0a611b49
         x-checker-data:
           type: anitya
           project-id: 881
@@ -248,8 +248,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.2.0/proj-9.2.0.tar.gz
-            sha256: dea816f5aa732ae6b2ee3977b9bdb28b1d848cf56a1aad8faf6708b89f0ed50e
+            url: https://github.com/OSGeo/PROJ/releases/download/9.2.1/proj-9.2.1.tar.gz
+            sha256: 15ebf4afa8744b9e6fccb5d571fc9f338dc3adcf99907d9e62d1af815d4971a1
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -318,8 +318,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.2.tar.gz
-        sha256: 39bac145f07fdd86a79fc114deb35f99d6e90e503f12084c661fb138caf775f6
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.21.tar.gz
+        sha256: f91f9b37c738c99761b3fd9eb2d50b2c1e3a8e4466f0f842fdc2445128cb5bda
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -385,8 +385,8 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
-        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.9.0.tar.gz
+        sha256: 69f98ef58c818bb5410133e1891ac192653b0ec96eb9468590140f2552b6e5d1
         x-checker-data:
           type: anitya
           project-id: 220828
