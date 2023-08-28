@@ -264,6 +264,9 @@ modules:
   - name: PDAL
     buildsystem: cmake
     builddir: true
+    build-options:
+      cflags: -fpermissive
+      cxxflags: -fpermissive
     config-opts:
       - -DWITH_TESTS=OFF
     sources:
