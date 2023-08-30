@@ -319,8 +319,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.21.tar.gz
-        sha256: f91f9b37c738c99761b3fd9eb2d50b2c1e3a8e4466f0f842fdc2445128cb5bda
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.tar.gz
+        sha256: 2be5247f0266d153619b35dfb1eeeb46736c502dad993b40aff8857d6314f293
         x-checker-data:
           type: anitya
           project-id: 220847
