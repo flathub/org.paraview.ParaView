@@ -381,6 +381,35 @@ modules:
           stable-only: true
           url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
+  - name: Catalyst
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCATALYST_BUILD_TESTING:BOOL=OFF
+      - -DCATALYST_USE_MPI:BOOL=ON
+      - -DCATALYST_WRAP_PYTHON:BOOL=ON
+    sources:
+      - type: git
+        url: https://gitlab.kitware.com/paraview/catalyst
+        commit: f6aa49f76119401aeb68cb3de12d1b9e046d809c
+
+  - name: gmsh
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE:STRING=Release
+      - -DENABLE_BUILD_LIB=ON
+      - -DENABLE_BUILD_SHARED=ON
+      - -DENABLE_BUILD_DYNAMIC=ON
+      - -DENABLE_BLAS_LAPACK=ON
+      - -DENABLE_POST=1
+      - -DENABLE_PARSER=1
+      - -DENABLE_MPI:BOOL=ON
+    sources:
+      - type: archive
+        url: https://gmsh.info/src/gmsh-4.7.0-source.tgz
+        sha256: e27f32f92b374ba2a746a9d9c496401c13f66ac6e3e70753e16fa4012d14320e
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake-ninja
@@ -420,7 +449,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_ArrowGlyph:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_BagPlotViewsAndFilters:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_CAVEInteraction:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_CDIReader:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_CDIReader:BOOL=OFF
       - -DPARAVIEW_PLUGIN_ENABLE_Datamine:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_DigitalRockPhysics:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_EmbossingRepresentations:BOOL=ON
@@ -436,7 +465,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_LANLX3DReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_LagrangianParticleTracker:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_LegacyExodusReader:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_LookingGlass:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_LookingGlass:BOOL=OFF #Need LookingGlass which is proprietary
       - -DPARAVIEW_PLUGIN_ENABLE_Moments:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_MooseXfemClip:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_NodeEditor:BOOL=ON
@@ -453,7 +482,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_ThickenLayeredCells:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_VTKmFilters:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_XRInterface:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_XRInterface:BOOL=OFF #need openvr
       - -DPARAVIEW_PLUGIN_ENABLE_pvNVIDIAIndeX:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_zSpace:BOOL=ON
       - -DPARAVIEW_USE_CUDA:BOOL=OFF
@@ -468,6 +497,10 @@ modules:
       - -DBUILD_EXAMPLES:BOOL=ON
       - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
+      - -DGmsh_LIBRARY=/app/lib
+      - -DGmsh_INCLUDE_DIR=/app/include
+      - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include
+      # - -DGmsh_VERSION=4.11.1
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
