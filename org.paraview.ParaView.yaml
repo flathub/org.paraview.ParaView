@@ -26,7 +26,17 @@ cleanup:
 modules:
   - shared-modules/glew/glew.json
 
-    # python3 flatpak-pip-generator setuptools_scm_git_archive setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig -o python-deps.json
+  - name: meson
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py build
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/mesonbuild/meson.git
+        tag: 1.1.1
+
+    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
   - python-deps.json
 
   - name: python3-matplotlib
@@ -406,6 +416,19 @@ modules:
         sha256: c18223743bceefbeca03791c0511963b0ae1a40e6731eda7d6ee4a1cbbb18b7f
         strip-components: 0
 
+  - name: openvdb
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DOPENVDB_CORE_STATIC:BOOL=OFF
+    sources:
+      - type: git
+        url: https://github.com/AcademySoftwareFoundation/openvdb.git
+        tag: v10.0.1
+        x-checker-data:
+          type: git
+          tag-pattern: ^(v[\d.]+)$
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake-ninja
@@ -432,7 +455,7 @@ modules:
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
-      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF
+      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=ON
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
