@@ -132,7 +132,6 @@ modules:
           stable-only: true
           url-template: https://download.open-mpi.org/release/open-mpi/v${major}.${minor}/openmpi-${version}.tar.bz2
 
-    # Use old version for now. https://gitlab.kitware.com/vtk/vtk/-/issues/18107
   - name: TBB
     buildsystem: cmake-ninja
     config-opts:
