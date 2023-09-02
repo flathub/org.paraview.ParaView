@@ -405,10 +405,113 @@ modules:
       - -DENABLE_POST=1
       - -DENABLE_PARSER=1
       - -DENABLE_MPI:BOOL=ON
+      - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.7.0-source.tgz
-        sha256: e27f32f92b374ba2a746a9d9c496401c13f66ac6e3e70753e16fa4012d14320e
+        url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
+        sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
+
+
+        # For VAPOR
+  # - name: ASSIMP
+  #   buildsystem: cmake-ninja
+  #   config-opts:
+  #     - -DASSIMP_BUILD_TESTS:BOOL=OFF
+  #     - -DASSIMP_BUILD_DOCS:BOOL=OFF
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/assimp/assimp/archive/refs/tags/v5.0.1.tar.gz
+  #       sha256: 11310ec1f2ad2cd46b95ba88faca8f7aaa1efe9aa12605c55e3de2b977b3dbfc
+  #       x-checker-data:
+  #         type: anitya
+  #         project-id: 6988
+  #         stable-only: true
+  #         url-template: https://github.com/assimp/assimp/archive/refs/tags/v$version.tar.gz
+  #
+  # - name: UDUNITS
+  #   config-opts:
+  #       - --disable-static
+  #   sources:
+  #     - type: archive
+  #       url: https://downloads.unidata.ucar.edu/udunits/2.2.28/udunits-2.2.28.tar.gz
+  #       sha256: 590baec83161a3fd62c00efa66f6113cec8a7c461e3f61a5182167e0cc5d579e
+  #
+  # - name: glm
+  #   buildsystem: simple
+  #   build-commands:
+  #     - cp -r glm /app/include
+  #   sources:
+  #     - type: git
+  #       url: https://github.com/g-truc/glm
+  #       tag: 0.9.9.8
+  #       commit: bf71a834948186f4097caa076cd2663c69a10e1e
+  #       x-checker-data:
+  #         type: git
+  #         tag-pattern: ([\d.]+)$
+  #
+  # # - name: GeometricTools
+  # #   buildsystem: cmake
+  # #   builddir: true
+  # #   subdir: GTE
+  # #   no-make-install: true
+  # #   config-opts:
+  # #    - -DCMAKE_BUILD_TYPE:STRING=Release
+  # #    - -DBUILD_RELEASE_LIB:BOOL=TRUE
+  # #    - -DBUILD_SHARED_LIB:BOOL=TRUE
+  # #   #   - -DCMAKE_BUILD_TYPE:STRING=Release
+  # #   #   - -DBUILD_GUI=OFF
+  # #   #   - -DBUILD_PYTHON=ON
+  # #   #   - -DBUILD_DOC=OFF
+  # #   #   - -DUSE_OMP=ON
+  # #   sources:
+  # #     - type: archive
+  # #       url: https://github.com/davideberly/GeometricTools/archive/refs/tags/GTE-version-6.8.tar.gz
+  # #       sha256: 7599ddab9617b20baa0026d50a4fa4e75211ee4e9fb5df100b498ccc6ebe0872
+  #
+  # - name: GeometricTools
+  #   buildsystem: simple
+  #   build-commands:
+  #     - mkdir /app/include/GTE
+  #     - cp -r GTE/Mathematics/* /app/include/GTE
+  #     - cp -r GTE/Mathematics /app/include
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/davideberly/GeometricTools/archive/refs/tags/GTE-version-6.8.tar.gz
+  #       sha256: 7599ddab9617b20baa0026d50a4fa4e75211ee4e9fb5df100b498ccc6ebe0872
+  #
+  #   # proj_api.h remove in 8.0.0 onward
+  # - name: PROJ
+  #   buildsystem: cmake-ninja
+  #   config-opts:
+  #     - -DBUILD_TESTING:BOOL=OFF
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/OSGeo/PROJ/releases/download/7.2.1/proj-7.2.1.tar.gz
+  #       sha256: b384f42e5fb9c6d01fe5fa4d31da2e91329668863a684f97be5d4760dbbf0a14
+  #
+  # - name: VAPOR
+  #   buildsystem: cmake-ninja
+  #   builddir: true
+  #   config-opts:
+  #     - -DCMAKE_BUILD_TYPE:STRING=Release
+  #     - -DBUILD_GUI=OFF
+  #     - -DBUILD_PYTHON=ON
+  #     - -DBUILD_DOC=OFF
+  #     - -DUSE_OMP=ON
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/NCAR/VAPOR/archive/refs/tags/3.8.1.tar.gz
+  #       sha256: b7503665cfad6f66e38058209e46fd367f123c65aa53ba93862977826a0400aa
+
+  - name: VAPOR
+    buildsystem: simple
+    build-commands:
+      - cp -r include/* /app/include
+    sources:
+      - type: archive
+        url: https://github.com/NCAR/VAPOR/releases/download/3.8.1/vapor-3.8.1-h2bc3f7f_0.tar.bz2
+        sha256: c18223743bceefbeca03791c0511963b0ae1a40e6731eda7d6ee4a1cbbb18b7f
+        strip-components: 0
 
     # Paraview need 32GB of memory to build
   - name: Paraview
@@ -465,7 +568,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_LANLX3DReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_LagrangianParticleTracker:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_LegacyExodusReader:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_LookingGlass:BOOL=OFF #Need LookingGlass which is proprietary
+      - -DPARAVIEW_PLUGIN_ENABLE_LookingGlass:BOOL=OFF # proprietary
       - -DPARAVIEW_PLUGIN_ENABLE_Moments:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_MooseXfemClip:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_NodeEditor:BOOL=ON
@@ -480,11 +583,11 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_StreamingParticles:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_SurfaceLIC:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_ThickenLayeredCells:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=OFF # hard to build vapor
       - -DPARAVIEW_PLUGIN_ENABLE_VTKmFilters:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_XRInterface:BOOL=OFF #need openvr
-      - -DPARAVIEW_PLUGIN_ENABLE_pvNVIDIAIndeX:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_zSpace:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_pvNVIDIAIndeX:BOOL=OFF
+      - -DPARAVIEW_PLUGIN_ENABLE_zSpace:BOOL=OFF
       - -DPARAVIEW_USE_CUDA:BOOL=OFF
       - -DPARAVIEW_USE_HIP:BOOL=OFF
       - -DPARAVIEW_USE_MEMKIND:BOOL=ON
@@ -499,8 +602,7 @@ modules:
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
       - -DGmsh_LIBRARY=/app/lib
       - -DGmsh_INCLUDE_DIR=/app/include
-      - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include
-      # - -DGmsh_VERSION=4.11.1
+      - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
