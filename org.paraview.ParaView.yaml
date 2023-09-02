@@ -26,20 +26,7 @@ cleanup:
 modules:
   - shared-modules/glew/glew.json
 
-  - name: python-numpy
-    buildsystem: simple
-    build-commands:
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
-        --no-build-isolation
-    sources:
-      - type: archive
-        url: https://files.pythonhosted.org/packages/a0/41/8f53eff8e969dd8576ddfb45e7ed315407d27c7518ae49418be8ed532b07/numpy-1.25.2.tar.gz
-        sha256: fd608e19c8d7c55021dffd43bfe5492fab8cc105cc8986f813f8c3c048b38760
-        x-checker-data:
-          type: pypi
-          name: numpy
-
-    # python3 flatpak-pip-generator setuptools_scm_git_archive setuptools_scm certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig -o python-deps.json
+    # python3 flatpak-pip-generator setuptools_scm_git_archive setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig -o python-deps.json
   - python-deps.json
 
   - name: python3-matplotlib
@@ -282,14 +269,13 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.tar.gz
-        sha256: 5a5b3bac27709d8c66286b7a0d1d7bf2d7170ec189a1a756fdf812c97aa7fd10
-        # Wrong version number, enable in next release
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 1534
-        #   stable-only: true
-        #   url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.0.tar.gz
+        sha256: 4b9ba79bfd4921ca820e83979db76ab3363155709444a787979e81c22285ffa9
+        x-checker-data:
+          type: anitya
+          project-id: 1534
+          stable-only: true
+          url-template: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v$version.tar.gz
 
   - name: Eigen3
     buildsystem: cmake-ninja
