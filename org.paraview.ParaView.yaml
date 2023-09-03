@@ -246,8 +246,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.2.1/proj-9.2.1.tar.gz
-            sha256: 15ebf4afa8744b9e6fccb5d571fc9f338dc3adcf99907d9e62d1af815d4971a1
+            url: https://github.com/OSGeo/PROJ/releases/download/9.3.0/proj-9.3.0.tar.gz
+            sha256: 91a3695a004ea28db0448a34460bed4cc3b130e5c7d74339ec999efdab0e547d
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -319,8 +319,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.tar.gz
-        sha256: 2be5247f0266d153619b35dfb1eeeb46736c502dad993b40aff8857d6314f293
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.21.tar.gz
+        sha256: f91f9b37c738c99761b3fd9eb2d50b2c1e3a8e4466f0f842fdc2445128cb5bda
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -387,8 +387,8 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
-        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.9.1.tar.gz
+        sha256: ddfa32c14494250ee8a48ef1c97a1bf6442c15484bbbd4669228a0f90242f4f9
         x-checker-data:
           type: anitya
           project-id: 220828
