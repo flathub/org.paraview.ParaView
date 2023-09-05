@@ -410,6 +410,7 @@ modules:
     buildsystem: simple
     build-commands:
       - cp -r include/* /app/include
+      - cp -r lib/* /app/lib
     sources:
       - type: archive
         url: https://github.com/NCAR/VAPOR/releases/download/3.8.1/vapor-3.8.1-h2bc3f7f_0.tar.bz2
@@ -462,7 +463,7 @@ modules:
       - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_LAS:BOOL=ON
       - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=OFF
-      - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=OFF
+      - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
@@ -510,7 +511,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_StreamingParticles:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_SurfaceLIC:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_ThickenLayeredCells:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=OFF # hard to build vapor
+      - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=ON # hard to build vapor
       - -DPARAVIEW_PLUGIN_ENABLE_VTKmFilters:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_XRInterface:BOOL=OFF #need openvr
       - -DPARAVIEW_PLUGIN_ENABLE_pvNVIDIAIndeX:BOOL=OFF
@@ -527,9 +528,10 @@ modules:
       - -DBUILD_EXAMPLES:BOOL=ON
       - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
-      - -DGmsh_LIBRARY=/app/lib
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
+      - -DVapor_INCLUDE_DIR=/app/include
+      - -DVapor_VDF_LIBRARY=/app/lib
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
