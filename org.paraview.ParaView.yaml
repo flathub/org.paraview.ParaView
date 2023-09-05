@@ -406,16 +406,16 @@ modules:
         url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
         sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
 
-  - name: VAPOR
-    buildsystem: simple
-    build-commands:
-      - cp -r include/* /app/include
-      - cp -r lib/* /app/lib
-    sources:
-      - type: archive
-        url: https://github.com/NCAR/VAPOR/releases/download/3.8.1/vapor-3.8.1-h2bc3f7f_0.tar.bz2
-        sha256: c18223743bceefbeca03791c0511963b0ae1a40e6731eda7d6ee4a1cbbb18b7f
-        strip-components: 0
+  # - name: VAPOR
+  #   buildsystem: simple
+  #   build-commands:
+  #     - cp -r include/* /app/include
+  #     - cp -r lib/* /app/lib
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/NCAR/VAPOR/releases/download/3.8.1/vapor-3.8.1-h2bc3f7f_0.tar.bz2
+  #       sha256: c18223743bceefbeca03791c0511963b0ae1a40e6731eda7d6ee4a1cbbb18b7f
+  #       strip-components: 0
 
   - name: blosc
     buildsystem: cmake-ninja
@@ -511,7 +511,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_StreamingParticles:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_SurfaceLIC:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_ThickenLayeredCells:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=ON # hard to build vapor
+      - -DPARAVIEW_PLUGIN_ENABLE_VDFReaderPlugin:BOOL=OFF # Need vapor version 2. Hard to compile from source
       - -DPARAVIEW_PLUGIN_ENABLE_VTKmFilters:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_XRInterface:BOOL=OFF #need openvr
       - -DPARAVIEW_PLUGIN_ENABLE_pvNVIDIAIndeX:BOOL=OFF
