@@ -254,19 +254,42 @@ modules:
       - type: archive
         url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.6.0.tar.gz
         sha256: 9311017e5284cffb86f2c7b7a9df1fb5ebcdc61c30468fb2e6bca36e4272ebca
+        x-checker-data:
+          type: anitya
+          project-id: 21361
+          stable-only: true
+          url-template: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-$version.tar.gz
+
+  - name: LASzip
+    buildsystem: cmake-ninja
+    builddir: true
+    sources:
+      - type: archive
+        url: https://github.com/LASzip/LASzip/releases/download/3.4.3/laszip-src-3.4.3.tar.gz
+        sha256: 53f546a7f06fc969b38d1d71cceb1862b4fc2c4a0965191a0eee81a57c7b373d
+        x-checker-data:
+          type: anitya
+          project-id: 241499
+          stable-only: true
+          url-template: https://github.com/LASzip/LASzip/releases/download/$version/laszip-src-$version.tar.gz
 
   - name: PDAL
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     builddir: true
     build-options:
       cflags: -fpermissive
       cxxflags: -fpermissive
     config-opts:
-      - -DWITH_TESTS=OFF
+      - -DWITH_TESTS=ON
     sources:
       - type: archive
         url: https://github.com/PDAL/PDAL/releases/download/2.3.0/PDAL-2.3.0-src.tar.bz2
         sha256: 63d8d4fee491675f0fa3dca58c26d57fb2afcaa37c24b10f595b3fbff174996e
+        x-checker-data:
+          type: anitya
+          project-id: 138228
+          stable-only: true
+          url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
 
   - name: lapack
     buildsystem: cmake-ninja
@@ -345,16 +368,6 @@ modules:
           stable-only: true
           url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
 
-    # liblas require many patch, so just use master until new version come out.
-  - name: libLAS
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DWITH_TESTS=OFF
-    sources:
-      - type: git
-        url: https://github.com/libLAS/libLAS.git
-        commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
-
     # Use 2.8.3   error: ‘DebugON’ is not a member of ‘adios2’
   - name: ADIOS2
     buildsystem: cmake
@@ -405,17 +418,11 @@ modules:
       - type: archive
         url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
         sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
-
-  # - name: VAPOR
-  #   buildsystem: simple
-  #   build-commands:
-  #     - cp -r include/* /app/include
-  #     - cp -r lib/* /app/lib
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/NCAR/VAPOR/releases/download/3.8.1/vapor-3.8.1-h2bc3f7f_0.tar.bz2
-  #       sha256: c18223743bceefbeca03791c0511963b0ae1a40e6731eda7d6ee4a1cbbb18b7f
-  #       strip-components: 0
+        x-checker-data:
+          type: anitya
+          project-id: 9575
+          stable-only: true
+          url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
   - name: blosc
     buildsystem: cmake-ninja
