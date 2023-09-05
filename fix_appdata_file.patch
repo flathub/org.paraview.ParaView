@@ -6,7 +6,7 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
  <!-- Copyright 2014-2018 Kitware, Inc. -->
  <component type="desktop-application">
 - <id>org.paraview.paraview</id>
-+ <id>org.paraview.Paraview</id>
++ <id>org.paraview.ParaView</id>
   <metadata_license>CC-BY-4.0</metadata_license>
 - <project_license>BSD</project_license>
 + <project_license>BSD-3-Clause</project_license>
