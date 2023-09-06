@@ -474,7 +474,7 @@ modules:
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
-      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF
+      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=ON
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
@@ -553,8 +553,3 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
-      # - type: git
-      #   url: https://gitlab.kitware.com/vtk/MomentInvariants
-      #   # See commit at VTK/Remote
-      #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
-      #   dest: VTK/Remote/MomentInvariants
