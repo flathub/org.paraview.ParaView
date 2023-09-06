@@ -1,6 +1,6 @@
 diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaView/org.paraview.ParaView.appdata.xml
---- a/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-20 22:17:23.592444812 +0100
-+++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2022-11-25 14:13:30.027948705 +0100
+--- a/Clients/ParaView/org.paraview.ParaView.appdata.xml	2023-03-30 16:10:22.000000000 +0200
++++ b/Clients/ParaView/org.paraview.ParaView.appdata.xml	2023-09-05 23:57:41.490449570 +0200
 @@ -1,9 +1,9 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!-- Copyright 2014-2018 Kitware, Inc. -->
@@ -51,12 +51,13 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
    </screenshot>
   </screenshots>
   <launchable type="desktop-id">org.paraview.ParaView.desktop</launchable>
-@@ -51,4 +55,11 @@
+@@ -51,4 +55,12 @@
   <url type="faq">https://www.paraview.org/Wiki/ParaView:FAQ</url>
   <url type="help">https://www.paraview.org/documentation/</url>
   <update_contact>paraview+paraview-support@discourse.paraview.org</update_contact>
 + <content_rating type="oars-1.1"/>
 + <releases>
++     <release version="5.11.1" date="2023-03-31"/>
 +     <release version="5.11.0" date="2022-11-17"/>
 +     <release version="5.10.1" date="2022-03-15"/>
 +     <release version="5.10.0" date="2021-12-22"/>
