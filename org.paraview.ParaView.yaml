@@ -424,6 +424,16 @@ modules:
           stable-only: true
           url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
+    # liblas require many patch, so just use master until new version come out.
+  - name: libLAS
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DWITH_TESTS=OFF
+    sources:
+      - type: git
+        url: https://github.com/libLAS/libLAS.git
+        commit: ded463732db1f9baf461be6f3fe5b8bb683c41cd
+
   # - name: blosc
   #   buildsystem: cmake-ninja
   #   builddir: true
