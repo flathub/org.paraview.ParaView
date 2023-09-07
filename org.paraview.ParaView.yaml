@@ -381,13 +381,13 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.9.1.tar.gz
-        sha256: ddfa32c14494250ee8a48ef1c97a1bf6442c15484bbbd4669228a0f90242f4f9
-        x-checker-data:
-          type: anitya
-          project-id: 220828
-          stable-only: true
-          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
+        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 220828
+        #   stable-only: true
+        #   url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
   - name: Catalyst
     buildsystem: cmake-ninja
