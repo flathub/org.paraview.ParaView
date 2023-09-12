@@ -54,8 +54,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/e5/59/b859fa2539b4121b016ea85758188203522fc12b0711de8b247cfec3cdac/matplotlib-3.7.2.tar.gz
-        sha256: a8cdb91dddb04436bd2f098b8fdf4b81352e68cf4d2c6756fcc414791076569b
+        url: https://files.pythonhosted.org/packages/bc/06/9ec4ae7c6c3a6e00f19b91439c2f226a4bb4adb24c84a7f8058a2224d2d0/matplotlib-3.7.3.tar.gz
+        sha256: f09b3dd6bdeb588de91f853bbb2d6f0ff8ab693485b0c49035eaa510cb4f142e
         x-checker-data:
           type: pypi
           name: matplotlib
