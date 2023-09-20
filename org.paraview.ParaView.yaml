@@ -469,7 +469,7 @@ modules:
       - -DPARAVIEW_BUILD_LEGACY_REMOVE:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_SILENT:BOOL=OFF
       - -DPARAVIEW_BUILD_SHARED_LIBS:BOOL=ON
-      - -DPARAVIEW_BUILD_TESTING:STRING=OFF
+      - -DPARAVIEW_BUILD_TESTING:STRING=ON
       - -DPARAVIEW_BUILD_WITH_EXTERNAL:BOOL=OFF
       - -DPARAVIEW_BUILD_WITH_KITS:BOOL=OFF
       - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
@@ -550,6 +550,7 @@ modules:
       - -DVapor_INCLUDE_DIR=/app/include
       - -DVapor_VDF_LIBRARY=/app/lib
     post-install:
+      - ctest #Run test
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
