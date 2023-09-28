@@ -54,8 +54,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/e5/59/b859fa2539b4121b016ea85758188203522fc12b0711de8b247cfec3cdac/matplotlib-3.7.2.tar.gz
-        sha256: a8cdb91dddb04436bd2f098b8fdf4b81352e68cf4d2c6756fcc414791076569b
+        url: https://files.pythonhosted.org/packages/23/e1/77016194621fb1356aafeb2186f07b5dede62ea2043bf03f82325c4fccc5/matplotlib-3.8.0.tar.gz
+        sha256: df8505e1c19d5c2c26aff3497a7cbd3ccfc2e97043d1e4db3e76afa399164b69
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -226,8 +226,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.7.1.tar.gz
-        sha256: 848255be39d497020f478e06f0f5ef8924a851676cd6d7f4abbaae96346f369c
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.7.2.tar.gz
+        sha256: 10034ffc46695a8fb1b4218300c3b66f03db6008d0c4cfbef6a81dcc841b5faa
         x-checker-data:
           type: anitya
           project-id: 881
@@ -464,12 +464,11 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
-      - -DBUILD_TESTING:BOOL=OFF
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_REMOVE:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_SILENT:BOOL=OFF
       - -DPARAVIEW_BUILD_SHARED_LIBS:BOOL=ON
-      - -DPARAVIEW_BUILD_TESTING:STRING=ON
+      - -DPARAVIEW_BUILD_TESTING:STRING=OFF
       - -DPARAVIEW_BUILD_WITH_EXTERNAL:BOOL=OFF
       - -DPARAVIEW_BUILD_WITH_KITS:BOOL=OFF
       - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
@@ -550,13 +549,12 @@ modules:
       - -DVapor_INCLUDE_DIR=/app/include
       - -DVapor_VDF_LIBRARY=/app/lib
     post-install:
-      - ctest #Run test
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.1.tar.gz
-        sha256: de32f3e576b5f639ffc6903aa9e4cd46ac30c753185edc4366a7f305a6951b16
+        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.2.tar.gz
+        sha256: ddee336075f8c258a3d34eb1cdd2f4d46a5082f0b4af614e36b06e530f3b346f
         x-checker-data:
           type: anitya
           project-id: 9602
