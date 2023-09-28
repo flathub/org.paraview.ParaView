@@ -36,7 +36,7 @@ modules:
         url: https://github.com/mesonbuild/meson.git
         tag: 1.1.1
 
-    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
+    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
   - python-deps.json
 
   - name: python3-matplotlib
