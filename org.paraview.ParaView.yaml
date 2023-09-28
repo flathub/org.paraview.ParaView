@@ -34,7 +34,30 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.1.1
+        tag: 1.2.1
+        commit: da78b969ee3635bbea81909aa9ebdad3c77257a5
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - name: openblas # dependency for numpy
+    no-autogen: true
+    make-args:
+      - DYNAMIC_ARCH=1
+      - DYNAMIC_OLDER=1
+      - FC=gfortran
+      - TARGET=GENERIC
+      - USE_OPENMP=0
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: archive
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
+        sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+        x-checker-data:
+          type: anitya
+          project-id: 2540
+          url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
 
     # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
   - python-deps.json
