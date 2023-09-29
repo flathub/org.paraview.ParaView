@@ -34,9 +34,32 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.1.1
+        tag: 1.2.1
+        commit: da78b969ee3635bbea81909aa9ebdad3c77257a5
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
 
-    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
+  - name: openblas # dependency for numpy
+    no-autogen: true
+    make-args:
+      - DYNAMIC_ARCH=1
+      - DYNAMIC_OLDER=1
+      - FC=gfortran
+      - TARGET=GENERIC
+      - USE_OPENMP=0
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: archive
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
+        sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+        x-checker-data:
+          type: anitya
+          project-id: 2540
+          url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
+
+    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
   - python-deps.json
 
   - name: python3-matplotlib
@@ -464,7 +487,6 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
-      - -DBUILD_TESTING:BOOL=OFF
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_REMOVE:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_SILENT:BOOL=OFF
@@ -554,8 +576,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.1.tar.gz
-        sha256: de32f3e576b5f639ffc6903aa9e4cd46ac30c753185edc4366a7f305a6951b16
+        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.2.tar.gz
+        sha256: ddee336075f8c258a3d34eb1cdd2f4d46a5082f0b4af614e36b06e530f3b346f
         x-checker-data:
           type: anitya
           project-id: 9602

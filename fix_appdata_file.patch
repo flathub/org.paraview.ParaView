@@ -51,12 +51,13 @@ diff -ruN a/Clients/ParaView/org.paraview.ParaView.appdata.xml b/Clients/ParaVie
    </screenshot>
   </screenshots>
   <launchable type="desktop-id">org.paraview.ParaView.desktop</launchable>
-@@ -51,4 +55,12 @@
+@@ -51,4 +55,13 @@
   <url type="faq">https://www.paraview.org/Wiki/ParaView:FAQ</url>
   <url type="help">https://www.paraview.org/documentation/</url>
   <update_contact>paraview+paraview-support@discourse.paraview.org</update_contact>
 + <content_rating type="oars-1.1"/>
 + <releases>
++     <release version="5.11.2" date="2023-09-25"/>
 +     <release version="5.11.1" date="2023-03-31"/>
 +     <release version="5.11.0" date="2022-11-17"/>
 +     <release version="5.10.1" date="2022-03-15"/>
