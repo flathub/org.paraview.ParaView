@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Sdk
 sdk: org.kde.Sdk
-runtime-version: 5.15-22.08
+runtime-version: 5.15-23.08
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-22.08
+base-version: 5.15-23.08
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -25,20 +25,20 @@ cleanup:
 # Disable ARM support, ParaView does not support it anyway.
 modules:
   - shared-modules/glew/glew.json
-
-  - name: meson
-    buildsystem: simple
-    build-commands:
-      - python3 setup.py build
-      - python3 setup.py install --prefix=/app --root=/
-    sources:
-      - type: git
-        url: https://github.com/mesonbuild/meson.git
-        tag: 1.2.1
-        commit: da78b969ee3635bbea81909aa9ebdad3c77257a5
-        x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+)$
+  #
+  # - name: meson
+  #   buildsystem: simple
+  #   build-commands:
+  #     - python3 setup.py build
+  #     - python3 setup.py install --prefix=/app --root=/
+  #   sources:
+  #     - type: git
+  #       url: https://github.com/mesonbuild/meson.git
+  #       tag: 1.2.2
+  #       commit: b9cbf3aa6f4a8c1c5332ce7947d8040755f186b8
+  #       x-checker-data:
+  #         type: git
+  #         tag-pattern: ^([\d.]+)$
 
   - name: openblas # dependency for numpy
     no-autogen: true
@@ -144,8 +144,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.5.tar.bz2
-        sha256: a640986bc257389dd379886fdae6264c8cfa56bc98b71ce3ae3dfbd8ce61dbe3
+        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.6.tar.bz2
+        sha256: f740994485516deb63b5311af122c265179f5328a0d857a567b85db00b11e415
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -381,6 +381,12 @@ modules:
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
+    buildsystem: simple
+    build-commands:
+      - ./autogen.sh
+      - ./configure --prefix=/app
+      - make
+      - make install
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
@@ -421,8 +427,16 @@ modules:
       - -DCATALYST_WRAP_PYTHON:BOOL=ON
     sources:
       - type: git
-        url: https://gitlab.kitware.com/paraview/catalyst
-        commit: f6aa49f76119401aeb68cb3de12d1b9e046d809c
+        url: https://gitlab.kitware.com/kevinsmia1939/catalyst
+        commit: 1b962d31420afebe2f3ee71ac9d2223357119c5c
+
+
+  - name: test
+    buildsystem: simple
+    build-commands:
+      - cmake --version
+      - gcc --version
+      - g++ --version
 
   - name: gmsh
     buildsystem: cmake-ninja
@@ -438,14 +452,17 @@ modules:
       - -DENABLE_MPI:BOOL=ON
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
-      - type: archive
-        url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
-        sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
-        x-checker-data:
-          type: anitya
-          project-id: 9575
-          stable-only: true
-          url-template: https://gmsh.info/src/gmsh-$version-source.tgz
+      - type: git
+        url: https://github.com/kevinsmia1939/gmsh
+        commit: 6349b97ade1c7b9fa4427c70018c03689c4996d2
+      # - type: archive
+      #   url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
+      #   sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
+      #   x-checker-data:
+      #     type: anitya
+      #     project-id: 9575
+      #     stable-only: true
+      #     url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
     # liblas require many patch, so just use master until new version come out.
   - name: libLAS
