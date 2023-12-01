@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Sdk
 sdk: org.kde.Sdk
-runtime-version: 5.15-23.08
+runtime-version: 5.15-22.08
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-23.08
+base-version: 5.15-22.08
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -21,26 +21,28 @@ cleanup:
   - /etc
   - '*.la'
   - '*.a'
+build-options:
+    cxxflags: -std=c++14
 
 # Disable ARM support, ParaView does not support it anyway.
 modules:
   - shared-modules/glew/glew.json
-  #
-  # - name: meson
-  #   buildsystem: simple
-  #   build-commands:
-  #     - python3 setup.py build
-  #     - python3 setup.py install --prefix=/app --root=/
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/mesonbuild/meson.git
-  #       tag: 1.2.2
-  #       commit: b9cbf3aa6f4a8c1c5332ce7947d8040755f186b8
-  #       x-checker-data:
-  #         type: git
-  #         tag-pattern: ^([\d.]+)$
 
-  - name: openblas # dependency for numpy
+  - name: meson
+    buildsystem: simple
+    build-commands:
+      - python3 setup.py build
+      - python3 setup.py install --prefix=/app --root=/
+    sources:
+      - type: git
+        url: https://github.com/mesonbuild/meson.git
+        tag: 1.3.0
+        commit: 7368795d13081d4928a9ba04d48498ca2442624b
+        x-checker-data:
+          type: git
+          tag-pattern: ^([\d.]+)$
+
+  - name: OpenBLAS # dependency for numpy
     no-autogen: true
     make-args:
       - DYNAMIC_ARCH=1
@@ -52,14 +54,14 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.24.tar.gz
-        sha256: ceadc5065da97bd92404cac7254da66cc6eb192679cf1002098688978d4d5132
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.25.tar.gz
+        sha256: 4c25cb30c4bb23eddca05d7d0a85997b8db6144f5464ba7f8c09ce91e2f35543
         x-checker-data:
           type: anitya
           project-id: 2540
           url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
 
-    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing==3.0.9 -o python-deps && fb
+    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
   - name: python3-matplotlib
@@ -77,8 +79,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/23/e1/77016194621fb1356aafeb2186f07b5dede62ea2043bf03f82325c4fccc5/matplotlib-3.8.0.tar.gz
-        sha256: df8505e1c19d5c2c26aff3497a7cbd3ccfc2e97043d1e4db3e76afa399164b69
+        url: https://files.pythonhosted.org/packages/fb/ab/38a0e94cb01dacb50f06957c2bed1c83b8f9dac6618988a37b2487862944/matplotlib-3.8.2.tar.gz
+        sha256: 01a978b871b881ee76017152f1f1a0cbf6bd5f7b8ff8c96df0df1bd57d8755a1
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -107,8 +109,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_2.tar.gz
-        sha256: 83eaee3f9d1790bb4b29368bf1a648ece763097a4122c80a81076e8fb1e890e6
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_3.tar.gz
+        sha256: df5ee33c74d5efb59738075ef96f4201588e1f1eeb233f047ac7fd1072dee1f6
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -122,8 +124,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.9.0.tar.gz
-        sha256: ac46f5caae570c9312edea6f65ad4e894e8da44a868b7f263e15265bc3de7a16
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.10.0.tar.gz
+        sha256: 9cac7838ab139ec71adf721a1305b954e18efa4f80c82fcfe34e1eb9639ded29
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -144,8 +146,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.6.tar.bz2
-        sha256: f740994485516deb63b5311af122c265179f5328a0d857a567b85db00b11e415
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.0.tar.bz2
+        sha256: 9d845ca94bc1aeb445f83d98d238cd08f6ec7ad0f73b0f79ec1668dbfdacd613
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -161,8 +163,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.10.0.tar.gz
-        sha256: 487023a955e5a3cc6d3a0d5f89179f9b6c0ae7222613a7185b0227ba0c83700b
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.11.0.tar.gz
+        sha256: 782ce0cab62df9ea125cdea253a50534862b563f1d85d4cda7ad4e77550ac363
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -249,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.7.2.tar.gz
-        sha256: 10034ffc46695a8fb1b4218300c3b66f03db6008d0c4cfbef6a81dcc841b5faa
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.1.tar.gz
+        sha256: b83506442d88bccf8a2ee76e860d62adb263ef6c3bff494c1716d1fc251863de
         x-checker-data:
           type: anitya
           project-id: 881
@@ -296,24 +298,6 @@ modules:
           stable-only: true
           url-template: https://github.com/LASzip/LASzip/releases/download/$version/laszip-src-$version.tar.gz
 
-  - name: PDAL
-    buildsystem: cmake-ninja
-    builddir: true
-    build-options:
-      cflags: -fpermissive
-      cxxflags: -fpermissive
-    config-opts:
-      - -DWITH_TESTS=ON
-    sources:
-      - type: archive
-        url: https://github.com/PDAL/PDAL/releases/download/2.5.6/PDAL-2.5.6-src.tar.bz2
-        sha256: 7c7c4570ef518942299479cc4077e0c657ec5b5174daf465415de947a1d3eb99
-        x-checker-data:
-          type: anitya
-          project-id: 138228
-          stable-only: true
-          url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
-
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
@@ -325,8 +309,8 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.11.0.tar.gz
-        sha256: 4b9ba79bfd4921ca820e83979db76ab3363155709444a787979e81c22285ffa9
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz
+        sha256: eac9570f8e0ad6f30ce4b963f4f033f0f643e7c3912fc9ee6cd99120675ad48b
         x-checker-data:
           type: anitya
           project-id: 1534
@@ -381,12 +365,6 @@ modules:
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: MEMKIND
-    buildsystem: simple
-    build-commands:
-      - ./autogen.sh
-      - ./configure --prefix=/app
-      - make
-      - make install
     sources:
       - type: archive
         url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
@@ -427,16 +405,8 @@ modules:
       - -DCATALYST_WRAP_PYTHON:BOOL=ON
     sources:
       - type: git
-        url: https://gitlab.kitware.com/kevinsmia1939/catalyst
-        commit: 1b962d31420afebe2f3ee71ac9d2223357119c5c
-
-
-  - name: test
-    buildsystem: simple
-    build-commands:
-      - cmake --version
-      - gcc --version
-      - g++ --version
+        url: https://gitlab.kitware.com/paraview/catalyst
+        commit: f6aa49f76119401aeb68cb3de12d1b9e046d809c
 
   - name: gmsh
     buildsystem: cmake-ninja
@@ -452,17 +422,14 @@ modules:
       - -DENABLE_MPI:BOOL=ON
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
-      - type: git
-        url: https://github.com/kevinsmia1939/gmsh
-        commit: 6349b97ade1c7b9fa4427c70018c03689c4996d2
-      # - type: archive
-      #   url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
-      #   sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
-      #   x-checker-data:
-      #     type: anitya
-      #     project-id: 9575
-      #     stable-only: true
-      #     url-template: https://gmsh.info/src/gmsh-$version-source.tgz
+      - type: archive
+        url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
+        sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
+        x-checker-data:
+          type: anitya
+          project-id: 9575
+          stable-only: true
+          url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
     # liblas require many patch, so just use master until new version come out.
   - name: libLAS
@@ -498,10 +465,32 @@ modules:
   #         type: git
   #         tag-pattern: ^(v[\d.]+)$
 
+  - name: PDAL
+    buildsystem: cmake-ninja
+    builddir: true
+    # build-options:
+    #   cxxflags: -std=c++14
+    config-opts:
+      - -DWITH_BACKTRACE=OFF #https://github.com/PDAL/PDAL/issues/4256
+      - -DWITH_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/PDAL/PDAL/releases/download/2.6.1/PDAL-2.6.1-src.tar.bz2
+        sha256: e421361fe5e1ea63204a3b5c8b654388edbb0fb15c09d24469741e84211ef9d2
+        x-checker-data:
+          type: anitya
+          project-id: 138228
+          stable-only: true
+          url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
+      - type: patch
+        path: PDAL_patch.patch #https://github.com/PDAL/PDAL/issues/4258
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
+    # build-options:
+    #   cxxflags: -std=c++14
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -586,8 +575,6 @@ modules:
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
-      - -DVapor_INCLUDE_DIR=/app/include
-      - -DVapor_VDF_LIBRARY=/app/lib
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
