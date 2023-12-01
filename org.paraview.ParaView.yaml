@@ -21,8 +21,8 @@ cleanup:
   - /etc
   - '*.la'
   - '*.a'
-build-options:
-    cxxflags: -std=c++14
+# build-options:
+#     cxxflags: -std=c++14
 
 # Disable ARM support, ParaView does not support it anyway.
 modules:
@@ -468,8 +468,8 @@ modules:
   - name: PDAL
     buildsystem: cmake-ninja
     builddir: true
-    # build-options:
-    #   cxxflags: -std=c++14
+    build-options:
+      cxxflags: -std=c++14
     config-opts:
       - -DWITH_BACKTRACE=OFF #https://github.com/PDAL/PDAL/issues/4256
       - -DWITH_TESTS=OFF
@@ -575,6 +575,7 @@ modules:
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
+      - -DCMAKE_CXX_STANDARD=14
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
