@@ -485,8 +485,8 @@ modules:
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cxxflags: -std=c++14
+    # build-options:
+    #   cxxflags: -std=c++14
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -571,7 +571,7 @@ modules:
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
-      - -DCMAKE_CXX_STANDARD=14
+      # - -DCMAKE_CXX_STANDARD=14
       # - -DVTKm_ENABLE_HDF5_IO:BOOL=ON
       # - -DVTKm_ENABLE_LOGGING:BOOL=ON
       # - -DVTKm_ENABLE_MPI:BOOL=ON
@@ -592,8 +592,8 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
-      - type: git
-        # url: https://gitlab.kitware.com/vtk/MomentInvariants.git
-        # commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
-        # dest: VTK/Remote/MomentInvariants
+      # - type: git
+      #   url: https://gitlab.kitware.com/vtk/MomentInvariants.git
+      #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
+      #   dest: VTK/Remote/MomentInvariants
 
