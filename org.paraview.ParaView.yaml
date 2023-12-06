@@ -21,8 +21,6 @@ cleanup:
   - /etc
   - '*.la'
   - '*.a'
-# build-options:
-#     cxxflags: -std=c++14
 
 # Disable ARM support, ParaView does not support it anyway.
 modules:
@@ -468,29 +466,27 @@ modules:
   - name: PDAL
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cxxflags: -std=c++14
     config-opts:
-      - -DWITH_BACKTRACE=OFF #https://github.com/PDAL/PDAL/issues/4256
       - -DWITH_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/PDAL/PDAL/releases/download/2.6.1/PDAL-2.6.1-src.tar.bz2
-        sha256: e421361fe5e1ea63204a3b5c8b654388edbb0fb15c09d24469741e84211ef9d2
-        x-checker-data:
-          type: anitya
-          project-id: 138228
-          stable-only: true
-          url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
-      - type: patch
-        path: PDAL_patch.patch #https://github.com/PDAL/PDAL/issues/4258
+        url: https://github.com/PDAL/PDAL/releases/download/2.5.6/PDAL-2.5.6-src.tar.bz2
+        sha256: 7c7c4570ef518942299479cc4077e0c657ec5b5174daf465415de947a1d3eb99
+        # New update need c++14 https://gitlab.kitware.com/vtk/vtk/-/issues/19189
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 138228
+        #   stable-only: true
+        #   url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
+      # - type: patch
+      #   path: PDAL_patch.patch #https://github.com/PDAL/PDAL/issues/4258
 
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
-    # build-options:
-    #   cxxflags: -std=c++14
+    build-options:
+      cxxflags: -std=c++14
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -576,6 +572,12 @@ modules:
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
       - -DCMAKE_CXX_STANDARD=14
+      # - -DVTKm_ENABLE_HDF5_IO:BOOL=ON
+      # - -DVTKm_ENABLE_LOGGING:BOOL=ON
+      # - -DVTKm_ENABLE_MPI:BOOL=ON
+      # - -DVTKm_ENABLE_OPENMP:BOOL=ON
+      # - -DVTKm_ENABLE_TBB:BOOL=ON
+      # - -DVTKm_ENABLE_TESTING_LIBRARY:BOOL=OFF
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
@@ -590,3 +592,8 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
+      - type: git
+        # url: https://gitlab.kitware.com/vtk/MomentInvariants.git
+        # commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
+        # dest: VTK/Remote/MomentInvariants
+
