@@ -144,8 +144,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.0.tar.bz2
-        sha256: 9d845ca94bc1aeb445f83d98d238cd08f6ec7ad0f73b0f79ec1668dbfdacd613
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.1.tar.bz2
+        sha256: e357043e65fd1b956a47d0dae6156a90cf0e378df759364936c1781f1a25ef80
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -249,8 +249,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.1.tar.gz
-        sha256: b83506442d88bccf8a2ee76e860d62adb263ef6c3bff494c1716d1fc251863de
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.2.tar.gz
+        sha256: 15f3bf4211bba657f68cb1235966e3729dcecbd6693af3b0faef8f89e8e40b85
         x-checker-data:
           type: anitya
           project-id: 881
@@ -421,8 +421,8 @@ modules:
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
-        sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
+        url: https://gmsh.info/src/gmsh-4.12.0-source.tgz
+        sha256: 2a6007872ba85abd9901914826f6986a2437ab7104f564ccefa1b7a3de742c17
         x-checker-data:
           type: anitya
           project-id: 9575
