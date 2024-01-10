@@ -52,8 +52,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.25.tar.gz
-        sha256: 4c25cb30c4bb23eddca05d7d0a85997b8db6144f5464ba7f8c09ce91e2f35543
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.26.tar.gz
+        sha256: 4e6e4f5cb14c209262e33e6816d70221a2fe49eb69eaf0a06f065598ac602c68
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -249,8 +249,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.2.tar.gz
-        sha256: 15f3bf4211bba657f68cb1235966e3729dcecbd6693af3b0faef8f89e8e40b85
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.3.tar.gz
+        sha256: ae1e22e8170afc693f8a8c6a066e3ed3373bb6da9525cec6e511f5c1d3a5f6b1
         x-checker-data:
           type: anitya
           project-id: 881
