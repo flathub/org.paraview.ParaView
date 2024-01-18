@@ -52,8 +52,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.25.tar.gz
-        sha256: 4c25cb30c4bb23eddca05d7d0a85997b8db6144f5464ba7f8c09ce91e2f35543
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.26.tar.gz
+        sha256: 4e6e4f5cb14c209262e33e6816d70221a2fe49eb69eaf0a06f065598ac602c68
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -249,8 +249,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.2.tar.gz
-        sha256: 15f3bf4211bba657f68cb1235966e3729dcecbd6693af3b0faef8f89e8e40b85
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.3.tar.gz
+        sha256: ae1e22e8170afc693f8a8c6a066e3ed3373bb6da9525cec6e511f5c1d3a5f6b1
         x-checker-data:
           type: anitya
           project-id: 881
@@ -354,8 +354,8 @@ modules:
   - name: numactl
     sources:
       - type: archive
-        url: https://github.com/numactl/numactl/releases/download/v2.0.16/numactl-2.0.16.tar.gz
-        sha256: 1b242f893af977a1d31af6ce9d6b8dafdd2d8ec3dc9207f7c2dc0d3446e7c7c8
+        url: https://github.com/numactl/numactl/releases/download/v2.0.17/numactl-2.0.17.tar.gz
+        sha256: 8824ddd529a6f935dc2670bba6f52fb0f605f9f48e1176f69d6b7e48aad8cb27
         x-checker-data:
           type: anitya
           project-id: 2507
@@ -421,8 +421,8 @@ modules:
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.12.0-source.tgz
-        sha256: 2a6007872ba85abd9901914826f6986a2437ab7104f564ccefa1b7a3de742c17
+        url: https://gmsh.info/src/gmsh-4.12.1-source.tgz
+        sha256: 59ee2118ba7b099e9d1502572c9af4221501af955103d2b687aaa3890d13325e
         x-checker-data:
           type: anitya
           project-id: 9575
