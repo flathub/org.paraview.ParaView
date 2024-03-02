@@ -571,8 +571,8 @@ modules:
           project-id: 9602
           stable-only: true
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
-      - type: patch
-        path: fix_appdata_file.patch
+      # - type: patch
+      #   path: fix_appdata_file.patch
       # - type: git
       #   url: https://gitlab.kitware.com/vtk/MomentInvariants.git
       #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
