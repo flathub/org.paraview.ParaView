@@ -59,7 +59,7 @@ modules:
           project-id: 2540
           url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
 
-    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 meson-python contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
+    # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
   - name: python3-matplotlib
@@ -475,8 +475,6 @@ modules:
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
-    # build-options:
-    #   cxxflags: -std=c++14
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
