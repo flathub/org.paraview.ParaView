@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.3.0
-        commit: 7368795d13081d4928a9ba04d48498ca2442624b
+        tag: 1.3.2
+        commit: 614d436232d3a86518164cbe2b8af12db3bde009
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -52,8 +52,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.25.tar.gz
-        sha256: 4c25cb30c4bb23eddca05d7d0a85997b8db6144f5464ba7f8c09ce91e2f35543
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.26.tar.gz
+        sha256: 4e6e4f5cb14c209262e33e6816d70221a2fe49eb69eaf0a06f065598ac602c68
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -77,8 +77,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/fb/ab/38a0e94cb01dacb50f06957c2bed1c83b8f9dac6618988a37b2487862944/matplotlib-3.8.2.tar.gz
-        sha256: 01a978b871b881ee76017152f1f1a0cbf6bd5f7b8ff8c96df0df1bd57d8755a1
+        url: https://files.pythonhosted.org/packages/9a/aa/607a121331d5323b164f1c0696016ccc9d956a256771c4d91e311a302f13/matplotlib-3.8.3.tar.gz
+        sha256: 7b416239e9ae38be54b028abbf9048aff5054a9aba5416bef0bd17f9162ce161
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -144,8 +144,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.0.tar.bz2
-        sha256: 9d845ca94bc1aeb445f83d98d238cd08f6ec7ad0f73b0f79ec1668dbfdacd613
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.2.tar.bz2
+        sha256: ee46ad8eeee2c3ff70772160bff877cbf38c330a0bc3b3ddc811648b3396698f
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -249,8 +249,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.1.tar.gz
-        sha256: b83506442d88bccf8a2ee76e860d62adb263ef6c3bff494c1716d1fc251863de
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.4.tar.gz
+        sha256: efcf6de9936311134b682049418db531acb0ae3f1f65076162b4764108ce19b3
         x-checker-data:
           type: anitya
           project-id: 881
@@ -263,8 +263,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.3.1/proj-9.3.1.tar.gz
-            sha256: b0f919cb9e1f42f803a3e616c2b63a78e4d81ecfaed80978d570d3a5e29d10bc
+            url: https://github.com/OSGeo/PROJ/releases/download/9.4.0/proj-9.4.0.tar.gz
+            sha256: 3643b19b1622fe6b2e3113bdb623969f5117984b39f173b4e3fb19a8833bd216
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -354,8 +354,8 @@ modules:
   - name: numactl
     sources:
       - type: archive
-        url: https://github.com/numactl/numactl/releases/download/v2.0.16/numactl-2.0.16.tar.gz
-        sha256: 1b242f893af977a1d31af6ce9d6b8dafdd2d8ec3dc9207f7c2dc0d3446e7c7c8
+        url: https://github.com/numactl/numactl/releases/download/v2.0.18/numactl-2.0.18.tar.gz
+        sha256: b4fc0956317680579992d7815bc43d0538960dc73aa1dd8ca7e3806e30bc1274
         x-checker-data:
           type: anitya
           project-id: 2507
@@ -421,8 +421,8 @@ modules:
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
-        sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
+        url: https://gmsh.info/src/gmsh-4.12.2-source.tgz
+        sha256: 13e09d9ca8102e5c40171d6ee150c668742b98c3a6ca57f837f7b64e1e2af48f
         x-checker-data:
           type: anitya
           project-id: 9575
@@ -460,14 +460,14 @@ modules:
       - -DWITH_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/PDAL/PDAL/releases/download/2.5.6/PDAL-2.5.6-src.tar.bz2
-        sha256: 7c7c4570ef518942299479cc4077e0c657ec5b5174daf465415de947a1d3eb99
+        url: https://github.com/PDAL/PDAL/releases/download/2.6.3/PDAL-2.6.3-src.tar.bz2
+        sha256: e4d90a3ce4c9681cd3522ca29e73a88ff3b3c713f918693ad03932a6b7680460
         # New update need c++14 https://gitlab.kitware.com/vtk/vtk/-/issues/19189
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 138228
-        #   stable-only: true
-        #   url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
+        x-checker-data:
+          type: anitya
+          project-id: 138228
+          stable-only: true
+          url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
       # - type: patch
       #   path: PDAL_patch.patch #https://github.com/PDAL/PDAL/issues/4258
 
@@ -561,20 +561,13 @@ modules:
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
-      # - -DCMAKE_CXX_STANDARD=14
-      # - -DVTKm_ENABLE_HDF5_IO:BOOL=ON
-      # - -DVTKm_ENABLE_LOGGING:BOOL=ON
-      # - -DVTKm_ENABLE_MPI:BOOL=ON
-      # - -DVTKm_ENABLE_OPENMP:BOOL=ON
-      # - -DVTKm_ENABLE_TBB:BOOL=ON
-      # - -DVTKm_ENABLE_TESTING_LIBRARY:BOOL=OFF
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.11/ParaView-v5.11.2.tar.gz
-        sha256: ddee336075f8c258a3d34eb1cdd2f4d46a5082f0b4af614e36b06e530f3b346f
+        url: https://www.paraview.org/files/v5.12/ParaView-v5.12.0.tar.gz
+        sha256: 2cc5733608fd508e2da8fc5d4ee693523d350dc1e1f89f9a89a78dc63107f70e
         x-checker-data:
           type: anitya
           project-id: 9602
