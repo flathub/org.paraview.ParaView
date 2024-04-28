@@ -1,7 +1,7 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Sdk
 sdk: org.kde.Sdk
-runtime-version: 5.15-22.08
+runtime-version: 5.15-23.08
 base: io.qt.qtwebengine.BaseApp
 base-version: 5.15-22.08
 rename-icon: paraview
@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.3.2
-        commit: 614d436232d3a86518164cbe2b8af12db3bde009
+        tag: 1.4.0
+        commit: eaefe29463a61a311a6b1de6cd539f39500399ff
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -52,8 +52,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.26.tar.gz
-        sha256: 4e6e4f5cb14c209262e33e6816d70221a2fe49eb69eaf0a06f065598ac602c68
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.27.tar.gz
+        sha256: aa2d68b1564fe2b13bc292672608e9cdeeeb6dc34995512e65c3b10f4599e897
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -77,8 +77,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/9a/aa/607a121331d5323b164f1c0696016ccc9d956a256771c4d91e311a302f13/matplotlib-3.8.3.tar.gz
-        sha256: 7b416239e9ae38be54b028abbf9048aff5054a9aba5416bef0bd17f9162ce161
+        url: https://files.pythonhosted.org/packages/38/4f/8487737a74d8be4ab5fbe6019b0fae305c1604cf7209500969b879b5f462/matplotlib-3.8.4.tar.gz
+        sha256: 8aac397d5e9ec158960e31c381c5ffc52ddd52bd9a47717e2a694038167dffea
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -90,8 +90,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.bz2
-        sha256: cc4b893acf645c9d4b698e9a0f08ca8846aa5d6c68275c14c3e7949c24109454
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.85.0/source/boost_1_85_0.tar.bz2
+        sha256: 7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -122,8 +122,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.10.0.tar.gz
-        sha256: 9cac7838ab139ec71adf721a1305b954e18efa4f80c82fcfe34e1eb9639ded29
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.11.0.tar.gz
+        sha256: 034ec21f28f2f2edc4542515a9ae45356a25bb459048acf9622e6b1143b3fae7
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -144,8 +144,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.2.tar.bz2
-        sha256: ee46ad8eeee2c3ff70772160bff877cbf38c330a0bc3b3ddc811648b3396698f
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.3.tar.bz2
+        sha256: 990582f206b3ab32e938aa31bbf07c639368e4405dca196fabe7f0f76eeda90b
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -161,8 +161,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.11.0.tar.gz
-        sha256: 782ce0cab62df9ea125cdea253a50534862b563f1d85d4cda7ad4e77550ac363
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.12.0.tar.gz
+        sha256: c7bb7aa69c254d91b8f0041a71c5bcc3936acb64408a1719aec0b2b7639dd84f
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -249,8 +249,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.4.tar.gz
-        sha256: efcf6de9936311134b682049418db531acb0ae3f1f65076162b4764108ce19b3
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.5.tar.gz
+        sha256: 99d042077f292226871fae90774baf8f818eab7ecc25dd4626edb305fff91b1a
         x-checker-data:
           type: anitya
           project-id: 881
@@ -460,8 +460,8 @@ modules:
       - -DWITH_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/PDAL/PDAL/releases/download/2.6.3/PDAL-2.6.3-src.tar.bz2
-        sha256: e4d90a3ce4c9681cd3522ca29e73a88ff3b3c713f918693ad03932a6b7680460
+        url: https://github.com/PDAL/PDAL/releases/download/2.7.1/PDAL-2.7.1-src.tar.bz2
+        sha256: 7769aaacfc26daeb559b511c73c241a5e9a2f31e26ef3a736204b83e791c5453
         # New update need c++14 https://gitlab.kitware.com/vtk/vtk/-/issues/19189
         x-checker-data:
           type: anitya
