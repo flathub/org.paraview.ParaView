@@ -3,7 +3,7 @@ runtime: org.kde.Sdk
 sdk: org.kde.Sdk
 runtime-version: 5.15-23.08
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-22.08
+base-version: 5.15-23.08
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -340,13 +340,13 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.20.tar.gz
-        sha256: 2be5247f0266d153619b35dfb1eeeb46736c502dad993b40aff8857d6314f293
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 220847
-        #   stable-only: true
-        #   url-template: https://github.com/openturns/openturns/archive/refs/tags/v${version}.tar.gz
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.22.tar.gz
+        sha256: 487f7fc00f02eb91d264c8c9d78c2abba505ac6aaa5bc0328c04dddbe6d58741
+        x-checker-data:
+          type: anitya
+          project-id: 220847
+          stable-only: true
+          url-template: https://github.com/openturns/openturns/archive/refs/tags/v${version}.tar.gz
     cleanup:
       - /share
 
@@ -372,8 +372,9 @@ modules:
           project-id: 220852
           stable-only: true
           url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
+      - type: patch
+        path: memkind_support_multi-threading_build.patch
 
-    # Use 2.8.3   error: ‘DebugON’ is not a member of ‘adios2’
   - name: ADIOS2
     buildsystem: cmake
     builddir: true
@@ -386,13 +387,13 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.8.3.tar.gz
-        sha256: 4906ab1899721c41dd918dddb039ba2848a1fb0cf84f3a563a1179b9d6ee0d9f
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 220828
-        #   stable-only: true
-        #   url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.0.tar.gz
+        sha256: e5984de488bda546553dd2f46f047e539333891e63b9fe73944782ba6c2d95e4
+        x-checker-data:
+          type: anitya
+          project-id: 220828
+          stable-only: true
+          url-template: https://github.com/ornladios/ADIOS2/archive/refs/tags/v${version}.tar.gz
 
   - name: Catalyst
     buildsystem: cmake-ninja
@@ -468,8 +469,6 @@ modules:
           project-id: 138228
           stable-only: true
           url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
-      # - type: patch
-      #   path: PDAL_patch.patch #https://github.com/PDAL/PDAL/issues/4258
 
     # Paraview need 32GB of memory to build
   - name: Paraview
