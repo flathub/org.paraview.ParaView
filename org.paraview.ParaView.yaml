@@ -398,6 +398,8 @@ modules:
   - name: Catalyst
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cxxflags: "-std=c++0x" #Fix error: ‘std::uint64_t’ has not been declared
     config-opts:
       - -DCATALYST_BUILD_TESTING:BOOL=OFF
       - -DCATALYST_USE_MPI:BOOL=ON
