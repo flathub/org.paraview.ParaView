@@ -77,8 +77,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/38/4f/8487737a74d8be4ab5fbe6019b0fae305c1604cf7209500969b879b5f462/matplotlib-3.8.4.tar.gz
-        sha256: 8aac397d5e9ec158960e31c381c5ffc52ddd52bd9a47717e2a694038167dffea
+        url: https://files.pythonhosted.org/packages/c5/a4/a7236bf8b0137deff48737c6ccf2154ef4486e57c6a5b7c309bf515992bd/matplotlib-3.9.0.tar.gz
+        sha256: e6d29ea6c19e34b30fb7d88b7081f869a03014f66fe06d62cc77d5a6ea88ed7a
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -249,8 +249,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.8.5.tar.gz
-        sha256: 99d042077f292226871fae90774baf8f818eab7ecc25dd4626edb305fff91b1a
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.0.tar.gz
+        sha256: 205bfbcd69bd75147a24653f66d22ce6712fa8ea8de365c156bd30fdcfff138c
         x-checker-data:
           type: anitya
           project-id: 881
@@ -399,7 +399,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cxxflags: "-std=c++0x" #Fix error: ‘std::uint64_t’ has not been declared
+      cxxflags: -std=c++0x   #Fix error: ‘std::uint64_t’ has not been declared
     config-opts:
       - -DCATALYST_BUILD_TESTING:BOOL=OFF
       - -DCATALYST_USE_MPI:BOOL=ON
@@ -424,8 +424,8 @@ modules:
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.12.2-source.tgz
-        sha256: 13e09d9ca8102e5c40171d6ee150c668742b98c3a6ca57f837f7b64e1e2af48f
+        url: https://gmsh.info/src/gmsh-4.13.0-source.tgz
+        sha256: c85f056ee549a433e814a61c385c97952bbfe514b442b999f6149fffb1e54f64
         x-checker-data:
           type: anitya
           project-id: 9575
@@ -472,6 +472,55 @@ modules:
           stable-only: true
           url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
 
+  - name: OCCT
+    buildsystem: cmake-ninja
+    config-opts:
+      - -D3RDPARTY_TK_INCLUDE_DIR:PATH=/app/include
+      - -DBUILD_MODULE_ApplicationFramework=OFF
+      - -DBUILD_MODULE_DataExchange=ON
+      - -DBUILD_MODULE_Draw=OFF
+      - -DBUILD_MODULE_FoundationClasses=OFF
+      - -DBUILD_MODULE_ModelingAlgorithms=OFF
+      - -DBUILD_MODULE_ModelingData=OFF
+      - -DBUILD_MODULE_Visualization=OFF
+      - -DBUILD_DOC_Overview=OFF
+    sources:
+      - type: git
+        url: https://github.com/Open-Cascade-SAS/OCCT.git
+        tag: V7_8_1
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
+        x-checker-data:
+          type: git
+          tag-pattern: ^(V[\d._]+)$
+
+  - name: Imath
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_TESTING:BOOL=OFF
+    sources:
+      - type: git
+        url: https://github.com/AcademySoftwareFoundation/Imath.git
+        tag: v3.1.11
+        commit: 5ac1d5335cb34f0f356c5f2461a57c845b96b115
+        x-checker-data:
+          type: git
+          tag-pattern: ^(v[\d.]+)$
+
+  - name: Alembic
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DUSE_TESTS:BOOL=OFF
+      - -DUSE_HDF5:BOOL=ON
+    sources:
+      - type: archive
+        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.6.tar.gz
+        sha256: c572ebdea3a5f0ce13774dd1fceb5b5815265cd1b29d142cf8c144b03c131c8c
+        x-checker-data:
+          type: anitya
+          project-id: 13980
+          stable-only: true
+          url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
+
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake-ninja
@@ -486,16 +535,19 @@ modules:
       - -DPARAVIEW_BUILD_WITH_EXTERNAL:BOOL=OFF
       - -DPARAVIEW_BUILD_WITH_KITS:BOOL=OFF
       - -DPARAVIEW_ENABLE_ADIOS2:BOOL=ON
+      - -DPARAVIEW_ENABLE_ALEMBIC:BOOL=ON
       - -DPARAVIEW_ENABLE_CATALYST:BOOL=ON
       - -DPARAVIEW_ENABLE_EXAMPLES:BOOL=ON
       - -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON
       - -DPARAVIEW_ENABLE_FIDES:BOOL=ON
       - -DPARAVIEW_ENABLE_GDAL:BOOL=ON
+      - -DPARAVIEW_ENABLE_GEOVIS:BOOL=ON
       - -DPARAVIEW_ENABLE_LAS:BOOL=OFF
-      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=OFF
+      - -DPARAVIEW_ENABLE_LOOKINGGLASS:BOOL=OFF # Propiertary
       - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=OFF #Failed to build
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
+      - -DPARAVIEW_ENABLE_OCCT:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF #https://github.com/AcademySoftwareFoundation/openvdb/issues/1160
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
@@ -503,6 +555,9 @@ modules:
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF2:BOOL=ON
       - -DPARAVIEW_ENABLE_XDMF3:BOOL=ON
+      - -DPARAVIEW_GENERATE_SPDX:BOOL=OFF
+      - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON
+      - -DPARAVIEW_LOGGING_TIME_PRECISION:STRING=3
       - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
       - -DPARAVIEW_PLUGIN_DISABLE_XML_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_PLUGIN_ENABLE_AcceleratedAlgorithms:BOOL=ON
@@ -555,7 +610,6 @@ modules:
       - -DPARAVIEW_USE_QTHELP:BOOL=ON
       - -DPARAVIEW_USE_QTWEBENGINE:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
-      - -DVTK_MODULE_ENABLE_VTK_GeovisCore:BOOL=ON
       - -DBUILD_EXAMPLES:BOOL=ON
       - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
