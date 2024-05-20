@@ -476,14 +476,8 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -D3RDPARTY_TK_INCLUDE_DIR:PATH=/app/include
-      - -DBUILD_MODULE_ApplicationFramework=OFF
       - -DBUILD_MODULE_DataExchange=ON
       - -DBUILD_MODULE_Draw=OFF
-      - -DBUILD_MODULE_FoundationClasses=OFF
-      - -DBUILD_MODULE_ModelingAlgorithms=OFF
-      - -DBUILD_MODULE_ModelingData=OFF
-      - -DBUILD_MODULE_Visualization=OFF
-      - -DBUILD_DOC_Overview=OFF
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT.git
