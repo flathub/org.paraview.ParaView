@@ -407,7 +407,7 @@ modules:
     sources:
       - type: git
         url: https://gitlab.kitware.com/paraview/catalyst
-        commit: f6aa49f76119401aeb68cb3de12d1b9e046d809c
+        commit: 777fe7fb5e7e86bacb96908ab33f49eeb2d01cf9
 
   - name: gmsh
     buildsystem: cmake-ninja
