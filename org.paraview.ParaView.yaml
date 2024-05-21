@@ -62,13 +62,13 @@ modules:
     # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
-  - name: freetype
-    buildsystem: cmake
-    builddir: true
-    sources:
-      - type: archive
-        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
-        sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
+  # - name: freetype
+  #   buildsystem: cmake
+  #   builddir: true
+  #   sources:
+  #     - type: archive
+  #       url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
+  #       sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
 
   - name: python3-matplotlib
     buildsystem: simple
@@ -480,25 +480,10 @@ modules:
           stable-only: true
           url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
 
-  - name: OCCT
-    buildsystem: cmake-ninja
-    config-opts:
-      - -D3RDPARTY_TK_INCLUDE_DIR:PATH=/app/include
-      - -DBUILD_MODULE_DataExchange=ON
-      - -DBUILD_MODULE_Draw=OFF
-    sources:
-      - type: git
-        url: https://github.com/Open-Cascade-SAS/OCCT.git
-        tag: V7_8_1
-        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
-        x-checker-data:
-          type: git
-          tag-pattern: ^(V[\d._]+)$
-
   - name: Imath
     buildsystem: cmake-ninja
     config-opts:
-      - -DBUILD_TESTING:BOOL=OFF
+      - -DBUILD_TESTING:BOOL=OFF+
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/Imath.git
@@ -522,6 +507,27 @@ modules:
           project-id: 13980
           stable-only: true
           url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
+
+  # - name: OCCT
+  #   buildsystem: cmake-ninja
+  #   config-opts:
+  #   # Do not build Draw or Visualization modules as they require tcl/tk.
+  #     - -DBUILD_MODULE_Draw:BOOL=FALSE
+  #     - -DBUILD_MODULE_Visualization:BOOL=FALSE
+  #     - -DBUILD_DOC_Overview:BOOL=OFF
+  #     - -DBUILD_SAMPLES_QT:BOOL=OFF
+  #     - -DINSTALL_SAMPLES:BOOL=OFF
+  #     - -DINSTALL_TCL:BOOL=OFF
+  #     - -DINSTALL_TEST_CASES:BOOL=OFF
+  #     - -DINSTALL_TK:BOOL=OFF
+  #   sources:
+  #     - type: git
+  #       url: https://github.com/Open-Cascade-SAS/OCCT.git
+  #       tag: V7_8_1
+  #       commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
+  #       x-checker-data:
+  #         type: git
+  #         tag-pattern: ^(V[\d._]+)$
 
     # Paraview need 32GB of memory to build
   - name: Paraview
@@ -549,7 +555,7 @@ modules:
       - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=OFF #Failed to build
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
-      - -DPARAVIEW_ENABLE_OCCT:BOOL=ON
+      - -DPARAVIEW_ENABLE_OCCT:BOOL=OFF #How to fix this? required targets: TKSTEP, TKIGES, TKXDESTEP, TKXDEIGES
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF #https://github.com/AcademySoftwareFoundation/openvdb/issues/1160
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
