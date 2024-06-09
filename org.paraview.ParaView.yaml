@@ -420,6 +420,7 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DCMAKE_CXX_STANDARD:STRING=14
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DENABLE_BUILD_LIB=ON
       - -DENABLE_BUILD_SHARED=ON
@@ -431,13 +432,14 @@ modules:
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.13.0-source.tgz
-        sha256: c85f056ee549a433e814a61c385c97952bbfe514b442b999f6149fffb1e54f64
-        x-checker-data:
-          type: anitya
-          project-id: 9575
-          stable-only: true
-          url-template: https://gmsh.info/src/gmsh-$version-source.tgz
+        url: https://gmsh.info/src/gmsh-4.8.4-source.tgz
+        sha256: 760dbdc072eaa3c82d066c5ba3b06eacdd3304eb2a97373fe4ada9509f0b6ace
+        # support gmsh 4.11.1
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 9575
+        #   stable-only: true
+        #   url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
   # - name: blosc
   #   buildsystem: cmake-ninja
