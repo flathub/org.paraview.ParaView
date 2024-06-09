@@ -406,9 +406,8 @@ modules:
   - name: Catalyst
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      cxxflags: -std=c++0x   #Fix error: ‘std::uint64_t’ has not been declared
     config-opts:
+      - -DCMAKE_CXX_STANDARD:STRING=14 #Fix error: ‘std::uint64_t’ has not been declared
       - -DCATALYST_BUILD_TESTING:BOOL=OFF
       - -DCATALYST_USE_MPI:BOOL=ON
       - -DCATALYST_WRAP_PYTHON:BOOL=ON
@@ -469,21 +468,29 @@ modules:
     builddir: true
     config-opts:
       - -DWITH_TESTS=OFF
+      - -DCMAKE_CXX_STANDARD:STRING=14
+      - -DWITH_TESTS:BOOL=OFF
+      - -DWITH_LZMA:BOOL=OFF
+      - -DWITH_ZLIB:BOOL=ON
+      - -DWITH_ZSTD:BOOL=ON
+      - -DBUILD_PLUGIN_HDF:BOOL=OFF
+      - -DBUILD_PLUGIN_E57:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/PDAL/PDAL/releases/download/2.7.1/PDAL-2.7.1-src.tar.bz2
-        sha256: 7769aaacfc26daeb559b511c73c241a5e9a2f31e26ef3a736204b83e791c5453
+        url: https://github.com/PDAL/PDAL/releases/download/2.5.6/PDAL-2.5.6-src.tar.bz2
+        sha256: 7c7c4570ef518942299479cc4077e0c657ec5b5174daf465415de947a1d3eb99
         # New update need c++14 https://gitlab.kitware.com/vtk/vtk/-/issues/19189
-        x-checker-data:
-          type: anitya
-          project-id: 138228
-          stable-only: true
-          url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
+        # Until paraview use c++11 we stay on this version
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 138228
+        #   stable-only: true
+        #   url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
 
   - name: Imath
     buildsystem: cmake-ninja
     config-opts:
-      - -DBUILD_TESTING:BOOL=OFF+
+      - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/Imath.git
@@ -508,32 +515,34 @@ modules:
           stable-only: true
           url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
 
-  # - name: OCCT
-  #   buildsystem: cmake-ninja
-  #   config-opts:
-  #   # Do not build Draw or Visualization modules as they require tcl/tk.
-  #     - -DBUILD_MODULE_Draw:BOOL=FALSE
-  #     - -DBUILD_MODULE_Visualization:BOOL=FALSE
-  #     - -DBUILD_DOC_Overview:BOOL=OFF
-  #     - -DBUILD_SAMPLES_QT:BOOL=OFF
-  #     - -DINSTALL_SAMPLES:BOOL=OFF
-  #     - -DINSTALL_TCL:BOOL=OFF
-  #     - -DINSTALL_TEST_CASES:BOOL=OFF
-  #     - -DINSTALL_TK:BOOL=OFF
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/Open-Cascade-SAS/OCCT.git
-  #       tag: V7_8_1
-  #       commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
-  #       x-checker-data:
-  #         type: git
-  #         tag-pattern: ^(V[\d._]+)$
+    # Use 7.7.2 https://discourse.paraview.org/t/how-to-build-paraview-with-occt-required-targets-tkstep-tkiges-tkxdestep-tkxdeiges/14677/3
+  - name: OCCT
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_MODULE_Draw:BOOL=FALSE
+      - -DBUILD_MODULE_Visualization:BOOL=FALSE
+      - -DBUILD_MODULE_DataExchange:BOOL=TRUE
+      - -DBUILD_DOC_Overview:BOOL=FALSE
+      - -DBUILD_SAMPLES_QT:BOOL=OFF
+      - -DINSTALL_SAMPLES:BOOL=OFF
+      - -DINSTALL_TCL:BOOL=OFF
+      - -DINSTALL_TEST_CASES:BOOL=OFF
+      - -DINSTALL_TK:BOOL=OFF
+    sources:
+      - type: git
+        url: https://github.com/Open-Cascade-SAS/OCCT.git
+        tag: V7_7_2
+        # commit: 3b5f0ca3722968991549cfce1caca4fa89bf97b1
+        x-checker-data:
+          type: git
+          tag-pattern: ^(V[\d._]+)$
 
     # Paraview need 32GB of memory to build
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DCMAKE_CXX_STANDARD:STRING=14
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_REMOVE:BOOL=OFF
@@ -555,7 +564,7 @@ modules:
       - -DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=OFF #Failed to build
       - -DPARAVIEW_ENABLE_MOTIONFX:BOOL=ON
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
-      - -DPARAVIEW_ENABLE_OCCT:BOOL=OFF #How to fix this? required targets: TKSTEP, TKIGES, TKXDESTEP, TKXDEIGES
+      - -DPARAVIEW_ENABLE_OCCT:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF #https://github.com/AcademySoftwareFoundation/openvdb/issues/1160
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
@@ -581,7 +590,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_FlipBookPlugin:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GMVReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GeodesicMeasurement:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22622
       - -DPARAVIEW_PLUGIN_ENABLE_GmshIO:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GmshReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_HyperTreeGridADR:BOOL=ON
@@ -619,17 +628,17 @@ modules:
       - -DPARAVIEW_USE_QTWEBENGINE:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
       - -DBUILD_EXAMPLES:BOOL=ON
-      - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
-      - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF
+      - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
+      - -DVTK_SMP_ENABLE_TBB:BOOL=ON
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.12/ParaView-v5.12.0.tar.gz
-        sha256: 2cc5733608fd508e2da8fc5d4ee693523d350dc1e1f89f9a89a78dc63107f70e
+        url: https://www.paraview.org/files/v5.12/ParaView-v5.12.1.tar.gz
+        sha256: 5b3c778dd6c77a75cdfd3fd514f279e08c902325a42ec49865e1f62f2671a969
         x-checker-data:
           type: anitya
           project-id: 9602
@@ -641,4 +650,3 @@ modules:
       #   url: https://gitlab.kitware.com/vtk/MomentInvariants.git
       #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
       #   dest: VTK/Remote/MomentInvariants
-
