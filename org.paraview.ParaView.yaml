@@ -543,6 +543,9 @@ modules:
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      cflags: -I/app/include/eigen3
+      cxxflags: -I/app/include/eigen3
     config-opts:
       - -DCMAKE_CXX_STANDARD:STRING=14
       - -DCMAKE_BUILD_TYPE:STRING=Release
@@ -634,6 +637,7 @@ modules:
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
       - -DVTK_SMP_ENABLE_TBB:BOOL=ON
+      - -DVTK_MODULE_USE_EXTERNAL_VTK_eigen:BOOL=ON
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
