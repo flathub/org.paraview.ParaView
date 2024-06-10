@@ -596,8 +596,8 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_GMVReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GeodesicMeasurement:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22622
-      - -DPARAVIEW_PLUGIN_ENABLE_GmshIO:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_GmshReader:BOOL=ON
+      - -DPARAVIEW_PLUGIN_ENABLE_GmshIO:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22651
+      - -DPARAVIEW_PLUGIN_ENABLE_GmshReader:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22651
       - -DPARAVIEW_PLUGIN_ENABLE_HyperTreeGridADR:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_InSituExodus:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_LANLX3DReader:BOOL=ON
