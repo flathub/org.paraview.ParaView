@@ -596,7 +596,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_GMVReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GeodesicMeasurement:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22622
-      - -DPARAVIEW_PLUGIN_ENABLE_GmshIO:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22651
+      - -DPARAVIEW_PLUGIN_ENABLE_GmshIO:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GmshReader:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22651
       - -DPARAVIEW_PLUGIN_ENABLE_HyperTreeGridADR:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_InSituExodus:BOOL=ON
@@ -650,8 +650,8 @@ modules:
           project-id: 9602
           stable-only: true
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
-      # - type: patch
-      #   path: fix_appdata_file.patch
+      - type: patch
+        path: fix_appdata_file.patch
       # - type: git
       #   url: https://gitlab.kitware.com/vtk/MomentInvariants.git
       #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
