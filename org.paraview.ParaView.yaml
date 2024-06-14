@@ -63,28 +63,40 @@ modules:
   - python-deps.json
 
   - name: python3-matplotlib
-    build-options:
-      env:
-        MPLSETUPCFG: /run/build/python-matplotlib/matplotlib-setup.cfg
+    # build-options:
+    #   env:
+    #     MPLSETUPCFG: /run/build/python-matplotlib/mplsetup.cfg
     buildsystem: simple
     build-commands:
+      - mkdir -p subprojects/packagecache/
+      - cp qhull-8.0.2.tgz freetype-2.6.1.tar.gz subprojects/packagecache/ #Copy qhull and freetype to correct dir so matplotlib will not try to download it
+      - ls -l subprojects/packagecache/
       - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation
     sources:
-      - type: archive
-        dest: build/freetype-2.6.1
-        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
+      - type: file
+        url: https://download.savannah.gnu.org/releases/freetype/freetype-old/freetype-2.6.1.tar.gz
         sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
-      - type: archive
-        dest: build/qhull-2020.2
-        url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
-        sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
+        dest-filename: freetype-2.6.1.tar.gz
+      - type: file
+        dest-filename: qhull-8.0.2.tgz
+        url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
+        sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
         url: https://files.pythonhosted.org/packages/c5/a4/a7236bf8b0137deff48737c6ccf2154ef4486e57c6a5b7c309bf515992bd/matplotlib-3.9.0.tar.gz
         sha256: e6d29ea6c19e34b30fb7d88b7081f869a03014f66fe06d62cc77d5a6ea88ed7a
         x-checker-data:
           type: pypi
           name: matplotlib
+      # - type: inline
+      #   dest-filename: mplsetup.cfg
+      #   base64: false
+      #   contents: |
+      #     [libs]
+      #     system_freetype = True
+      #     system_qhull = True
+      # - type: file
+      #   path: matplotlib-setup.cfg
 
   - name: Boost
     buildsystem: simple
