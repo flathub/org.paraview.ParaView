@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.4.0
-        commit: eaefe29463a61a311a6b1de6cd539f39500399ff
+        tag: 1.4.1
+        commit: 1e2e30bbcfea876e05ce5b863579dc7eb71b5fb3
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -85,8 +85,8 @@ modules:
         url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
         sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
       - type: archive
-        url: https://files.pythonhosted.org/packages/38/4f/8487737a74d8be4ab5fbe6019b0fae305c1604cf7209500969b879b5f462/matplotlib-3.8.4.tar.gz
-        sha256: 8aac397d5e9ec158960e31c381c5ffc52ddd52bd9a47717e2a694038167dffea
+        url: https://files.pythonhosted.org/packages/c5/a4/a7236bf8b0137deff48737c6ccf2154ef4486e57c6a5b7c309bf515992bd/matplotlib-3.9.0.tar.gz
+        sha256: e6d29ea6c19e34b30fb7d88b7081f869a03014f66fe06d62cc77d5a6ea88ed7a
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -271,8 +271,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.4.0/proj-9.4.0.tar.gz
-            sha256: 3643b19b1622fe6b2e3113bdb623969f5117984b39f173b4e3fb19a8833bd216
+            url: https://github.com/OSGeo/PROJ/releases/download/9.4.1/proj-9.4.1.tar.gz
+            sha256: ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -283,8 +283,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.7.1.tar.gz
-        sha256: 05ab1347aaa471fc97347d8d4269ff0c00f30fa666d956baba37948ec87e55d6
+        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.7.3.tar.gz
+        sha256: ba23a3a35980ed3de916e125c739251f8e3266be07540200125a307d7cf5a704
         x-checker-data:
           type: anitya
           project-id: 21361
@@ -296,8 +296,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/LASzip/LASzip/releases/download/3.4.3/laszip-src-3.4.3.tar.gz
-        sha256: 53f546a7f06fc969b38d1d71cceb1862b4fc2c4a0965191a0eee81a57c7b373d
+        url: https://github.com/LASzip/LASzip/releases/download/3.4.4/laszip-src-3.4.4.tar.gz
+        sha256: 41f826848ff106f471b134224f58075ac8e36a62b6ba0ad75be8a8c191bdba4b
         x-checker-data:
           type: anitya
           project-id: 241499
@@ -348,8 +348,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.22.tar.gz
-        sha256: 487f7fc00f02eb91d264c8c9d78c2abba505ac6aaa5bc0328c04dddbe6d58741
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.23.tar.gz
+        sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -395,8 +395,8 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.0.tar.gz
-        sha256: e5984de488bda546553dd2f46f047e539333891e63b9fe73944782ba6c2d95e4
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.1.tar.gz
+        sha256: ce776f3a451994f4979c6bd6d946917a749290a37b7433c0254759b02695ad85
         x-checker-data:
           type: anitya
           project-id: 220828
@@ -533,13 +533,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT.git
-        tag: V7_7_2
+        tag: V7_8_1
         # commit: 3b5f0ca3722968991549cfce1caca4fa89bf97b1
         x-checker-data:
           type: git
           tag-pattern: ^(V[\d._]+)$
 
     # Paraview need 32GB of memory to build
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
