@@ -535,7 +535,6 @@ modules:
         #   tag-pattern: ^(V[\d._]+)$
 
     # Paraview need 32GB of memory to build
-        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
