@@ -63,9 +63,6 @@ modules:
   - python-deps.json
 
   - name: python3-matplotlib
-    # build-options:
-    #   env:
-    #     MPLSETUPCFG: /run/build/python-matplotlib/mplsetup.cfg
     buildsystem: simple
     build-commands:
       - mkdir -p subprojects/packagecache/
@@ -88,15 +85,6 @@ modules:
         x-checker-data:
           type: pypi
           name: matplotlib
-      # - type: inline
-      #   dest-filename: mplsetup.cfg
-      #   base64: false
-      #   contents: |
-      #     [libs]
-      #     system_freetype = True
-      #     system_qhull = True
-      # - type: file
-      #   path: matplotlib-setup.cfg
 
   - name: Boost
     buildsystem: simple
@@ -540,11 +528,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT.git
-        tag: V7_8_1
-        # commit: 3b5f0ca3722968991549cfce1caca4fa89bf97b1
-        x-checker-data:
-          type: git
-          tag-pattern: ^(V[\d._]+)$
+        tag: V7_7_2
+        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        # x-checker-data:
+        #   type: git
+        #   tag-pattern: ^(V[\d._]+)$
 
     # Paraview need 32GB of memory to build
         commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
