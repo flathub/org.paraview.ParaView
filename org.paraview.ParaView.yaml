@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.4.0
-        commit: eaefe29463a61a311a6b1de6cd539f39500399ff
+        tag: 1.4.1
+        commit: 1e2e30bbcfea876e05ce5b863579dc7eb71b5fb3
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -62,31 +62,26 @@ modules:
     # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
-  # - name: freetype
-  #   buildsystem: cmake
-  #   builddir: true
-  #   sources:
-  #     - type: archive
-  #       url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
-  #       sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
-
   - name: python3-matplotlib
     buildsystem: simple
     build-commands:
+      - mkdir -p subprojects/packagecache/
+      - cp qhull-8.0.2.tgz freetype-2.6.1.tar.gz subprojects/packagecache/ #Copy qhull and freetype to correct dir so matplotlib will not try to download it
+      - ls -l subprojects/packagecache/
       - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation
     sources:
-      - type: archive
-        dest: build/freetype-2.6.1
-        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
+      - type: file
+        url: https://download.savannah.gnu.org/releases/freetype/freetype-old/freetype-2.6.1.tar.gz
         sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
+        dest-filename: freetype-2.6.1.tar.gz
+      - type: file
+        dest-filename: qhull-8.0.2.tgz
+        url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
+        sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        dest: build/qhull-2020.2
-        url: http://www.qhull.org/download/qhull-2020-src-8.0.2.tgz
-        sha256: b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e
-      - type: archive
-        url: https://files.pythonhosted.org/packages/38/4f/8487737a74d8be4ab5fbe6019b0fae305c1604cf7209500969b879b5f462/matplotlib-3.8.4.tar.gz
-        sha256: 8aac397d5e9ec158960e31c381c5ffc52ddd52bd9a47717e2a694038167dffea
+        url: https://files.pythonhosted.org/packages/c5/a4/a7236bf8b0137deff48737c6ccf2154ef4486e57c6a5b7c309bf515992bd/matplotlib-3.9.0.tar.gz
+        sha256: e6d29ea6c19e34b30fb7d88b7081f869a03014f66fe06d62cc77d5a6ea88ed7a
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -271,8 +266,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.4.0/proj-9.4.0.tar.gz
-            sha256: 3643b19b1622fe6b2e3113bdb623969f5117984b39f173b4e3fb19a8833bd216
+            url: https://github.com/OSGeo/PROJ/releases/download/9.4.1/proj-9.4.1.tar.gz
+            sha256: ffe20170ee2b952207adf8a195e2141eab12cda181e49fdeb54425d98c7171d7
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -283,8 +278,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.7.1.tar.gz
-        sha256: 05ab1347aaa471fc97347d8d4269ff0c00f30fa666d956baba37948ec87e55d6
+        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.7.3.tar.gz
+        sha256: ba23a3a35980ed3de916e125c739251f8e3266be07540200125a307d7cf5a704
         x-checker-data:
           type: anitya
           project-id: 21361
@@ -348,8 +343,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.22.tar.gz
-        sha256: 487f7fc00f02eb91d264c8c9d78c2abba505ac6aaa5bc0328c04dddbe6d58741
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.23.tar.gz
+        sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -395,8 +390,8 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.0.tar.gz
-        sha256: e5984de488bda546553dd2f46f047e539333891e63b9fe73944782ba6c2d95e4
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.1.tar.gz
+        sha256: ce776f3a451994f4979c6bd6d946917a749290a37b7433c0254759b02695ad85
         x-checker-data:
           type: anitya
           project-id: 220828
@@ -432,14 +427,14 @@ modules:
       - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.8.4-source.tgz
-        sha256: 760dbdc072eaa3c82d066c5ba3b06eacdd3304eb2a97373fe4ada9509f0b6ace
+        url: https://gmsh.info/src/gmsh-4.13.1-source.tgz
+        sha256: 77972145f431726026d50596a6a44fb3c1c95c21255218d66955806b86edbe8d
         # support gmsh 4.11.1
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 9575
-        #   stable-only: true
-        #   url-template: https://gmsh.info/src/gmsh-$version-source.tgz
+        x-checker-data:
+          type: anitya
+          project-id: 9575
+          stable-only: true
+          url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
   # - name: blosc
   #   buildsystem: cmake-ninja
@@ -534,10 +529,10 @@ modules:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT.git
         tag: V7_7_2
-        # commit: 3b5f0ca3722968991549cfce1caca4fa89bf97b1
-        x-checker-data:
-          type: git
-          tag-pattern: ^(V[\d._]+)$
+        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+        # x-checker-data:
+        #   type: git
+        #   tag-pattern: ^(V[\d._]+)$
 
     # Paraview need 32GB of memory to build
   - name: Paraview
