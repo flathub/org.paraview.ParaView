@@ -68,7 +68,8 @@ modules:
     build-commands:
       - mkdir -p subprojects/packagecache/
       - cp qhull-8.0.2.tgz freetype-2.6.1.tar.gz subprojects/packagecache/ #Copy qhull and freetype to correct dir so matplotlib will not try to download it
-      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST} --no-build-isolation
+      - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
+        --no-build-isolation
     sources:
       - type: file
         url: https://download.savannah.gnu.org/releases/freetype/freetype-old/freetype-2.6.1.tar.gz
@@ -163,8 +164,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.12.0.tar.gz
-        sha256: c7bb7aa69c254d91b8f0041a71c5bcc3936acb64408a1719aec0b2b7639dd84f
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.13.0.tar.gz
+        sha256: 3ad5dd08954b39d113dc5b3f8a8dc6dc1fd5250032b7c491eb07aed5c94133e1
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -251,8 +252,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.0.tar.gz
-        sha256: 205bfbcd69bd75147a24653f66d22ce6712fa8ea8de365c156bd30fdcfff138c
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.1.tar.gz
+        sha256: 38d844e8e321e1bb1bfc87118740b28ca10bfc8b69e754a0f5f22d49fecca0e4
         x-checker-data:
           type: anitya
           project-id: 881
