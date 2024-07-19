@@ -147,8 +147,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.3.tar.bz2
-        sha256: 990582f206b3ab32e938aa31bbf07c639368e4405dca196fabe7f0f76eeda90b
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.4.tar.bz2
+        sha256: 64526852cdd88b2d30e022087c16ab3e03806c451b10cd691d5c1ac887d8ef9d
         x-checker-data:
           type: anitya
           project-id: 2554
