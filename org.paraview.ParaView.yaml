@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.5.0
-        commit: 183084a9e854ff627467279384330750016bad92
+        tag: 1.5.1
+        commit: b6b634ad33e5ca9ad4a9d6139dba4244847cc0e8
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/22/06/9e8ba6ec8b716a215404a5d1938b61f5a28001be493cf35344dda9a4072a/matplotlib-3.9.1.tar.gz
-        sha256: de06b19b8db95dd33d0dc17c926c7c9ebed9f572074b6fac4f65068a6814d010
+        url: https://files.pythonhosted.org/packages/c5/a4/a7236bf8b0137deff48737c6ccf2154ef4486e57c6a5b7c309bf515992bd/matplotlib-3.9.0.tar.gz
+        sha256: e6d29ea6c19e34b30fb7d88b7081f869a03014f66fe06d62cc77d5a6ea88ed7a
         x-checker-data:
           type: pypi
           name: matplotlib
