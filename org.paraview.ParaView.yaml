@@ -252,8 +252,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.1.tar.gz
-        sha256: 38d844e8e321e1bb1bfc87118740b28ca10bfc8b69e754a0f5f22d49fecca0e4
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.2.tar.gz
+        sha256: 11257b2c30745bb45d4fde10127ecb0fb232a9f6c758385d21c6070814e7d7bb
         x-checker-data:
           type: anitya
           project-id: 881
