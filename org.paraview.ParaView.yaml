@@ -252,8 +252,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.1.tar.gz
-        sha256: 38d844e8e321e1bb1bfc87118740b28ca10bfc8b69e754a0f5f22d49fecca0e4
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.2.tar.gz
+        sha256: 11257b2c30745bb45d4fde10127ecb0fb232a9f6c758385d21c6070814e7d7bb
         x-checker-data:
           type: anitya
           project-id: 881
@@ -638,8 +638,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.12/ParaView-v5.12.1.tar.gz
-        sha256: 5b3c778dd6c77a75cdfd3fd514f279e08c902325a42ec49865e1f62f2671a969
+        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.0.tar.gz
+        sha256: c7943570b2f5b3c91034093ca5876bdb98acf180b5af7770da2b4bfb397436c2
         x-checker-data:
           type: anitya
           project-id: 9602
