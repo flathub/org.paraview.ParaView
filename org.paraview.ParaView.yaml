@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.5.2
-        commit: 187ef425f96b9ba091edce56e9491373c51b2a34
+        tag: 1.6.0
+        commit: 4c6c89ca7afa6244ba888ce08936acb470e126aa
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -252,8 +252,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.2.tar.gz
-        sha256: 11257b2c30745bb45d4fde10127ecb0fb232a9f6c758385d21c6070814e7d7bb
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.3.tar.gz
+        sha256: 2f5f33e4566273f5f8b6b5c32ff7771be0682abe255981b8d95ab1bb9f77ceb7
         x-checker-data:
           type: anitya
           project-id: 881
@@ -357,8 +357,8 @@ modules:
   - name: numactl
     sources:
       - type: archive
-        url: https://github.com/numactl/numactl/releases/download/v2.0.18/numactl-2.0.18.tar.gz
-        sha256: b4fc0956317680579992d7815bc43d0538960dc73aa1dd8ca7e3806e30bc1274
+        url: https://github.com/numactl/numactl/releases/download/v2.0.19/numactl-2.0.19.tar.gz
+        sha256: f2672a0381cb59196e9c246bf8bcc43d5568bc457700a697f1a1df762b9af884
         x-checker-data:
           type: anitya
           project-id: 2507
@@ -390,8 +390,8 @@ modules:
       - -DINSTALL_GTEST:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.1.tar.gz
-        sha256: ce776f3a451994f4979c6bd6d946917a749290a37b7433c0254759b02695ad85
+        url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.10.2.tar.gz
+        sha256: 14cf0bcd94772194bce0f2c0e74dba187965d1cffd12d45f801c32929158579e
         x-checker-data:
           type: anitya
           project-id: 220828
