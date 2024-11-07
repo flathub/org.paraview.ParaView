@@ -164,8 +164,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.13.0.tar.gz
-        sha256: 3ad5dd08954b39d113dc5b3f8a8dc6dc1fd5250032b7c491eb07aed5c94133e1
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2022.0.0.tar.gz
+        sha256: e8e89c9c345415b17b30a2db3095ba9d47647611662073f7fbf54ad48b7f3c2a
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -252,8 +252,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.3.tar.gz
-        sha256: 2f5f33e4566273f5f8b6b5c32ff7771be0682abe255981b8d95ab1bb9f77ceb7
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.0.tar.gz
+        sha256: 50bd2130e89a57e0742f7f26e5ba795e2a994b95aca2cdd5f27ee8f5ffd6c5c9
         x-checker-data:
           type: anitya
           project-id: 881
