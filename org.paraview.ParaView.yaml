@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/9e/d8/3d7f706c69e024d4287c1110d74f7dabac91d9843b99eadc90de9efc8869/matplotlib-3.9.2.tar.gz
-        sha256: 96ab43906269ca64a6366934106fa01534454a69e471b7bf3d79083981aaab92
+        url: https://files.pythonhosted.org/packages/75/9f/562ed484b11ac9f4bb4f9d2d7546954ec106a8c0f06cc755d6f63e519274/matplotlib-3.9.3.tar.gz
+        sha256: cd5dbbc8e25cad5f706845c4d100e2c8b34691b412b93717ce38d8ae803bcfa5
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -147,8 +147,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.5.tar.bz2
-        sha256: 6588d57c0a4bd299a24103f4e196051b29e8b55fbda49e11d5b3d32030a32776
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.6.tar.bz2
+        sha256: bd4183fcbc43477c254799b429df1a6e576c042e74a2d2f8b37d537b2ff98157
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -266,8 +266,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.5.0/proj-9.5.0.tar.gz
-            sha256: 659af0d558f7c5618c322fde2d3392910806faee8684687959339021fa207d99
+            url: https://github.com/OSGeo/PROJ/releases/download/9.5.1/proj-9.5.1.tar.gz
+            sha256: a8395f9696338ffd46b0feb603edbb730fad6746fba77753c77f7f997345e3d3
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -343,8 +343,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.23.tar.gz
-        sha256: 4c7cfe5d2310933e3a2e91f7db9531d80e32157143157df80f6e93267c29f414
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.24.tar.gz
+        sha256: 6c5232b4daf0b93fbc49dee45299ade2c2c16d44476700e7689af6b50c999f57
         x-checker-data:
           type: anitya
           project-id: 220847
