@@ -62,6 +62,22 @@ modules:
     # python3 flatpak-pip-generator setuptools_scm_git_archive tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
+  - name: pybind11
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DPYBIND11_INSTALL:BOOL=ON
+      - -DPYBIND11_TEST:BOOL=OFF
+      - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.11
+    sources:
+      - type: git
+        url: https://github.com/pybind/pybind11
+        tag: v2.13.6
+        commit: a2e59f0e7065404b44dfe92a28aca47ba1378dc4
+        x-checker-data:
+          type: git
+          tag-pattern: ^v?([\d.]+)$
+
   #Copy qhull and freetype to correct dir so matplotlib will not try to download it
   - name: python3-matplotlib
     buildsystem: simple
@@ -135,8 +151,8 @@ modules:
   - name: netcdf
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.9.2.tar.gz
-        sha256: bc104d101278c68b303359b3dc4192f81592ae8640f1aee486921138f7f88cb7
+        url: https://github.com/Unidata/netcdf-c/archive/v4.9.3.tar.gz
+        sha256: 990f46d49525d6ab5dc4249f8684c6deeaf54de6fec63a187e9fb382cc0ffdff
         x-checker-data:
           type: anitya
           project-id: 10354
