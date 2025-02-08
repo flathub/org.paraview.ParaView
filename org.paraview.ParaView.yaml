@@ -380,18 +380,18 @@ modules:
           stable-only: true
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
-  - name: MEMKIND
-    sources:
-      - type: archive
-        url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
-        sha256: ab366b20b5a87ea655483631fc762ba6eb59eb6c3a08652e643f1ee3f06a6a12
-        x-checker-data:
-          type: anitya
-          project-id: 220852
-          stable-only: true
-          url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
-      - type: patch
-        path: memkind_support_multi-threading_build.patch
+  # - name: MEMKIND
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
+  #       sha256: ab366b20b5a87ea655483631fc762ba6eb59eb6c3a08652e643f1ee3f06a6a12
+  #       x-checker-data:
+  #         type: anitya
+  #         project-id: 220852
+  #         stable-only: true
+  #         url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
+  #     - type: patch
+  #       path: memkind_support_multi-threading_build.patch
 
   - name: ADIOS2
     buildsystem: cmake
