@@ -440,7 +440,6 @@ modules:
       - type: archive
         url: https://gmsh.info/src/gmsh-4.13.1-source.tgz
         sha256: 77972145f431726026d50596a6a44fb3c1c95c21255218d66955806b86edbe8d
-        # support gmsh 4.11.1
         x-checker-data:
           type: anitya
           project-id: 9575
@@ -524,28 +523,42 @@ modules:
           url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
 
     # Use 7.7.2 https://discourse.paraview.org/t/how-to-build-paraview-with-occt-required-targets-tkstep-tkiges-tkxdestep-tkxdeiges/14677/3
-  - name: OCCT
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DBUILD_MODULE_Draw:BOOL=FALSE
-      - -DBUILD_MODULE_Visualization:BOOL=FALSE
-      - -DBUILD_MODULE_DataExchange:BOOL=TRUE
-      - -DBUILD_DOC_Overview:BOOL=FALSE
-      - -DBUILD_SAMPLES_QT:BOOL=OFF
-      - -DINSTALL_SAMPLES:BOOL=OFF
-      - -DINSTALL_TCL:BOOL=OFF
-      - -DINSTALL_TEST_CASES:BOOL=OFF
-      - -DINSTALL_TK:BOOL=OFF
-    sources:
-      - type: git
-        url: https://github.com/Open-Cascade-SAS/OCCT.git
-        tag: V7_7_2
-        commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
+  # - name: OCCT
+  #   buildsystem: cmake-ninja
+  #   config-opts:
+  #     - -DBUILD_MODULE_Draw:BOOL=FALSE
+  #     - -DBUILD_MODULE_Visualization:BOOL=FALSE
+  #     - -DBUILD_MODULE_DataExchange:BOOL=TRUE
+  #     - -DBUILD_DOC_Overview:BOOL=FALSE
+  #     - -DBUILD_SAMPLES_QT:BOOL=OFF
+  #     - -DINSTALL_SAMPLES:BOOL=OFF
+  #     - -DINSTALL_TCL:BOOL=OFF
+  #     - -DINSTALL_TEST_CASES:BOOL=OFF
+  #     - -DINSTALL_TK:BOOL=OFF
+  #   sources:
+  #     - type: git
+  #       url: https://github.com/Open-Cascade-SAS/OCCT.git
+  #       tag: V7_7_2
+  #       commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
         # x-checker-data:
         #   type: git
         #   tag-pattern: ^(V[\d._]+)$
 
-    # Paraview need 32GB of memory to build
+  - name: opencascade
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DUSE_VTK=ON
+      - -DBUILD_DOC_Overview=OFF
+      - -D3RDPARTY_VTK_INCLUDE_DIR=/app/include/vtk-9.4/
+    sources:
+      - type: git
+        url: https://github.com/Open-Cascade-SAS/OCCT
+        tag: V7_8_1
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
+      - type: patch
+        path: freetype_use_unsigned_point_and_contour.patch
+
   - name: Paraview
     buildsystem: cmake-ninja
     builddir: true
