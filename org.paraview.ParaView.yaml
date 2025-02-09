@@ -430,16 +430,12 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
-      - -DCMAKE_CXX_STANDARD:STRING=14
-      - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DENABLE_BUILD_LIB=ON
       - -DENABLE_BUILD_SHARED=ON
       - -DENABLE_BUILD_DYNAMIC=ON
+      - -DENABLE_METIS=OFF #dunno why cannot compile
       - -DENABLE_BLAS_LAPACK=ON
-      - -DENABLE_POST=1
-      - -DENABLE_PARSER=1
       - -DENABLE_MPI:BOOL=ON
-      - -DENABLE_PRIVATE_API:BOOL=ON
     sources:
       - type: archive
         url: https://gmsh.info/src/gmsh-4.13.1-source.tgz
