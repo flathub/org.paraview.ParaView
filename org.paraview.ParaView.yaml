@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.6.0
-        commit: 4c6c89ca7afa6244ba888ce08936acb470e126aa
+        tag: 1.7.0
+        commit: 897b6fcdf9adfa87fe60f420e1b483f0f49af7a3
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -52,8 +52,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.28.tar.gz
-        sha256: f1003466ad074e9b0c8d421a204121100b0751c96fc6fcf3d1456bd12f8a00a1
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.29.tar.gz
+        sha256: 38240eee1b29e2bde47ebb5d61160207dc68668a54cac62c076bb5032013b1eb
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/75/9f/562ed484b11ac9f4bb4f9d2d7546954ec106a8c0f06cc755d6f63e519274/matplotlib-3.9.3.tar.gz
-        sha256: cd5dbbc8e25cad5f706845c4d100e2c8b34691b412b93717ce38d8ae803bcfa5
+        url: https://files.pythonhosted.org/packages/68/dd/fa2e1a45fce2d09f4aea3cee169760e672c8262325aa5796c49d543dc7e6/matplotlib-3.10.0.tar.gz
+        sha256: b886d02a581b96704c9d1ffe55709e49b4d2d52709ccebc4be42db856e511278
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -110,8 +110,8 @@ modules:
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1_14_3.tar.gz
-        sha256: df5ee33c74d5efb59738075ef96f4201588e1f1eeb233f047ac7fd1072dee1f6
+        url: https://github.com/HDFGroup/hdf5/archive/refs/tags/hdf5-1.14.6.tar.gz
+        sha256: 6df53f84376d87e96eeb255703e3b1a348fc08a48e06e37053f1bfb379970189
         x-checker-data:
           type: anitya
           project-id: 1303
@@ -136,8 +136,8 @@ modules:
   - name: netcdf
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.9.2.tar.gz
-        sha256: bc104d101278c68b303359b3dc4192f81592ae8640f1aee486921138f7f88cb7
+        url: https://github.com/Unidata/netcdf-c/archive/v4.9.3.tar.gz
+        sha256: 990f46d49525d6ab5dc4249f8684c6deeaf54de6fec63a187e9fb382cc0ffdff
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -310,8 +310,8 @@ modules:
       - -DCBLAS=ON
     sources:
       - type: archive
-        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz
-        sha256: eac9570f8e0ad6f30ce4b963f4f033f0f643e7c3912fc9ee6cd99120675ad48b
+        url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.1.tar.gz
+        sha256: 2ca6407a001a474d4d4d35f3a61550156050c48016d949f0da0529c0aa052422
         x-checker-data:
           type: anitya
           project-id: 1534
@@ -504,8 +504,8 @@ modules:
       - -DUSE_HDF5:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.7.tar.gz
-        sha256: 6de0b97cd14dcfb7b2d0d788c951b6da3c5b336c47322ea881d64f18575c33da
+        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.8.tar.gz
+        sha256: ba1f34544608ef7d3f68cafea946ec9cc84792ddf9cda3e8d5590821df71f6c6
         x-checker-data:
           type: anitya
           project-id: 13980
@@ -638,8 +638,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.1.tar.gz
-        sha256: 2225de08ec3cb7ccf06519f7b7d488ba6cd1691a4d26608b003b077539d5ba16
+        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.2.tar.gz
+        sha256: 9167c7c5d3656e36b160a22ed7a4c99b46fc96498caf5805484089856e93636f
         x-checker-data:
           type: anitya
           project-id: 9602
