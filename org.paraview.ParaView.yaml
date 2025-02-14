@@ -544,13 +544,9 @@ modules:
         #   type: git
         #   tag-pattern: ^(V[\d._]+)$
 
-  - name: opencascade
+  - name: OCCT
     buildsystem: cmake-ninja
     builddir: true
-    config-opts:
-      - -DUSE_VTK=ON
-      - -DBUILD_DOC_Overview=OFF
-      - -D3RDPARTY_VTK_INCLUDE_DIR=/app/include/vtk-9.4/
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
