@@ -610,7 +610,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_FlipBookPlugin:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GMVReader:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GeodesicMeasurement:BOOL=ON
-      - -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22622
+      - -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=ON #https://gitlab.kitware.com/paraview/paraview/-/issues/22622
       - -DPARAVIEW_PLUGIN_ENABLE_GmshIO:BOOL=ON
       - -DPARAVIEW_PLUGIN_ENABLE_GmshReader:BOOL=OFF #https://gitlab.kitware.com/paraview/paraview/-/issues/22651
       - -DPARAVIEW_PLUGIN_ENABLE_HyperTreeGridADR:BOOL=ON
@@ -640,7 +640,7 @@ modules:
       - -DPARAVIEW_PLUGIN_ENABLE_zSpace:BOOL=OFF
       - -DPARAVIEW_USE_CUDA:BOOL=OFF
       - -DPARAVIEW_USE_HIP:BOOL=OFF
-      - -DPARAVIEW_USE_MEMKIND:BOOL=ON
+      - -DPARAVIEW_USE_MEMKIND:BOOL=OFF #memkind has stop development
       - -DPARAVIEW_USE_MPI:BOOL=ON
       - -DPARAVIEW_USE_PYTHON:BOOL=ON
       - -DPARAVIEW_USE_QT:BOOL=ON
