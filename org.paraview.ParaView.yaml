@@ -62,22 +62,6 @@ modules:
     # python3 flatpak-pip-generator setuptools_scm_git_archive flit-core tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
-  - name: pybind11
-    buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DPYBIND11_INSTALL:BOOL=ON
-      - -DPYBIND11_TEST:BOOL=OFF
-      - -DPYTHON_INCLUDE_DIRS=/usr/include/python3.11
-    sources:
-      - type: git
-        url: https://github.com/pybind/pybind11
-        tag: v2.13.6
-        commit: a2e59f0e7065404b44dfe92a28aca47ba1378dc4
-        x-checker-data:
-          type: git
-          tag-pattern: ^v?([\d.]+)$
-
   #Copy qhull and freetype to correct dir so matplotlib will not try to download it
   - name: python3-matplotlib
     buildsystem: simple
@@ -380,19 +364,6 @@ modules:
           stable-only: true
           url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
-  # - name: MEMKIND
-  #   sources:
-  #     - type: archive
-  #       url: https://github.com/memkind/memkind/archive/refs/tags/v1.14.0.tar.gz
-  #       sha256: ab366b20b5a87ea655483631fc762ba6eb59eb6c3a08652e643f1ee3f06a6a12
-  #       x-checker-data:
-  #         type: anitya
-  #         project-id: 220852
-  #         stable-only: true
-  #         url-template: https://github.com/memkind/memkind/archive/refs/tags/v${version}.tar.gz
-  #     - type: patch
-  #       path: memkind_support_multi-threading_build.patch
-
   - name: ADIOS2
     buildsystem: cmake
     builddir: true
@@ -475,7 +446,6 @@ modules:
     builddir: true
     config-opts:
       - -DWITH_TESTS=OFF
-      # - -DCMAKE_CXX_STANDARD:STRING=14
       - -DWITH_TESTS:BOOL=OFF
       - -DWITH_LZMA:BOOL=OFF
       - -DWITH_ZLIB:BOOL=ON
@@ -522,28 +492,6 @@ modules:
           stable-only: true
           url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
 
-    # Use 7.7.2 https://discourse.paraview.org/t/how-to-build-paraview-with-occt-required-targets-tkstep-tkiges-tkxdestep-tkxdeiges/14677/3
-  # - name: OCCT
-  #   buildsystem: cmake-ninja
-  #   config-opts:
-  #     - -DBUILD_MODULE_Draw:BOOL=FALSE
-  #     - -DBUILD_MODULE_Visualization:BOOL=FALSE
-  #     - -DBUILD_MODULE_DataExchange:BOOL=TRUE
-  #     - -DBUILD_DOC_Overview:BOOL=FALSE
-  #     - -DBUILD_SAMPLES_QT:BOOL=OFF
-  #     - -DINSTALL_SAMPLES:BOOL=OFF
-  #     - -DINSTALL_TCL:BOOL=OFF
-  #     - -DINSTALL_TEST_CASES:BOOL=OFF
-  #     - -DINSTALL_TK:BOOL=OFF
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/Open-Cascade-SAS/OCCT.git
-  #       tag: V7_7_2
-  #       commit: cec1ecd0c9f3b3d2572c47035d11949e8dfa85e2
-        # x-checker-data:
-        #   type: git
-        #   tag-pattern: ^(V[\d._]+)$
-
   - name: OCCT
     buildsystem: cmake-ninja
     builddir: true
@@ -562,7 +510,6 @@ modules:
       cflags: -I/app/include/eigen3
       cxxflags: -I/app/include/eigen3
     config-opts:
-      # - -DCMAKE_CXX_STANDARD:STRING=14
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_REMOVE:BOOL=OFF
