@@ -140,8 +140,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.12.1.tar.gz
-        sha256: ee8d25e6cc6275779a2727258bcce9f2296a58b6e5ccf4cdc467a3c3a97b56b2
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.13.0.tar.gz
+        sha256: d16d0f02e24aed3ba8eb59e406aa44a24f6295c4ad7d85ad4ec6bc0ea176a24e
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -162,8 +162,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.6.tar.bz2
-        sha256: bd4183fcbc43477c254799b429df1a6e576c042e74a2d2f8b37d537b2ff98157
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.7.tar.bz2
+        sha256: 119f2009936a403334d0df3c0d74d5595a32d99497f9b1d41e90019fee2fc2dd
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -267,8 +267,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.1.tar.gz
-        sha256: e630367e633eafbc46bca427ca7b1e7b7264ad01fd62cbff460ee1539720b60a
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.2.tar.gz
+        sha256: e4033fdf63d54ae8d754b694d877f965e1381d5d677286431833f1d580ad6d75
         x-checker-data:
           type: anitya
           project-id: 881
@@ -293,8 +293,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.7.3.tar.gz
-        sha256: ba23a3a35980ed3de916e125c739251f8e3266be07540200125a307d7cf5a704
+        url: https://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.7.4.tar.gz
+        sha256: c598d04fdf2ba25c4352844dafa81dde3f7fd968daa7ad131228cd91e9d3dc47
         x-checker-data:
           type: anitya
           project-id: 21361
@@ -562,7 +562,7 @@ modules:
       cflags: -I/app/include/eigen3
       cxxflags: -I/app/include/eigen3
     config-opts:
-      - -DCMAKE_CXX_STANDARD:STRING=14
+      # - -DCMAKE_CXX_STANDARD:STRING=14
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_BUILD_LEGACY_REMOVE:BOOL=OFF
@@ -594,7 +594,6 @@ modules:
       - -DPARAVIEW_ENABLE_XDMF3:BOOL=ON
       - -DPARAVIEW_GENERATE_SPDX:BOOL=OFF
       - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON
-      - -DPARAVIEW_LOGGING_TIME_PRECISION:STRING=3
       - -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
       - -DPARAVIEW_PLUGIN_DISABLE_XML_DOCUMENTATION:BOOL=OFF
       - -DPARAVIEW_PLUGIN_ENABLE_AcceleratedAlgorithms:BOOL=ON
@@ -667,6 +666,8 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
+      - type: patch
+        path: fix_linkerflag_build_fail.patch #https://gitlab.kitware.com/paraview/paraview/-/issues/22797
       # - type: git
       #   url: https://gitlab.kitware.com/vtk/MomentInvariants.git
       #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
