@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/68/dd/fa2e1a45fce2d09f4aea3cee169760e672c8262325aa5796c49d543dc7e6/matplotlib-3.10.0.tar.gz
-        sha256: b886d02a581b96704c9d1ffe55709e49b4d2d52709ccebc4be42db856e511278
+        url: https://files.pythonhosted.org/packages/2f/08/b89867ecea2e305f408fbb417139a8dd941ecf7b23a2e02157c36da546f0/matplotlib-3.10.1.tar.gz
+        sha256: e8d2d0e3881b129268585bf4765ad3ee73a4591d77b9a18c214ac7e3a79fb2ba
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -265,8 +265,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.5.1/proj-9.5.1.tar.gz
-            sha256: a8395f9696338ffd46b0feb603edbb730fad6746fba77753c77f7f997345e3d3
+            url: https://github.com/OSGeo/PROJ/releases/download/9.6.0/proj-9.6.0.tar.gz
+            sha256: d8cae521c311c39513193657e75767f7cfbf2f91bd202fcd4a200028d3b57e14
             x-checker-data:
               type: anitya
               project-id: 9463
