@@ -604,8 +604,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.2.tar.gz
-        sha256: 9167c7c5d3656e36b160a22ed7a4c99b46fc96498caf5805484089856e93636f
+        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.3.tar.gz
+        sha256: 9ef85c021dff5e52f34c391878b52b547319524c04e41443d58f499f90d3568a
         x-checker-data:
           type: anitya
           project-id: 9602
