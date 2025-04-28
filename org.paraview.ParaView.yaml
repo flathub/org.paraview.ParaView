@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.7.2
-        commit: 082917b40c8416bde925c64d22a2e60b2c059120
+        tag: 1.8.0
+        commit: 39be44fed2938ad03f8e2bc183401a121387bf50
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -93,8 +93,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz
-        sha256: f55c340aa49763b1925ccf02b2e83f35fdcf634c9d5164a2acb87540173c741d
+        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz
+        sha256: 3621533e820dcab1e8012afd583c0c73cf0f77694952b81352bf38c1488f9cb4
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -251,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.2.tar.gz
-        sha256: e4033fdf63d54ae8d754b694d877f965e1381d5d677286431833f1d580ad6d75
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.3.tar.gz
+        sha256: b88b570116639b25c9a04b75b0975a1881f53835e68e87daac1f263b5f3ebf68
         x-checker-data:
           type: anitya
           project-id: 881
