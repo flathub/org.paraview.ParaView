@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.7.2
-        commit: 082917b40c8416bde925c64d22a2e60b2c059120
+        tag: 1.8.0
+        commit: 39be44fed2938ad03f8e2bc183401a121387bf50
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/2f/08/b89867ecea2e305f408fbb417139a8dd941ecf7b23a2e02157c36da546f0/matplotlib-3.10.1.tar.gz
-        sha256: e8d2d0e3881b129268585bf4765ad3ee73a4591d77b9a18c214ac7e3a79fb2ba
+        url: https://files.pythonhosted.org/packages/26/91/d49359a21893183ed2a5b6c76bec40e0b1dcbf8ca148f864d134897cfc75/matplotlib-3.10.3.tar.gz
+        sha256: 2f82d2c5bb7ae93aaaa4cd42aca65d76ce6376f83304fa3a630b569aca274df0
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -93,8 +93,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz
-        sha256: f55c340aa49763b1925ccf02b2e83f35fdcf634c9d5164a2acb87540173c741d
+        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz
+        sha256: 3621533e820dcab1e8012afd583c0c73cf0f77694952b81352bf38c1488f9cb4
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -251,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.2.tar.gz
-        sha256: e4033fdf63d54ae8d754b694d877f965e1381d5d677286431833f1d580ad6d75
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.10.3.tar.gz
+        sha256: b88b570116639b25c9a04b75b0975a1881f53835e68e87daac1f263b5f3ebf68
         x-checker-data:
           type: anitya
           project-id: 881
