@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.8.1
-        commit: bf17c66f63ed97566516057c2bf35131d1ef240d
+        tag: 1.8.2
+        commit: 5a82ea0501736a666ca9cc003ea0774f8219fd65
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -124,8 +124,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.13.0.tar.gz
-        sha256: d16d0f02e24aed3ba8eb59e406aa44a24f6295c4ad7d85ad4ec6bc0ea176a24e
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.14.0.tar.gz
+        sha256: 4937c1cbef049fd28973494def11084b70c1d218c6898a9d8cfb471c84010a99
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -265,8 +265,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.6.0/proj-9.6.0.tar.gz
-            sha256: d8cae521c311c39513193657e75767f7cfbf2f91bd202fcd4a200028d3b57e14
+            url: https://github.com/OSGeo/PROJ/releases/download/9.6.2/proj-9.6.2.tar.gz
+            sha256: 53d0cafaee3bb2390264a38668ed31d90787de05e71378ad7a8f35bb34c575d1
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -342,8 +342,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.24.tar.gz
-        sha256: 6c5232b4daf0b93fbc49dee45299ade2c2c16d44476700e7689af6b50c999f57
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.25.1.tar.gz
+        sha256: 10ab40ffa3240219bed0884ca7808655644adc25a8195a8cd1484318c267b9f7
         x-checker-data:
           type: anitya
           project-id: 220847
