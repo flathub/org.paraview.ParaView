@@ -52,8 +52,8 @@ modules:
       - PREFIX=/app
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.29.tar.gz
-        sha256: 38240eee1b29e2bde47ebb5d61160207dc68668a54cac62c076bb5032013b1eb
+        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.30.tar.gz
+        sha256: 27342cff518646afb4c2b976d809102e368957974c250a25ccc965e53063c95d
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -615,7 +615,3 @@ modules:
         path: fix_appdata_file.patch
       - type: patch
         path: fix_linkerflag_build_fail.patch #https://gitlab.kitware.com/paraview/paraview/-/issues/22797
-      # - type: git
-      #   url: https://gitlab.kitware.com/vtk/MomentInvariants.git
-      #   commit: 3fb4824d1f5e1f95917e67a3fb4b8a1546ddd4ae
-      #   dest: VTK/Remote/MomentInvariants
