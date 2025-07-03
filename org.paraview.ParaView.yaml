@@ -163,8 +163,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2022.1.0.tar.gz
-        sha256: ed067603ece0dc832d2881ba5c516625ac2522c665d95f767ef6304e34f961b5
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2022.2.0.tar.gz
+        sha256: f0f78001c8c8edb4bddc3d4c5ee7428d56ae313254158ad1eec49eced57f6a5b
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -251,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.0.tar.gz
-        sha256: 6534cf159ed68ba6de313603b3a0ccc935d21aa906a993e544fabf5240b47d22
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.1.tar.gz
+        sha256: e70506f1a79a74ec2947afbbd5370ff0ef14ae774c37510bad0f1220edc2677e
         x-checker-data:
           type: anitya
           project-id: 881
@@ -409,8 +409,8 @@ modules:
       - -DENABLE_MPI:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.13.1-source.tgz
-        sha256: 77972145f431726026d50596a6a44fb3c1c95c21255218d66955806b86edbe8d
+        url: https://gmsh.info/src/gmsh-4.14.0-source.tgz
+        sha256: db4d7da2062e9a4356a820832138ab99f97af6388bfeb21599a2eadfb0b76a28
         x-checker-data:
           type: anitya
           project-id: 9575
