@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.8.2
-        commit: 5a82ea0501736a666ca9cc003ea0774f8219fd65
+        tag: 1.8.3
+        commit: 872ae45f7f088524676eccf26959f0fd6dfa1b13
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -251,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.1.tar.gz
-        sha256: e70506f1a79a74ec2947afbbd5370ff0ef14ae774c37510bad0f1220edc2677e
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.3.tar.gz
+        sha256: 0feaf9f1db6dae14dc44381aad3e524fd458cd1417b62e45b8ae87862f855d9e
         x-checker-data:
           type: anitya
           project-id: 881
