@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.8.2
-        commit: 5a82ea0501736a666ca9cc003ea0774f8219fd65
+        tag: 1.8.3
+        commit: 872ae45f7f088524676eccf26959f0fd6dfa1b13
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/26/91/d49359a21893183ed2a5b6c76bec40e0b1dcbf8ca148f864d134897cfc75/matplotlib-3.10.3.tar.gz
-        sha256: 2f82d2c5bb7ae93aaaa4cd42aca65d76ce6376f83304fa3a630b569aca274df0
+        url: https://files.pythonhosted.org/packages/43/91/f2939bb60b7ebf12478b030e0d7f340247390f402b3b189616aad790c366/matplotlib-3.10.5.tar.gz
+        sha256: 352ed6ccfb7998a00881692f38b4ca083c691d3e275b4145423704c34c909076
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -251,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.1.tar.gz
-        sha256: e70506f1a79a74ec2947afbbd5370ff0ef14ae774c37510bad0f1220edc2677e
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.3.tar.gz
+        sha256: 0feaf9f1db6dae14dc44381aad3e524fd458cd1417b62e45b8ae87862f855d9e
         x-checker-data:
           type: anitya
           project-id: 881
@@ -471,8 +471,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/Imath.git
-        tag: v3.1.12
-        commit: c0396a055a01bc537d32f435aee11a9b7ed6f0b5
+        tag: v3.2.0
+        commit: 9ff104bd3a40b8c3f811fdbd3f217c32d45e4a11
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
@@ -604,8 +604,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.3.tar.gz
-        sha256: 9ef85c021dff5e52f34c391878b52b547319524c04e41443d58f499f90d3568a
+        url: https://www.paraview.org/files/v6.0/ParaView-v6.0.0.tar.gz
+        sha256: b89d83d0ad7123c1ce33cba2e6a610b646877ef88c6e96026ac4fe9612665978
         x-checker-data:
           type: anitya
           project-id: 9602
