@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Sdk
 sdk: org.kde.Sdk
-runtime-version: 5.15-24.08
+runtime-version: 6.9
 base: io.qt.qtwebengine.BaseApp
-base-version: 5.15-24.08
+base-version: 6.9
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -604,8 +604,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v5.13/ParaView-v5.13.3.tar.gz
-        sha256: 9ef85c021dff5e52f34c391878b52b547319524c04e41443d58f499f90d3568a
+        url: https://www.paraview.org/files/v6.0/ParaView-v6.0.1.tar.gz
+        sha256: 4104a210677026923e47470cc0b3ff910de5252e73d7db2d934b85a11036b2d3
         x-checker-data:
           type: anitya
           project-id: 9602
@@ -613,5 +613,3 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
-      - type: patch
-        path: fix_linkerflag_build_fail.patch #https://gitlab.kitware.com/paraview/paraview/-/issues/22797
