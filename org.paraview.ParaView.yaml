@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.8.2
-        commit: 5a82ea0501736a666ca9cc003ea0774f8219fd65
+        tag: 1.9.1
+        commit: 751b09390996163348612f0b106114256305ee40
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -80,8 +80,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/26/91/d49359a21893183ed2a5b6c76bec40e0b1dcbf8ca148f864d134897cfc75/matplotlib-3.10.3.tar.gz
-        sha256: 2f82d2c5bb7ae93aaaa4cd42aca65d76ce6376f83304fa3a630b569aca274df0
+        url: https://files.pythonhosted.org/packages/ae/e2/d2d5295be2f44c678ebaf3544ba32d20c1f9ef08c49fe47f496180e1db15/matplotlib-3.10.7.tar.gz
+        sha256: a06ba7e2a2ef9131c79c49e63dad355d2d878413a0376c1727c8b9335ff731c7
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -93,8 +93,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz
-        sha256: 3621533e820dcab1e8012afd583c0c73cf0f77694952b81352bf38c1488f9cb4
+        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.gz
+        sha256: 9de758db755e8330a01d995b0a24d09798048400ac25c03fc5ea9be364b13c93
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -124,8 +124,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.14.0.tar.gz
-        sha256: 4937c1cbef049fd28973494def11084b70c1d218c6898a9d8cfb471c84010a99
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.15.1.tar.gz
+        sha256: 55a03d8fc1db535b243cccda3e6237844da25a17a2df3bc0ea9db6fbbbd7bf2b
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -146,8 +146,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.8.tar.bz2
-        sha256: 53131e1a57e7270f645707f8b0b65ba56048f5b5ac3f68faabed3eb0d710e449
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.8amzn1.tar.bz2
+        sha256: 23b8a12c1789e3f61c1c26f46ac558f3abb20e0bb2195e3dc540b0cf0ab0fba2
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -251,8 +251,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.1.tar.gz
-        sha256: e70506f1a79a74ec2947afbbd5370ff0ef14ae774c37510bad0f1220edc2677e
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.11.4.tar.gz
+        sha256: 0c9595f0bb68af73bd9beddb86191ab6cb85ffae69469d5ea5dcf0323a70df4f
         x-checker-data:
           type: anitya
           project-id: 881
@@ -265,8 +265,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.6.2/proj-9.6.2.tar.gz
-            sha256: 53d0cafaee3bb2390264a38668ed31d90787de05e71378ad7a8f35bb34c575d1
+            url: https://github.com/OSGeo/PROJ/releases/download/9.7.0/proj-9.7.0.tar.gz
+            sha256: 65705ecd987b50bf63e15820ce6bd17c042feaabda981249831bd230f6689709
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -322,8 +322,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
-        sha256: b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
+        url: https://gitlab.com/libeigen/eigen/-/archive/5.0.0/eigen-5.0.0.tar.bz2
+        sha256: bdca0ec740fb83be21fe038699923f4c589ead9ab904f4058a9c97752e60d50b
         x-checker-data:
           type: anitya
           project-id: 13751
@@ -409,8 +409,8 @@ modules:
       - -DENABLE_MPI:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.14.0-source.tgz
-        sha256: db4d7da2062e9a4356a820832138ab99f97af6388bfeb21599a2eadfb0b76a28
+        url: https://gmsh.info/src/gmsh-4.15.0-source.tgz
+        sha256: abb2632715bd7d0130ded7144fd6263635cd7dea883b8df61ba4da58ce6a1dfe
         x-checker-data:
           type: anitya
           project-id: 9575
@@ -471,8 +471,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/Imath.git
-        tag: v3.1.12
-        commit: c0396a055a01bc537d32f435aee11a9b7ed6f0b5
+        tag: v3.2.2
+        commit: 1e480d11cb98b032a2dece9b9a8730512effc7f6
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
@@ -484,8 +484,8 @@ modules:
       - -DUSE_HDF5:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.8.tar.gz
-        sha256: ba1f34544608ef7d3f68cafea946ec9cc84792ddf9cda3e8d5590821df71f6c6
+        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.9.tar.gz
+        sha256: 8c59c10813feee917d262c71af77d6fa3db1acaf7c5fecfd4104167077403955
         x-checker-data:
           type: anitya
           project-id: 13980
