@@ -50,14 +50,23 @@ modules:
       - USE_OPENMP=0
     make-install-args:
       - PREFIX=/app
+    cleanup:
+      - /bin
+      - /include
+      - /lib/cmake
+      - /lib/debug
+      - /lib/*.a
+      - /lib/*.la
+      - /lib/pkgconfig
+      - /share/man
     sources:
       - type: archive
-        url: https://github.com/xianyi/OpenBLAS/archive/v0.3.30.tar.gz
-        sha256: 27342cff518646afb4c2b976d809102e368957974c250a25ccc965e53063c95d
+        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.30/OpenBLAS-0.3.30.tar.gz
+        sha512: c726ced2d3e6ebd3ddcd0b13c255bb43fae8c12d2aec15e9ef992b0bc7099996c02cd284ccaaa7b5fac3f23f280b098063dd60f521d97a68dc183ab192fcccdb
         x-checker-data:
           type: anitya
           project-id: 2540
-          url-template: https://github.com/xianyi/OpenBLAS/archive/v$version.tar.gz
+          url-template: https://github.com/OpenMathLib/OpenBLAS/archive/v$version.tar.gz
 
     # python3 flatpak-pip-generator setuptools_scm_git_archive flit-core tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
