@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.9.1
-        commit: 751b09390996163348612f0b106114256305ee40
+        tag: 1.9.2
+        commit: d11b8f26f372c844fcd24a82fa745244bb13c6e0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -273,8 +273,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.7.0/proj-9.7.0.tar.gz
-            sha256: 65705ecd987b50bf63e15820ce6bd17c042feaabda981249831bd230f6689709
+            url: https://github.com/OSGeo/PROJ/releases/download/9.7.1/proj-9.7.1.tar.gz
+            sha256: 6c097dc803c561929cdfcc46e4bf9945ea977611fb31493ad14e88edaeae260f
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -350,8 +350,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.25.1.tar.gz
-        sha256: 10ab40ffa3240219bed0884ca7808655644adc25a8195a8cd1484318c267b9f7
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.26.tar.gz
+        sha256: 624bd45f89ab3afe1931cb07f8c5398e6983faa40a1d92a81b04006f45b66147
         x-checker-data:
           type: anitya
           project-id: 220847
