@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.9.1
-        commit: 751b09390996163348612f0b106114256305ee40
+        tag: 1.10.0
+        commit: 415917b7c0d4759f73d0fe6564cbdda7fbf1eb9a
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -101,8 +101,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.gz
-        sha256: 9de758db755e8330a01d995b0a24d09798048400ac25c03fc5ea9be364b13c93
+        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.gz
+        sha256: 5e93d582aff26868d581a52ae78c7d8edf3f3064742c6e77901a1f18a437eea9
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -273,8 +273,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.7.0/proj-9.7.0.tar.gz
-            sha256: 65705ecd987b50bf63e15820ce6bd17c042feaabda981249831bd230f6689709
+            url: https://github.com/OSGeo/PROJ/releases/download/9.7.1/proj-9.7.1.tar.gz
+            sha256: 6c097dc803c561929cdfcc46e4bf9945ea977611fb31493ad14e88edaeae260f
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -350,8 +350,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.25.1.tar.gz
-        sha256: 10ab40ffa3240219bed0884ca7808655644adc25a8195a8cd1484318c267b9f7
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.26.tar.gz
+        sha256: 624bd45f89ab3afe1931cb07f8c5398e6983faa40a1d92a81b04006f45b66147
         x-checker-data:
           type: anitya
           project-id: 220847
