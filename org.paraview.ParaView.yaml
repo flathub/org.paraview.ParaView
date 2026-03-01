@@ -186,15 +186,15 @@ modules:
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/embree/embree/archive/refs/tags/v3.13.1.tar.gz
-        sha256: 00dbd852f19ae2b95f5106dd055ca4b304486436ced0ccf842aec4e38a4df425
+        url: https://github.com/embree/embree/archive/refs/tags/v4.4.0.tar.gz
+        sha256: acb517b0ea0f4b442235d5331b69f96192c28da6aca5d5dde0cbe40799638d5c
     modules:
       - name: extra-cmake-modules
         buildsystem: cmake-ninja
         sources:
           - type: git
             url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-            tag: v5.100.0
+            tag: v6.23.0
         # Attempt to build from source, but ISPC need glic-32bit which make things complicated.
         # OSPRay need ISPC 1.9.2.
       - name: ISPC
@@ -203,20 +203,20 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
-            url: https://github.com/ispc/ispc/releases/download/v1.16.0/ispc-v1.16.0-linux.tar.gz
-            sha256: 71a20e75ee1b952d8096a842368244111a0a727454d4a42043de10eadf02e740
+            url: https://github.com/ispc/ispc/releases/download/v1.18.0/ispc-v1.18.0-linux.tar.gz
+            sha256: 6c379bb97962e9de7d24fd48b3f7e647dc42be898e9d187948220268c646b692
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
-          - -DGLFW_USE_WAYLAND:BOOL=ON
+          - -DGLFW_BUILD_WAYLAND:BOOL=ON
           - -DBUILD_SHARED_LIBS:BOOL=ON
           - -DGLFW_BUILD_EXAMPLES:BOOL=OFF
           - -DGLFW_BUILD_TESTS:BOOL=OFF
           - -DGLFW_BUILD_DOCS:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip
-            sha256: bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd
+            url: https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.zip
+            sha256: b5ec004b2712fd08e8861dc271428f048775200a2df719ccf575143ba749a3e9
 
   - name: OSPRay
     buildsystem: cmake
@@ -238,8 +238,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.9.0.tar.gz
-            sha256: b68aa02ef44c9e35c168f826a14802bb5cc6a9d769ba4b64b2c54f347a14aa53
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.15.2.tar.gz
+            sha256: 9128642e5187b963385dbf1655f3b143d3ef46310cc2e27114d220b347d0e2f2
       - name: openvkl
         buildsystem: cmake
         builddir: true
@@ -247,10 +247,11 @@ modules:
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
           - -DBUILD_TESTING:BOOL=OFF
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         sources:
           - type: archive
-            url: https://github.com/openvkl/openvkl/archive/refs/tags/v1.2.0.tar.gz
-            sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v2.0.1.tar.gz
+            sha256: 0c7faa9582a93e93767afdb15a6c9c9ba154af7ee83a6b553705797be5f8af62
 
   - name: GDAL
     buildsystem: cmake-ninja
