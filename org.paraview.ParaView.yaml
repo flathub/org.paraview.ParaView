@@ -132,8 +132,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.15.1.tar.gz
-        sha256: 55a03d8fc1db535b243cccda3e6237844da25a17a2df3bc0ea9db6fbbbd7bf2b
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.16.0.tar.gz
+        sha256: 9c3aa5e1fc0c33ae8501a17987af2f986c8ba3ade25da66c78738a5abefea133
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -273,8 +273,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.7.1/proj-9.7.1.tar.gz
-            sha256: 6c097dc803c561929cdfcc46e4bf9945ea977611fb31493ad14e88edaeae260f
+            url: https://github.com/OSGeo/PROJ/releases/download/9.8.0/proj-9.8.0.tar.gz
+            sha256: a8b493b00cf4d08b712b9e063ed5e53e2be90fcde46770e9dbd773341f378f43
             x-checker-data:
               type: anitya
               project-id: 9463
