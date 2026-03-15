@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.10.1
-        commit: 33eb51948be7f15890369f798f150a9f6c21c710
+        tag: 1.10.2
+        commit: d4b7efc83b925cbe0f35ce0972baadaad9147431
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -132,8 +132,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.15.1.tar.gz
-        sha256: 55a03d8fc1db535b243cccda3e6237844da25a17a2df3bc0ea9db6fbbbd7bf2b
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.16.0.tar.gz
+        sha256: 9c3aa5e1fc0c33ae8501a17987af2f986c8ba3ade25da66c78738a5abefea133
         x-checker-data:
           type: anitya
           project-id: 6409
