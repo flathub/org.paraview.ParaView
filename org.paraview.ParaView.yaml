@@ -34,8 +34,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.10.1
-        commit: 33eb51948be7f15890369f798f150a9f6c21c710
+        tag: 1.10.2
+        commit: d4b7efc83b925cbe0f35ce0972baadaad9147431
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -60,8 +60,8 @@ modules:
       - /share/man
     sources:
       - type: archive
-        url: https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.31.tar.gz
-        sha512: 703b84c476c148a0922a04b1c33c9c4c452f478d608d93e59204b8f0f2c516344301ff0a4dbb3750a2449db0d28cc2df001c295898e859b41ecb8381f9c2eab8
+        url: https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.32.tar.gz
+        sha512: 5aac0c41a78bca872439bcde67445dd12de27d9efd0d9db51e6e3a31dfa2d0f6a6c5ee1c1de2bf7ad2f89082259e67f27ddaeafb0553bb5f2ca9a90c8a3dde29
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -132,8 +132,8 @@ modules:
         --no-build-isolation
     sources:
       - type: archive
-        url: https://github.com/h5py/h5py/archive/refs/tags/3.15.1.tar.gz
-        sha256: 55a03d8fc1db535b243cccda3e6237844da25a17a2df3bc0ea9db6fbbbd7bf2b
+        url: https://github.com/h5py/h5py/archive/refs/tags/3.16.0.tar.gz
+        sha256: 9c3aa5e1fc0c33ae8501a17987af2f986c8ba3ade25da66c78738a5abefea133
         x-checker-data:
           type: anitya
           project-id: 6409
@@ -259,8 +259,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.12.2.tar.gz
-        sha256: 1817fa4bd60a98ed4bff06f369a352d994332e63a48be5c15bcee44680fa5ace
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.12.3.tar.gz
+        sha256: 31861d83eeb16dac6ed872370cb9f86db19de1cb48a93e3847212cdf24794ead
         x-checker-data:
           type: anitya
           project-id: 881
@@ -417,8 +417,8 @@ modules:
       - -DENABLE_MPI:BOOL=ON
     sources:
       - type: archive
-        url: https://gmsh.info/src/gmsh-4.15.1-source.tgz
-        sha256: eba8e4064f6586c8ca880f1cfdf697f4d70f026f398a93b458f247f7e4364fed
+        url: https://gmsh.info/src/gmsh-4.15.2-source.tgz
+        sha256: be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e
         x-checker-data:
           type: anitya
           project-id: 9575
@@ -492,8 +492,8 @@ modules:
       - -DUSE_HDF5:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.10.tar.gz
-        sha256: 06c9172faf29e9fdebb7be99621ca18b32b474f8e481238a159c87d16b298553
+        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.11.tar.gz
+        sha256: ab299bb4b1894a6675c73fa29940522b54c81a91b1d691ca3470d86b7345ffce
         x-checker-data:
           type: anitya
           project-id: 13980
