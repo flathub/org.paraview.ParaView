@@ -67,7 +67,7 @@ modules:
           project-id: 2540
           url-template: https://github.com/OpenMathLib/OpenBLAS/archive/v$version.tar.gz
 
-    # python3 flatpak-pip-generator setuptools_scm_git_archive flit-core tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pybind11 pillow packaging cppy kiwisolver fonttools cycler contourpy six python-dateutil pkgconfig pyparsing -o python-deps && fb
+    # python3 flatpak-pip-generator setuptools_scm_git_archive flit-core tomli typing-extensions pyproject_metadata setuptools_scm meson-python numpy certifi pyparsing pillow packaging cppy kiwisolver fonttools cycler pybind11 contourpy python-dateutil pkgconfig pyparsing -o python-deps && fb
   - python-deps.json
 
   #Copy qhull and freetype to correct dir so matplotlib will not try to download it
@@ -182,6 +182,7 @@ modules:
   - name: Embree
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
     sources:
@@ -194,7 +195,7 @@ modules:
         sources:
           - type: git
             url: https://invent.kde.org/frameworks/extra-cmake-modules.git
-            tag: v6.23.0
+            tag: v5.100.0
         # Attempt to build from source, but ISPC need glic-32bit which make things complicated.
         # OSPRay need ISPC 1.9.2.
       - name: ISPC
@@ -203,51 +204,54 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
-            url: https://github.com/ispc/ispc/releases/download/v1.18.0/ispc-v1.18.0-linux.tar.gz
-            sha256: 6c379bb97962e9de7d24fd48b3f7e647dc42be898e9d187948220268c646b692
+            url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.tar.gz
+            sha256: 63e7d61037849fa1ed644f0398d21740ee9f880b9bf81f017c65eebe1d42c02b
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
-          - -DGLFW_BUILD_WAYLAND:BOOL=ON
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+          - -DGLFW_USE_WAYLAND:BOOL=ON
           - -DBUILD_SHARED_LIBS:BOOL=ON
           - -DGLFW_BUILD_EXAMPLES:BOOL=OFF
           - -DGLFW_BUILD_TESTS:BOOL=OFF
           - -DGLFW_BUILD_DOCS:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.zip
-            sha256: b5ec004b2712fd08e8861dc271428f048775200a2df719ccf575143ba749a3e9
+            url: https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip
+            sha256: bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd
 
   - name: OSPRay
     buildsystem: cmake
     builddir: true
     config-opts:
+      # - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
       - -DOSPRAY_ENABLE_APPS_EXAMPLES:BOOL=OFF
       - -DOSPRAY_ENABLE_APPS_TUTORIALS:BOOL=OFF
       - -DOSPRAY_ENABLE_APPS_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ospray/ospray/archive/refs/tags/v2.9.0.tar.gz
-        sha256: 0145e09c3618fb8152a32d5f5cff819eb065d90975ee4e35400d2db9eb9f6398
+        url: https://github.com/ospray/ospray/archive/refs/tags/v3.2.0.tar.gz
+        sha256: 2c8108df2950bc5d1bc2a62f74629233dbe4f36e3f6a8ea032907d4a3fdc6750
     modules:
       - name: rkcommon
         buildsystem: cmake
         builddir: true
         config-opts:
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.15.2.tar.gz
-            sha256: 9128642e5187b963385dbf1655f3b143d3ef46310cc2e27114d220b347d0e2f2
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.14.0.tar.gz
+            sha256: 5aef75afc8d4fccf9e70df4cbdf29a1b28b39ee51b5588b94b83a14c6a166d83
       - name: openvkl
         buildsystem: cmake
         builddir: true
         config-opts:
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
           - -DBUILD_TESTING:BOOL=OFF
-          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
         sources:
           - type: archive
             url: https://github.com/openvkl/openvkl/archive/refs/tags/v2.0.1.tar.gz
@@ -501,9 +505,35 @@ modules:
           stable-only: true
           url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
 
+  - name: tcl
+    buildsystem: autotools
+    subdir: unix
+    config-opts:
+        - --enable-threads
+        - --enable-shared
+    post-install:
+        - chmod 755 /app/lib/libtcl*.so
+    sources:
+        - type: archive
+          url: https://prdownloads.sourceforge.net/tcl/tcl8.6.15-src.tar.gz
+          sha256: 861e159753f2e2fbd6ec1484103715b0be56be3357522b858d3cbb5f893ffef1
+  - name: tk
+    buildsystem: autotools
+    subdir: unix
+    post-install:
+        - chmod +w ${FLATPAK_DEST}/lib/libtk*.so
+        - ln -sf /app/bin/wish8.6 /app/bin/wish
+    sources:
+        - type: archive
+          url: https://prdownloads.sourceforge.net/tcl/tk8.6.15-src.tar.gz
+          sha256: 550969f35379f952b3020f3ab7b9dd5bfd11c1ef7c9b7c6a75f5c49aca793fec
+
   - name: OCCT
     buildsystem: cmake-ninja
     builddir: true
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      # - -DBUILD_MODULE_Draw:BOOL=OFF
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
@@ -622,3 +652,5 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
+      - type: patch
+        path: fix_qttesting_qt6_mousebuttons.patch
