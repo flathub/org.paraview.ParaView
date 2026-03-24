@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Sdk
 sdk: org.kde.Sdk
-runtime-version: 6.9
+runtime-version: 6.10
 base: io.qt.qtwebengine.BaseApp
-base-version: 6.9
+base-version: 6.10
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -182,12 +182,13 @@ modules:
   - name: Embree
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DEMBREE_TUTORIALS:BOOL=OFF
       - -DEMBREE_ISPC_SUPPORT:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/embree/embree/archive/refs/tags/v3.13.1.tar.gz
-        sha256: 00dbd852f19ae2b95f5106dd055ca4b304486436ced0ccf842aec4e38a4df425
+        url: https://github.com/embree/embree/archive/refs/tags/v4.4.0.tar.gz
+        sha256: acb517b0ea0f4b442235d5331b69f96192c28da6aca5d5dde0cbe40799638d5c
     modules:
       - name: extra-cmake-modules
         buildsystem: cmake-ninja
@@ -203,11 +204,12 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
-            url: https://github.com/ispc/ispc/releases/download/v1.16.0/ispc-v1.16.0-linux.tar.gz
-            sha256: 71a20e75ee1b952d8096a842368244111a0a727454d4a42043de10eadf02e740
+            url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.tar.gz
+            sha256: 63e7d61037849fa1ed644f0398d21740ee9f880b9bf81f017c65eebe1d42c02b
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           - -DGLFW_USE_WAYLAND:BOOL=ON
           - -DBUILD_SHARED_LIBS:BOOL=ON
           - -DGLFW_BUILD_EXAMPLES:BOOL=OFF
@@ -222,35 +224,38 @@ modules:
     buildsystem: cmake
     builddir: true
     config-opts:
+      # - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DOSPRAY_ENABLE_APPS_BENCHMARK:BOOL=OFF
       - -DOSPRAY_ENABLE_APPS_EXAMPLES:BOOL=OFF
       - -DOSPRAY_ENABLE_APPS_TUTORIALS:BOOL=OFF
       - -DOSPRAY_ENABLE_APPS_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/ospray/ospray/archive/refs/tags/v2.9.0.tar.gz
-        sha256: 0145e09c3618fb8152a32d5f5cff819eb065d90975ee4e35400d2db9eb9f6398
+        url: https://github.com/ospray/ospray/archive/refs/tags/v3.2.0.tar.gz
+        sha256: 2c8108df2950bc5d1bc2a62f74629233dbe4f36e3f6a8ea032907d4a3fdc6750
     modules:
       - name: rkcommon
         buildsystem: cmake
         builddir: true
         config-opts:
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.9.0.tar.gz
-            sha256: b68aa02ef44c9e35c168f826a14802bb5cc6a9d769ba4b64b2c54f347a14aa53
+            url: https://github.com/ospray/rkcommon/archive/refs/tags/v1.14.0.tar.gz
+            sha256: 5aef75afc8d4fccf9e70df4cbdf29a1b28b39ee51b5588b94b83a14c6a166d83
       - name: openvkl
         buildsystem: cmake
         builddir: true
         config-opts:
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
           - -DBUILD_EXAMPLES:BOOL=OFF
           - -DBUILD_BENCHMARKS:BOOL=OFF
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/openvkl/openvkl/archive/refs/tags/v1.2.0.tar.gz
-            sha256: dc468c2f0a359aaa946e04a01c2a6634081f7b6ce31b3c212c74bf7b4b0c9ec2
+            url: https://github.com/openvkl/openvkl/archive/refs/tags/v2.0.1.tar.gz
+            sha256: 0c7faa9582a93e93767afdb15a6c9c9ba154af7ee83a6b553705797be5f8af62
 
   - name: GDAL
     buildsystem: cmake-ninja
@@ -500,9 +505,35 @@ modules:
           stable-only: true
           url-template: https://github.com/alembic/alembic/archive/refs/tags/$version.tar.gz
 
+  - name: tcl
+    buildsystem: autotools
+    subdir: unix
+    config-opts:
+        - --enable-threads
+        - --enable-shared
+    post-install:
+        - chmod 755 /app/lib/libtcl*.so
+    sources:
+        - type: archive
+          url: https://prdownloads.sourceforge.net/tcl/tcl8.6.15-src.tar.gz
+          sha256: 861e159753f2e2fbd6ec1484103715b0be56be3357522b858d3cbb5f893ffef1
+  - name: tk
+    buildsystem: autotools
+    subdir: unix
+    post-install:
+        - chmod +w ${FLATPAK_DEST}/lib/libtk*.so
+        - ln -sf /app/bin/wish8.6 /app/bin/wish
+    sources:
+        - type: archive
+          url: https://prdownloads.sourceforge.net/tcl/tk8.6.15-src.tar.gz
+          sha256: 550969f35379f952b3020f3ab7b9dd5bfd11c1ef7c9b7c6a75f5c49aca793fec
+
   - name: OCCT
     buildsystem: cmake-ninja
     builddir: true
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      # - -DBUILD_MODULE_Draw:BOOL=OFF
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
@@ -621,3 +652,5 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
+      - type: patch
+        path: fix_qttesting_qt6_mousebuttons.patch
