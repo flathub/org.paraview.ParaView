@@ -80,7 +80,7 @@ modules:
         --no-build-isolation
     sources:
       - type: file
-        url: https://download.savannah.gnu.org/releases/freetype/freetype-old/freetype-2.6.1.tar.gz
+        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
         sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
         dest-filename: freetype-2.6.1.tar.gz
       - type: file
@@ -347,9 +347,10 @@ modules:
 
   - name: SWIG
     sources:
-      - type: archive
-        url: https://sourceforge.net/projects/swig/files/swig/swig-4.1.1/swig-4.1.1.tar.gz
-        sha256: 2af08aced8fcd65cdb5cc62426768914bedc735b1c250325203716f78e39ac9b
+      - type: git
+        url: https://github.com/swig/swig.git
+        tag: v4.1.1
+        commit: 77323a0f07562b7d90d36181697a72a909b9519a
 
   - name: OpenTURNS
     buildsystem: cmake-ninja
@@ -515,8 +516,8 @@ modules:
         - chmod 755 /app/lib/libtcl*.so
     sources:
         - type: archive
-          url: https://prdownloads.sourceforge.net/tcl/tcl8.6.15-src.tar.gz
-          sha256: 861e159753f2e2fbd6ec1484103715b0be56be3357522b858d3cbb5f893ffef1
+          url: https://github.com/tcltk/tcl/archive/refs/tags/core-8-6-15.tar.gz
+          sha256: 26ec488cef5b9cd71a3290c257e40c2157fc258cad248f71404db56db8a016d1
   - name: tk
     buildsystem: autotools
     subdir: unix
@@ -525,8 +526,10 @@ modules:
         - ln -sf /app/bin/wish8.6 /app/bin/wish
     sources:
         - type: archive
-          url: https://prdownloads.sourceforge.net/tcl/tk8.6.15-src.tar.gz
-          sha256: 550969f35379f952b3020f3ab7b9dd5bfd11c1ef7c9b7c6a75f5c49aca793fec
+          url: https://github.com/tcltk/tk/archive/refs/tags/core-8-6-15.tar.gz
+          sha256: 11e852b69ce749e5a0f17d00c0a9147b22c6140f200a84a0f3df1c329e71823f
+        - type: patch
+          path: tk_skip_missing_tcl_man_macros.patch
 
   - name: OCCT
     buildsystem: cmake-ninja
@@ -643,8 +646,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v6.0/ParaView-v6.0.1.tar.gz
-        sha256: 4104a210677026923e47470cc0b3ff910de5252e73d7db2d934b85a11036b2d3
+        url: https://www.paraview.org/files/v6.1/ParaView-v6.1.0.tar.gz
+        sha256: bcb9796a6c9355742cf9efed49b7e36f03cbdee24ece00458e6616c1747ea51b
         x-checker-data:
           type: anitya
           project-id: 9602
@@ -652,5 +655,3 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
-      - type: patch
-        path: fix_qttesting_qt6_mousebuttons.patch

@@ -1,0 +1,14 @@
+--- a/unix/Makefile.in
++++ b/unix/Makefile.in
+@@ -580,7 +580,12 @@ libraries:
+ 
+ $(TOP_DIR)/doc/man.macros:
+-	$(INSTALL_DATA) $(TCLDIR)/doc/man.macros $(TOP_DIR)/doc/man.macros
++	@if test -f "$(TCLDIR)/doc/man.macros"; then \
++		$(INSTALL_DATA) $(TCLDIR)/doc/man.macros $(TOP_DIR)/doc/man.macros; \
++	else \
++		mkdir -p $(TOP_DIR)/doc; \
++		: > $(TOP_DIR)/doc/man.macros; \
++	fi
+ 
+ doc: $(TOP_DIR)/doc/man.macros
