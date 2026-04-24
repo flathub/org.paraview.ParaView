@@ -551,7 +551,6 @@ modules:
     build-options:
       cflags: -I/app/include/eigen3
       cxxflags: -I/app/include/eigen3
-      ldflags: -fuse-ld=lld  #reduce memory usage during build
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
