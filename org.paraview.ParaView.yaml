@@ -551,6 +551,7 @@ modules:
     build-options:
       cflags: -I/app/include/eigen3
       cxxflags: -I/app/include/eigen3
+      ldflags: -fuse-ld=lld  #reduce memory usage during build
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -633,12 +634,14 @@ modules:
       - -DPARAVIEW_USE_QTWEBENGINE:BOOL=ON
       - -DPARAVIEW_USE_VTKM:BOOL=ON
       - -DBUILD_EXAMPLES:BOOL=ON
-      - -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON
       - -DGmsh_INCLUDE_DIR=/app/include
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
       - -DVTK_SMP_ENABLE_TBB:BOOL=ON
       - -DVTK_MODULE_USE_EXTERNAL_VTK_eigen:BOOL=ON
-      - -DCMAKE_BUILD_PARALLEL_LEVEL=2 #reduce memory
+      - -DCMAKE_BUILD_PARALLEL_LEVEL=2 #reduce memory usage during build
+      - -DCMAKE_JOB_POOLS=link=1;compile=4 #reduce memory usage during build
+      - -DCMAKE_JOB_POOL_LINK=link #reduce memory usage during build
+      - -DCMAKE_JOB_POOL_COMPILE=compile #reduce memory usage during build
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
