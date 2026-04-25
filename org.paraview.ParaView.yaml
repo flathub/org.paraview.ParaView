@@ -534,9 +534,11 @@ modules:
   - name: OCCT
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      env:
+        FLATPAK_BUILDER_N_JOBS: "4"
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-      # - -DBUILD_MODULE_Draw:BOOL=OFF
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
@@ -552,6 +554,8 @@ modules:
       cflags: -I/app/include/eigen3
       cxxflags: -I/app/include/eigen3
       ldflags: -Wl,--no-keep-memory
+      env:
+        FLATPAK_BUILDER_N_JOBS: "4"
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
