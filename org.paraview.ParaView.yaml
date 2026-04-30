@@ -536,9 +536,10 @@ modules:
     builddir: true
     build-options:
       env:
-        FLATPAK_BUILDER_N_JOBS: "4"
+        FLATPAK_BUILDER_N_JOBS: "1"
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_BUILD_PARALLEL_LEVEL=1
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
@@ -555,7 +556,7 @@ modules:
       cxxflags: -I/app/include/eigen3
       ldflags: -Wl,--no-keep-memory
       env:
-        FLATPAK_BUILDER_N_JOBS: "4"
+        FLATPAK_BUILDER_N_JOBS: "1"
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -642,6 +643,7 @@ modules:
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
       - -DVTK_SMP_ENABLE_TBB:BOOL=ON
       - -DVTK_MODULE_USE_EXTERNAL_VTK_eigen:BOOL=ON
+      - -DCMAKE_BUILD_PARALLEL_LEVEL=1
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
