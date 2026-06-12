@@ -546,7 +546,7 @@ modules:
     sources:
       - type: archive
         url: https://github.com/tcltk/tk/archive/refs/tags/core-8-6-15.tar.gz
-        sha256: 11e852b69ce749e5a0f17d00c0a9147b22c6140f200a84a0f3df1c329e71823f
+        sha256: 60b345a44d8070a8b64a0bb9c24263f1a82288e945d5bd7f91df43070abc442a
       - type: patch
         path: tk_skip_missing_tcl_man_macros.patch
 
@@ -577,9 +577,9 @@ modules:
       cxxflags: -I/app/include/eigen3
       ldflags: -Wl,--no-keep-memory
       make-args:
-        - -j1
+        - -j4
       env:
-        FLATPAK_BUILDER_N_JOBS: '1'
+        FLATPAK_BUILDER_N_JOBS: '4'
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -666,7 +666,7 @@ modules:
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
       - -DVTK_SMP_ENABLE_TBB:BOOL=ON
       - -DVTK_MODULE_USE_EXTERNAL_VTK_eigen:BOOL=ON
-      - -DCMAKE_BUILD_PARALLEL_LEVEL=1
+      - -DCMAKE_BUILD_PARALLEL_LEVEL=4
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
