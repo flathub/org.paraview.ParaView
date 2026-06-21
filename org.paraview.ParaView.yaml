@@ -22,7 +22,6 @@ cleanup:
   - '*.la'
   - '*.a'
 
-# Disable ARM support, ParaView does not support it anyway.
 modules:
   - shared-modules/glew/glew.json
 
@@ -206,8 +205,13 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
+            only-arches: [x86_64]
             url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.tar.gz
             sha256: 63e7d61037849fa1ed644f0398d21740ee9f880b9bf81f017c65eebe1d42c02b
+          - type: archive
+            only-arches: [aarch64]
+            url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.aarch64.tar.gz
+            sha256: 509399c399ec162d746889458a10cc13797a1aed1c0164b2bd3faddf7d023f13
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
