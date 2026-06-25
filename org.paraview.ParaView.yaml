@@ -22,7 +22,6 @@ cleanup:
   - '*.la'
   - '*.a'
 
-# Disable ARM support, ParaView does not support it anyway.
 modules:
   - shared-modules/glew/glew.json
 
@@ -206,8 +205,13 @@ modules:
           - cp bin/ispc /app/bin/
         sources:
           - type: archive
+            only-arches: [x86_64]
             url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.tar.gz
             sha256: 63e7d61037849fa1ed644f0398d21740ee9f880b9bf81f017c65eebe1d42c02b
+          - type: archive
+            only-arches: [aarch64]
+            url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.aarch64.tar.gz
+            sha256: 509399c399ec162d746889458a10cc13797a1aed1c0164b2bd3faddf7d023f13
       - name: glfw
         buildsystem: cmake-ninja
         config-opts:
@@ -335,11 +339,6 @@ modules:
   - name: Eigen3
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      make-args:
-        - -j1
-      env:
-        FLATPAK_BUILDER_N_JOBS: '1'
     config-opts:
       - -DEIGEN_BUILD_BLAS=OFF
       - -DEIGEN_BUILD_LAPACK=OFF
@@ -366,11 +365,6 @@ modules:
 
   - name: OpenTURNS
     buildsystem: cmake-ninja
-    build-options:
-      make-args:
-        - -j1
-      env:
-        FLATPAK_BUILDER_N_JOBS: '1'
     config-opts:
       - -DBUILD_PYTHON=OFF
     sources:
@@ -553,14 +547,8 @@ modules:
   - name: OCCT
     buildsystem: cmake-ninja
     builddir: true
-    build-options:
-      make-args:
-        - -j1
-      env:
-        FLATPAK_BUILDER_N_JOBS: '1'
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-      - -DCMAKE_BUILD_PARALLEL_LEVEL=1
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT
@@ -577,9 +565,7 @@ modules:
       cxxflags: -I/app/include/eigen3
       ldflags: -Wl,--no-keep-memory
       make-args:
-        - -j4
-      env:
-        FLATPAK_BUILDER_N_JOBS: '4'
+        - -j8
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -666,7 +652,6 @@ modules:
       - -DGmsh_PRIVATE_INCLUDE_DIR=/app/include/gmsh
       - -DVTK_SMP_ENABLE_TBB:BOOL=ON
       - -DVTK_MODULE_USE_EXTERNAL_VTK_eigen:BOOL=ON
-      - -DCMAKE_BUILD_PARALLEL_LEVEL=4
     post-install:
       - install -Dm644 ../Qt/Components/Resources/Icons/pvIcon.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
