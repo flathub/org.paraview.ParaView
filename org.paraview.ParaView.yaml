@@ -578,8 +578,8 @@ modules:
       cflags: -g0 -I/app/include/eigen3
       cxxflags: -g0 -I/app/include/eigen3
       ldflags: -Wl,--no-keep-memory
-      make-args:
-        - -j2
+      # make-args:
+      #   - -j$(nproc)
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
