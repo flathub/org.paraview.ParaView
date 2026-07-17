@@ -59,8 +59,8 @@ modules:
       - /share/man
     sources:
       - type: archive
-        url: https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.33.tar.gz
-        sha512: 68fa2b90a93a2dfd84dfa586af07d90952fd4f2ad8dfe26061be250e80fec8f1a76ad78977f217c7dbdd26291249f1ac38a07f08ef323eee7a248c4cb67cd670
+        url: https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.34.tar.gz
+        sha512: b40b5a3b5062ea196b3e48363db584ef91aef21c61becf4f4d6616ba5e413d770c22445c357d06dcf0992dd4666c18cced44cd5d09d8cb884c0d8f62e6940422
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -74,7 +74,8 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p subprojects/packagecache/
-      - cp qhull-8.0.2.tgz freetype-2.14.3.tar.xz harfbuzz-14.1.0.tar.xz libraqm-0.10.5.tar.gz sheenbidi-3.0.0.tar.gz subprojects/packagecache/ #Copy bundled dependencies to correct dir so matplotlib will not try to download them
+      - cp qhull-8.0.2.tgz freetype-2.14.3.tar.xz harfbuzz-14.1.0.tar.xz libraqm-0.10.5.tar.gz
+        sheenbidi-3.0.0.tar.gz subprojects/packagecache/                                                                                        #Copy bundled dependencies to correct dir so matplotlib will not try to download them
       - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation
     sources:
