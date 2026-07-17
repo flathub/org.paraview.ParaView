@@ -1,9 +1,9 @@
 app-id: org.paraview.ParaView
 runtime: org.kde.Sdk
 sdk: org.kde.Sdk
-runtime-version: '6.10'
+runtime-version: '6.11'
 base: io.qt.qtwebengine.BaseApp
-base-version: '6.10'
+base-version: '6.11'
 rename-icon: paraview
 command: paraview
 finish-args:
@@ -33,8 +33,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.11.1
-        commit: 69b3094f84afcf3758cc74b2f547ca34d8fd1621
+        tag: 1.11.2
+        commit: ff84a1ab2699385f67eea990260a20beb2b46c98
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -74,21 +74,33 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p subprojects/packagecache/
-      - cp qhull-8.0.2.tgz freetype-2.6.1.tar.gz subprojects/packagecache/ #Copy qhull and freetype to correct dir so matplotlib will not try to download it
+      - cp qhull-8.0.2.tgz freetype-2.14.3.tar.xz harfbuzz-14.1.0.tar.xz libraqm-0.10.5.tar.gz sheenbidi-3.0.0.tar.gz subprojects/packagecache/ #Copy bundled dependencies to correct dir so matplotlib will not try to download them
       - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation
     sources:
       - type: file
-        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.6.1/freetype-2.6.1.tar.gz
-        sha256: 0a3c7dfbda6da1e8fce29232e8e96d987ababbbf71ebc8c75659e4132c367014
-        dest-filename: freetype-2.6.1.tar.gz
+        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.14.3/freetype-2.14.3.tar.xz
+        sha256: 36bc4f1cc413335368ee656c42afca65c5a3987e8768cc28cf11ba775e785a5f
+        dest-filename: freetype-2.14.3.tar.xz
+      - type: file
+        url: https://github.com/harfbuzz/harfbuzz/releases/download/14.1.0/harfbuzz-14.1.0.tar.xz
+        sha256: ee0eb3a1da2c5a28147f12dff55f6c7d60aeeeb29ac7ef334eabe84c8476c105
+        dest-filename: harfbuzz-14.1.0.tar.xz
+      - type: file
+        url: https://github.com/HOST-Oman/libraqm/archive/v0.10.5/libraqm-0.10.5.tar.gz
+        sha256: 7f3dd21b4b3bd28a36f2c911d31d91a9d69341697713923ef1aac65d56ebcafd
+        dest-filename: libraqm-0.10.5.tar.gz
+      - type: file
+        url: https://github.com/Tehreer/SheenBidi/archive/refs/tags/v3.0.0/sheenbidi-3.0.0.tar.gz
+        sha256: 86c56014034739ba39a24c23eb00323b0bf6f737354f665786015fca842af786
+        dest-filename: sheenbidi-3.0.0.tar.gz
       - type: file
         dest-filename: qhull-8.0.2.tgz
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/63/1b/4be5be87d43d327a0cf4de1a56e86f7f84c89312452406cf122efe2839e6/matplotlib-3.10.9.tar.gz
-        sha256: fd66508e8c6877d98e586654b608a0456db8d7e8a546eb1e2600efd957302358
+        url: https://files.pythonhosted.org/packages/1f/24/080c99d223d158d3a8902769269ab6da5b50f7a0e6e072513907e02b7a6c/matplotlib-3.11.0.tar.gz
+        sha256: 68c0c7be01b30dcca3638934f7f591df73401235cbdbf0d1ab1c71e7db7f8b57
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -144,8 +156,8 @@ modules:
   - name: netcdf
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.10.0.tar.gz
-        sha256: ce160f9c1483b32d1ba8b7633d7984510259e4e439c48a218b95a023dc02fd4c
+        url: https://github.com/Unidata/netcdf-c/archive/v4.10.1.tar.gz
+        sha256: 33c27231c478c3b35da7c7758fbdd02da1fe407abcb16ddfe195f69d164f930d
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -172,8 +184,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.0.0.tar.gz
-        sha256: f8767b971ec6aea25dde58ae0f593e94e7aa75a739a86f67967012f69e2199b1
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
+        sha256: 191288b52e1e6b17198000b64d77d194bb65e791be46ebc606e9b091781e2070
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -270,8 +282,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.12.4.tar.gz
-        sha256: a7c9cabd19f754ba6ed89a90ba0f5a4414577bd20d94a1914aa098e509d959e7
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.13.1.tar.gz
+        sha256: 8023c9a6e08f151f4723f08982cc73d2bc95095df65e5c1ea563cafafb864ec6
         x-checker-data:
           type: anitya
           project-id: 881
@@ -369,8 +381,8 @@ modules:
       - -DBUILD_PYTHON=OFF
     sources:
       - type: archive
-        url: https://github.com/openturns/openturns/archive/refs/tags/v1.27.tar.gz
-        sha256: 2b152d54530ff86512177231f0aba61afc4a2815686b18e574d6aebda4da36c3
+        url: https://github.com/openturns/openturns/archive/refs/tags/v1.27.1.tar.gz
+        sha256: d623233aee0aa1f0fee204cfc9297f9c910e858af8df2560034c8ad2f2d31adb
         x-checker-data:
           type: anitya
           project-id: 220847
@@ -490,6 +502,8 @@ modules:
         #   project-id: 138228
         #   stable-only: true
         #   url-template: https://github.com/PDAL/PDAL/releases/download/$version/PDAL-$version-src.tar.bz2
+      - type: patch
+        path: pdal_gdal_3_13_const_metadata.patch
 
   - name: Imath
     buildsystem: cmake-ninja
@@ -511,8 +525,8 @@ modules:
       - -DUSE_HDF5:BOOL=ON
     sources:
       - type: archive
-        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.11.tar.gz
-        sha256: ab299bb4b1894a6675c73fa29940522b54c81a91b1d691ca3470d86b7345ffce
+        url: https://github.com/alembic/alembic/archive/refs/tags/1.8.12.tar.gz
+        sha256: b6d916c40446e8c502c84273092ab3d98f3f7f6094f8a2b8203d23e2f1d2a4a0
         x-checker-data:
           type: anitya
           project-id: 13980
@@ -561,11 +575,11 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     build-options:
-      cflags: -I/app/include/eigen3
-      cxxflags: -I/app/include/eigen3
+      cflags: -g0 -I/app/include/eigen3
+      cxxflags: -g0 -I/app/include/eigen3
       ldflags: -Wl,--no-keep-memory
-      make-args:
-        - -j8
+      # make-args:
+      #   - -j$(nproc)
     config-opts:
       - -DCMAKE_BUILD_TYPE:STRING=Release
       - -DPARAVIEW_BUILD_DEVELOPER_DOCUMENTATION:BOOL=OFF
@@ -657,8 +671,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v6.1/ParaView-v6.1.0.tar.gz
-        sha256: bcb9796a6c9355742cf9efed49b7e36f03cbdee24ece00458e6616c1747ea51b
+        url: https://www.paraview.org/files/v6.1/ParaView-v6.1.1.tar.gz
+        sha256: c57141ad9fbad6f8c8d67373806e5ded9d3604e0d59209eadefa54482c702de4
         x-checker-data:
           type: anitya
           project-id: 9602
@@ -666,3 +680,5 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
+      - type: patch
+        path: paraview_gdal_3_13_const_metadata.patch

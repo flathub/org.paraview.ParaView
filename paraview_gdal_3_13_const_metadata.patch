@@ -1,0 +1,22 @@
+diff --git a/VTK/IO/GDAL/vtkGDALRasterReader.cxx b/VTK/IO/GDAL/vtkGDALRasterReader.cxx
+index 6c6874d..5d0a04f 100644
+--- a/VTK/IO/GDAL/vtkGDALRasterReader.cxx
++++ b/VTK/IO/GDAL/vtkGDALRasterReader.cxx
+@@ -182,7 +182,7 @@ public:
+     this->Reader->DriverShortName = GDALGetDriverShortName(driver);
+     this->Reader->DriverLongName = GDALGetDriverLongName(driver);
+ 
+-    char** papszMetaData = GDALGetMetadata(this->GDALData, nullptr);
++    CSLConstList papszMetaData = GDALGetMetadata(this->GDALData, nullptr);
+     if (CSLCount(papszMetaData) > 0)
+     {
+       for (int i = 0; papszMetaData[i] != nullptr; ++i)
+@@ -882,7 +882,7 @@ std::vector<std::string> vtkGDALRasterReader::GetDomainMetaData(const std::strin
+ {
+   std::vector<std::string> domainMetaData;
+ 
+-  char** papszMetadata = GDALGetMetadata(this->Impl->GDALData, domain.c_str());
++  CSLConstList papszMetadata = GDALGetMetadata(this->Impl->GDALData, domain.c_str());
+ 
+   if (CSLCount(papszMetadata) > 0)
+   {

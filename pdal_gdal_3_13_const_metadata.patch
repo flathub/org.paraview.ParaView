@@ -1,0 +1,13 @@
+diff --git a/pdal/private/gdal/Raster.cpp b/pdal/private/gdal/Raster.cpp
+index 2f8a551..c652a52 100644
+--- a/pdal/private/gdal/Raster.cpp
++++ b/pdal/private/gdal/Raster.cpp
+@@ -691,7 +691,7 @@ GDALError Raster::open()
+ 
+ MetadataNode Raster::getMetadata(std::string domain) const
+ {
+-    char **papszMetadata = NULL;
++    CSLConstList papszMetadata = NULL;
+ 
+     MetadataNode output("raster");
+ 
