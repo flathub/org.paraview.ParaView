@@ -113,8 +113,8 @@ modules:
       - ./b2 install cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.gz
-        sha256: 5734305f40a76c30f951c9abd409a45a2a19fb546efe4162119250bbe4d3a463
+        url: https://archives.boost.io/release/1.92.0/source/boost_1_92_0.tar.gz
+        sha256: c4a3b310ddd2472416e091067166b0713be97c63f38c212c484ada022fd296ce
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -283,8 +283,8 @@ modules:
       - -DBUILD_TESTING:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.13.2.tar.gz
-        sha256: ecb41ea088de4e8b20d43b7b1a8e4b13d851af8c4dc29613da72802901657cc6
+        url: https://github.com/OSGeo/gdal/archive/refs/tags/v3.13.3.tar.gz
+        sha256: 645472bdff3453a2ebbf057edfa3932a7a4577ac61c45b74cc6063880e7e450d
         x-checker-data:
           type: anitya
           project-id: 881
@@ -513,8 +513,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/Imath.git
-        tag: v3.2.2
-        commit: 1e480d11cb98b032a2dece9b9a8730512effc7f6
+        tag: v3.2.3
+        commit: 5f27ba266d3ea1565e912570c30b5eafc89959f1
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
