@@ -100,8 +100,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/49/64/f9a391af28f518b11ad45a8a712353c94a0aefce09d3703200e5c54b610a/matplotlib-3.11.1.tar.gz
-        sha256: 69647db5746941c793d6e445a4cd349323ffb87d9cc958c2ad84a659b4832d30
+        url: https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-3.11.2.tar.gz
+        sha256: cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -168,8 +168,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.10.tar.bz2
-        sha256: 0acecc4fc218e5debdbcb8a41d182c6b0f1d29393015ed763b2a91d5d7374cc6
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.11.tar.bz2
+        sha256: 71f424d79d08a2da9159e3ab2bdc467204575602c2744d44d1aa9827bc55bd8e
         x-checker-data:
           type: anitya
           project-id: 2554
