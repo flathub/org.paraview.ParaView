@@ -33,8 +33,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.12.0
-        commit: ab4508e6abe338a3bd2e6eb5da1d18b8cf55dc93
+        tag: 1.12.1
+        commit: 70598bb7825f0f804fb31ec2795de5e79e7692a0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -100,8 +100,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/49/64/f9a391af28f518b11ad45a8a712353c94a0aefce09d3703200e5c54b610a/matplotlib-3.11.1.tar.gz
-        sha256: 69647db5746941c793d6e445a4cd349323ffb87d9cc958c2ad84a659b4832d30
+        url: https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-3.11.2.tar.gz
+        sha256: cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -168,8 +168,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.10.tar.bz2
-        sha256: 0acecc4fc218e5debdbcb8a41d182c6b0f1d29393015ed763b2a91d5d7374cc6
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.11.tar.bz2
+        sha256: e668a3c4acd50c41dc204c8a6dd98a611e0f26af89cf677577fa9be8a2698003
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -672,8 +672,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v6.1/ParaView-v6.1.1.tar.gz
-        sha256: c57141ad9fbad6f8c8d67373806e5ded9d3604e0d59209eadefa54482c702de4
+        url: https://www.paraview.org/files/v6.2/ParaView-v6.2.0.tar.gz
+        sha256: 5985f4a58167f04400706f44114b390bd76f0f9218cd8bb84bd698aa18346da8
         x-checker-data:
           type: anitya
           project-id: 9602
