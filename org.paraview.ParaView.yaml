@@ -463,6 +463,8 @@ modules:
     builddir: true
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      # Blosc's bool typedef requires pre-C23 C, including on aarch64.
+      - -DCMAKE_C_STANDARD:STRING=99
     sources:
       - type: git
         url: https://github.com/Blosc/c-blosc.git
