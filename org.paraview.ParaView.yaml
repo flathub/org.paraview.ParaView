@@ -461,29 +461,32 @@ modules:
   - name: blosc
     buildsystem: cmake-ninja
     builddir: true
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: git
         url: https://github.com/Blosc/c-blosc.git
         tag: v1.21.6
+        commit: 616f4b7343a8479f7e71dd3d7025bd92c9a6bbd0
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
 
-        commit: 616f4b7343a8479f7e71dd3d7025bd92c9a6bbd0
   - name: openvdb
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DOPENVDB_CORE_STATIC:BOOL=OFF
+      - -DOPENVDB_BUILD_BINARIES:BOOL=OFF
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/openvdb.git
         tag: v13.1.0
+        commit: e26f5a569201d3236e0c30580572101022d3d754
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
 
-        commit: e26f5a569201d3236e0c30580572101022d3d754
   - name: PDAL
     buildsystem: cmake-ninja
     builddir: true
@@ -607,7 +610,8 @@ modules:
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
       - -DPARAVIEW_ENABLE_OCCT:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
-      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF #https://github.com/AcademySoftwareFoundation/openvdb/issues/1160
+      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=ON
+      - -DOpenVDB_CMAKE_PATH:PATH=/app/lib/cmake/OpenVDB
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
@@ -684,5 +688,3 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
-      - type: patch
-        path: paraview_gdal_3_13_const_metadata.patch
