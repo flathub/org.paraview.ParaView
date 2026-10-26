@@ -33,8 +33,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mesonbuild/meson.git
-        tag: 1.12.0
-        commit: ab4508e6abe338a3bd2e6eb5da1d18b8cf55dc93
+        tag: 1.12.1
+        commit: 70598bb7825f0f804fb31ec2795de5e79e7692a0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -74,8 +74,9 @@ modules:
     buildsystem: simple
     build-commands:
       - mkdir -p subprojects/packagecache/
-      - cp qhull-8.0.2.tgz freetype-2.14.3.tar.xz harfbuzz-14.1.0.tar.xz libraqm-0.10.5.tar.gz
-        sheenbidi-3.0.0.tar.gz subprojects/packagecache/                                                                                        #Copy bundled dependencies to correct dir so matplotlib will not try to download them
+      - >-
+        cp qhull-8.0.2.tgz freetype-2.14.3.tar.xz harfbuzz-14.1.0.tar.xz
+        libraqm-0.10.5.tar.gz sheenbidi-3.0.0.tar.gz subprojects/packagecache/
       - python3 -mpip install . --no-index --find-links=file://${PWD} --prefix=${FLATPAK_DEST}
         --no-build-isolation
     sources:
@@ -100,8 +101,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/49/64/f9a391af28f518b11ad45a8a712353c94a0aefce09d3703200e5c54b610a/matplotlib-3.11.1.tar.gz
-        sha256: 69647db5746941c793d6e445a4cd349323ffb87d9cc958c2ad84a659b4832d30
+        url: https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-3.11.2.tar.gz
+        sha256: cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4
         x-checker-data:
           type: pypi
           name: matplotlib
@@ -168,8 +169,8 @@ modules:
   - name: openmpi
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.10.tar.bz2
-        sha256: 0acecc4fc218e5debdbcb8a41d182c6b0f1d29393015ed763b2a91d5d7374cc6
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.11.tar.bz2
+        sha256: e668a3c4acd50c41dc204c8a6dd98a611e0f26af89cf677577fa9be8a2698003
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -297,8 +298,8 @@ modules:
           - -DBUILD_TESTING:BOOL=OFF
         sources:
           - type: archive
-            url: https://github.com/OSGeo/PROJ/releases/download/9.8.1/proj-9.8.1.tar.gz
-            sha256: af5b731c145c1d13c4e3b4eeb7d167e94e845e440f71e3496b4ed8dae0291960
+            url: https://github.com/OSGeo/PROJ/releases/download/9.9.0/proj-9.9.0.tar.gz
+            sha256: 791a0610547eeabb17006cfd49cdbd2034f3240f47ed5e88a1031811f4e2bcf3
             x-checker-data:
               type: anitya
               project-id: 9463
@@ -457,29 +458,36 @@ modules:
           stable-only: true
           url-template: https://gmsh.info/src/gmsh-$version-source.tgz
 
-  # - name: blosc
-  #   buildsystem: cmake-ninja
-  #   builddir: true
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/Blosc/c-blosc.git
-  #       tag: v1.21.4
-  #       x-checker-data:
-  #         type: git
-  #         tag-pattern: ^(v[\d.]+)$
-  #
-  # - name: openvdb
-  #   buildsystem: cmake-ninja
-  #   builddir: true
-  #   config-opts:
-  #     - -DOPENVDB_CORE_STATIC:BOOL=OFF
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/AcademySoftwareFoundation/openvdb.git
-  #       tag: v10.0.1
-  #       x-checker-data:
-  #         type: git
-  #         tag-pattern: ^(v[\d.]+)$
+  - name: blosc
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      # Blosc's bool typedef requires pre-C23 C, including on aarch64.
+      - -DCMAKE_C_STANDARD:STRING=99
+    sources:
+      - type: git
+        url: https://github.com/Blosc/c-blosc.git
+        tag: v1.21.6
+        commit: 616f4b7343a8479f7e71dd3d7025bd92c9a6bbd0
+        x-checker-data:
+          type: git
+          tag-pattern: ^(v[\d.]+)$
+
+  - name: openvdb
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DOPENVDB_CORE_STATIC:BOOL=OFF
+      - -DOPENVDB_BUILD_BINARIES:BOOL=OFF
+    sources:
+      - type: git
+        url: https://github.com/AcademySoftwareFoundation/openvdb.git
+        tag: v13.1.0
+        commit: e26f5a569201d3236e0c30580572101022d3d754
+        x-checker-data:
+          type: git
+          tag-pattern: ^(v[\d.]+)$
 
   - name: PDAL
     buildsystem: cmake-ninja
@@ -604,7 +612,8 @@ modules:
       - -DPARAVIEW_ENABLE_NVPIPE:BOOL=OFF
       - -DPARAVIEW_ENABLE_OCCT:BOOL=ON
       - -DPARAVIEW_ENABLE_OPENTURNS:BOOL=ON
-      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=OFF #https://github.com/AcademySoftwareFoundation/openvdb/issues/1160
+      - -DPARAVIEW_ENABLE_OPENVDB:BOOL=ON
+      - -DOpenVDB_CMAKE_PATH:PATH=/app/lib/cmake/OpenVDB
       - -DPARAVIEW_ENABLE_PDAL:BOOL=ON
       - -DPARAVIEW_ENABLE_RAYTRACING:BOOL=ON
       - -DPARAVIEW_ENABLE_VISITBRIDGE:BOOL=ON
@@ -672,8 +681,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v6.1/ParaView-v6.1.1.tar.gz
-        sha256: c57141ad9fbad6f8c8d67373806e5ded9d3604e0d59209eadefa54482c702de4
+        url: https://www.paraview.org/files/v6.2/ParaView-v6.2.0.tar.gz
+        sha256: 5985f4a58167f04400706f44114b390bd76f0f9218cd8bb84bd698aa18346da8
         x-checker-data:
           type: anitya
           project-id: 9602
@@ -681,5 +690,3 @@ modules:
           url-template: https://www.paraview.org/files/v$major.$minor/ParaView-v$version.tar.gz
       - type: patch
         path: fix_appdata_file.patch
-      - type: patch
-        path: paraview_gdal_3_13_const_metadata.patch
