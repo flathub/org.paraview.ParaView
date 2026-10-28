@@ -483,8 +483,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/openvdb.git
-        tag: v13.1.0
-        commit: e26f5a569201d3236e0c30580572101022d3d754
+        tag: v13.2.0
+        commit: d05b564ad165aa0f6fc15f52d59ef5703105a50c
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
