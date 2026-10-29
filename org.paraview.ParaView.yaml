@@ -60,7 +60,8 @@ modules:
     sources:
       - type: archive
         url: https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.34.tar.gz
-        sha512: b40b5a3b5062ea196b3e48363db584ef91aef21c61becf4f4d6616ba5e413d770c22445c357d06dcf0992dd4666c18cced44cd5d09d8cb884c0d8f62e6940422
+        sha512: 
+          b40b5a3b5062ea196b3e48363db584ef91aef21c61becf4f4d6616ba5e413d770c22445c357d06dcf0992dd4666c18cced44cd5d09d8cb884c0d8f62e6940422
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -81,11 +82,13 @@ modules:
         --no-build-isolation
     sources:
       - type: file
-        url: https://downloads.sourceforge.net/project/freetype/freetype2/2.14.3/freetype-2.14.3.tar.xz
+        url: 
+          https://downloads.sourceforge.net/project/freetype/freetype2/2.14.3/freetype-2.14.3.tar.xz
         sha256: 36bc4f1cc413335368ee656c42afca65c5a3987e8768cc28cf11ba775e785a5f
         dest-filename: freetype-2.14.3.tar.xz
       - type: file
-        url: https://github.com/harfbuzz/harfbuzz/releases/download/14.1.0/harfbuzz-14.1.0.tar.xz
+        url: 
+          https://github.com/harfbuzz/harfbuzz/releases/download/14.1.0/harfbuzz-14.1.0.tar.xz
         sha256: ee0eb3a1da2c5a28147f12dff55f6c7d60aeeeb29ac7ef334eabe84c8476c105
         dest-filename: harfbuzz-14.1.0.tar.xz
       - type: file
@@ -93,7 +96,8 @@ modules:
         sha256: 7f3dd21b4b3bd28a36f2c911d31d91a9d69341697713923ef1aac65d56ebcafd
         dest-filename: libraqm-0.10.5.tar.gz
       - type: file
-        url: https://github.com/Tehreer/SheenBidi/archive/refs/tags/v3.0.0/sheenbidi-3.0.0.tar.gz
+        url: 
+          https://github.com/Tehreer/SheenBidi/archive/refs/tags/v3.0.0/sheenbidi-3.0.0.tar.gz
         sha256: 86c56014034739ba39a24c23eb00323b0bf6f737354f665786015fca842af786
         dest-filename: sheenbidi-3.0.0.tar.gz
       - type: file
@@ -101,7 +105,8 @@ modules:
         url: https://github.com/qhull/qhull/archive/v8.0.2/qhull-8.0.2.tar.gz
         sha256: 8774e9a12c70b0180b95d6b0b563c5aa4bea8d5960c15e18ae3b6d2521d64f8b
       - type: archive
-        url: https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-3.11.2.tar.gz
+        url: 
+          https://files.pythonhosted.org/packages/e7/c8/9aa712a0afb882649424dd8de8ad9aa6235e796e84c6052e8f6dc1598d0d/matplotlib-3.11.2.tar.gz
         sha256: cec596316640f2b394b8f0daa0ea61a8eae82d017b620b9f202befb972a59ea4
         x-checker-data:
           type: pypi
@@ -120,7 +125,8 @@ modules:
           type: anitya
           project-id: 6845
           stable-only: true
-          url-template: https://archives.boost.io/release/${major}.${minor}.${patch}/source/boost_${major}_${minor}_${patch}.tar.gz
+          url-template: 
+            https://archives.boost.io/release/${major}.${minor}.${patch}/source/boost_${major}_${minor}_${patch}.tar.gz
 
   - name: hdf5
     buildsystem: cmake-ninja
@@ -175,7 +181,8 @@ modules:
           type: anitya
           project-id: 2554
           stable-only: true
-          url-template: https://download.open-mpi.org/release/open-mpi/v${major}.${minor}/openmpi-${version}.tar.bz2
+          url-template: 
+            https://download.open-mpi.org/release/open-mpi/v${major}.${minor}/openmpi-${version}.tar.bz2
 
   - name: TBB
     buildsystem: cmake-ninja
@@ -186,8 +193,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
-        sha256: 191288b52e1e6b17198000b64d77d194bb65e791be46ebc606e9b091781e2070
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.2.0.tar.gz
+        sha256: 80cb62e62defeee67ea1885a6f72d97ac81404f8fde9cded62fb51524808a30c
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -224,7 +231,8 @@ modules:
             sha256: 63e7d61037849fa1ed644f0398d21740ee9f880b9bf81f017c65eebe1d42c02b
           - type: archive
             only-arches: [aarch64]
-            url: https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.aarch64.tar.gz
+            url: 
+              https://github.com/ispc/ispc/releases/download/v1.30.0/ispc-v1.30.0-linux.aarch64.tar.gz
             sha256: 509399c399ec162d746889458a10cc13797a1aed1c0164b2bd3faddf7d023f13
       - name: glfw
         buildsystem: cmake-ninja
@@ -397,13 +405,15 @@ modules:
   - name: numactl
     sources:
       - type: archive
-        url: https://github.com/numactl/numactl/releases/download/v2.0.19/numactl-2.0.19.tar.gz
+        url: 
+          https://github.com/numactl/numactl/releases/download/v2.0.19/numactl-2.0.19.tar.gz
         sha256: f2672a0381cb59196e9c246bf8bcc43d5568bc457700a697f1a1df762b9af884
         x-checker-data:
           type: anitya
           project-id: 2507
           stable-only: true
-          url-template: https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
+          url-template: 
+            https://github.com/numactl/numactl/releases/download/v${version}/numactl-${version}.tar.gz
 
   - name: ADIOS2
     buildsystem: cmake
@@ -483,8 +493,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/openvdb.git
-        tag: v13.1.0
-        commit: e26f5a569201d3236e0c30580572101022d3d754
+        tag: v14.0.0
+        commit: ecae2bda85744412b0cd47e1b8e1e4e76beb7b88
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
