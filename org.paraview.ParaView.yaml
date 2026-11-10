@@ -186,8 +186,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
-        sha256: 191288b52e1e6b17198000b64d77d194bb65e791be46ebc606e9b091781e2070
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.2.0.tar.gz
+        sha256: 80cb62e62defeee67ea1885a6f72d97ac81404f8fde9cded62fb51524808a30c
         x-checker-data:
           type: anitya
           project-id: 8217
@@ -468,8 +468,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Blosc/c-blosc.git
-        tag: v1.21.6
-        commit: 616f4b7343a8479f7e71dd3d7025bd92c9a6bbd0
+        tag: v1.21.7
+        commit: 34c47e36ac3edcb1954d0eab9c38d7efd8816e7c
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
@@ -483,8 +483,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AcademySoftwareFoundation/openvdb.git
-        tag: v13.1.0
-        commit: e26f5a569201d3236e0c30580572101022d3d754
+        tag: v14.0.0
+        commit: ecae2bda85744412b0cd47e1b8e1e4e76beb7b88
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d.]+)$
@@ -681,8 +681,8 @@ modules:
       - desktop-file-edit --set-icon=${FLATPAK_ID} ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://www.paraview.org/files/v6.2/ParaView-v6.2.0.tar.gz
-        sha256: 5985f4a58167f04400706f44114b390bd76f0f9218cd8bb84bd698aa18346da8
+        url: https://www.paraview.org/files/v6.2/ParaView-v6.2.1.tar.gz
+        sha256: 68805b7024bc03bd528db4f3f26854c5162787d43176124d3a4996741a9c2de6
         x-checker-data:
           type: anitya
           project-id: 9602
